@@ -1,0 +1,28 @@
+<% content_for :nav do %>
+	<li><%= link_to('Accueil', home_path) %></li>
+<% end %>
+
+<% content_for :page_title do %>
+	Gestion des utilisateurs
+<% end %>
+
+  <table class="list">
+    <thead>
+      <tr>
+        <th>email</th>
+        <th class="action">administrateur</th>
+        <th class="action">DSCM campagne manager</th>
+        <th class="action">Supprimer</th>
+      </tr>
+    </thead>
+    <tbody id="liste_body">
+      <% @users.each do |user| %>
+      <tr>
+        <td class="text"><%= user.email %></td>
+        <td class="asaisir centre"><%= check_box_tag("", 1, user.admin) %></td>
+        <td class="asaisir centre"><%= check_box_tag("", 1, user.campagne_manager, "data-user_id" => user.id, class: :campagne_manager) %></td>
+        <td><%= link_to '', user, data: { confirm: 'Tu vas supprimer cet utilisateur. Es-tu sûr(e) ?' }, method: :delete, class: :bin %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>

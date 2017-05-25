@@ -1,0 +1,29 @@
+app:
+  # pour construire l'image
+  #build: .
+  # pour utiliser l'image
+  #image: app
+  container_name: app
+  # pour construire l'image
+  #volumes:
+  #  - .:/myapp
+  ports:
+    - "8000:3000"
+  links:
+    - db
+  env_file: app.env
+
+db:
+  image: mysql
+  container_name: db
+  ports:
+    - "13306:3306"
+  env_file: db.env
+
+adminer:
+  image: adminer
+  container_name: adminer
+  ports:
+    - "8080:8080"
+  links:
+    - db

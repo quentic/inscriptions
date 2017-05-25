@@ -1,0 +1,13 @@
+/*
+    Document   : giraf_impr
+    Created on : 24 nov. 2009, 15:51:55
+    Author     : cquentin
+    Description:
+        Feuille de style pour impression.
+*/
+
+
+header, nav {
+    display: none;
+}
+

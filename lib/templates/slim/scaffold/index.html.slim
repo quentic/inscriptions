@@ -1,0 +1,31 @@
+- content_for :nav do
+  li = link_to 'Accueil', home_path
+  li = link_to 'Nouveau <%= human_name %>', new_<%= singular_table_name %>_path if (can? :create, <%= class_name %>)
+  li = link_to 'Tous les <%= table_name %>', <%= table_name %>_path
+  li = aide_via_wiki('<%= class_name %>s')
+
+- content_for :page_title do
+  ' Liste des #{<%= class_name %>.model_name.human}
+
+= filtrer('', 'Filtrer par nom&nbsp;:', :filtre, 'Saisis qq car. du nom de <%= singular_table_name %>')
+= will_paginate @<%= table_name %>
+
+table.list
+  thead
+    tr
+<% attributes.each do |attribute| -%>
+      th.centre = t(:<%= attribute.name %>)
+<% end -%>
+      th Détails
+      th Modifier
+      th Supprimer
+
+  tbody
+    - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
+      tr
+<% attributes.each do |attribute| -%>
+        td = <%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
+        td = link_to '', <%= singular_table_name %>_path(<%= singular_table_name %>), class: :loupe
+        td = link_to '', edit_<%= singular_table_name %>_path(<%= singular_table_name %>), class: :edit
+        td = link_to '', <%= singular_table_name %>, data: {:confirm => 'Es-tu sûr(e) ?'}, :method => :delete, class: :bin

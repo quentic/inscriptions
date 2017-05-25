@@ -1,0 +1,18 @@
+- content_for :nav do
+  li = link_to 'Gestion des utilisateurs', users_path if (can? :manage, User)
+
+- content_for :page_title do
+	' offres/demandes de print
+
+section.contenu
+  p Vous êtes sur le portail de Gestion des offres d'impression Marketing. Vous pouvez :
+  ul.action
+    li.action--campagne  = link_to 'Voir les campagnes MAAF', maaf_campagnes_path 
+    li.action--campagne  = link_to 'Voir les campagnes Porsche', porsche_campagnes_path 
+
+section.moteur
+  hr
+  p = "Fonctionne avec :"
+  ul
+    li = "Ruby : " + RUBY_VERSION
+    li = "Rails : " + Rails.version

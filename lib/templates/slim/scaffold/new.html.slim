@@ -1,0 +1,9 @@
+- content_for :nav do
+  li = link_to 'Accueil', home_path
+  li = link_to 'Annuler', <%= index_helper %>_path
+  li = aide_via_wiki('<%= class_name %>New')
+
+- content_for :page_title do
+  ' Définir un nouveau #{<%= class_name %>.model_name.human}
+
+== render 'form'

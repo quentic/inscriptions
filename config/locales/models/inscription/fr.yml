@@ -1,0 +1,7 @@
+fr:
+  activerecord:
+    attributes:
+      campagne:
+        client_centre_cout_id: centre de coût client
+        ref_interne_xerox: référence interne Xerox
+        libelle: nom de la campagne

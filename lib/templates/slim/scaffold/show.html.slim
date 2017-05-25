@@ -1,0 +1,15 @@
+- content_for :nav do
+  li = link_to 'Accueil', home_path
+  li = link_to 'Voir tous les <%= table_name %>', <%= table_name %>_path
+  li = aide_via_wiki('<%= class_name %>Show')
+
+- content_for :page_title do
+  = "Détail de " + @<%= singular_table_name %>.nom
+
+table
+<% attributes.each do |attribute| -%>
+  tr
+    th = t(:<%= attribute.name %>)
+    td = @<%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
+

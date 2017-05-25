@@ -1,0 +1,25 @@
+<% content_for :nav do %>
+	<li><%= link_to('Accueil', home_path) %></li>
+<% end %>
+
+<% content_for :page_title do %>
+	Authentification
+<% end %>
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+	<fieldset>
+	  <div>
+	  	<%= f.label :email %>
+	  	<%= f.email_field :email, class: :focus_defaut %>
+	  </div>
+
+	  <div><%= f.label :password %><%= f.password_field :password %></div>
+
+	  <% if devise_mapping.rememberable? -%>
+	  <% end -%>
+	</fieldset>
+    <div><%= f.check_box :remember_me %> <%= f.label :remember_me, "Se souvenir de moi" %></div>
+  <div><%= f.submit "Se connecter" %></div>
+<% end %>
+
+<%= render "devise/shared/links" %>

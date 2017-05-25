@@ -1,0 +1,29 @@
+<% content_for :nav do %>
+<% end %>
+
+<% content_for :page_title do %>
+  Création d'un compte utilisateur pour l'application Offres Print
+<% end %>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :prenom, "Prénom" %>
+  <%= f.text_field :prenom %></div>
+
+  <div><%= f.label :nom %>
+  <%= f.text_field :nom %></div>
+
+  <div><%= f.label :email %>
+  <%= f.email_field :email %></div>
+
+  <div><%= f.label :password, "Mot de passe" %>
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation, "Confirmation du mot de passe" %>
+  <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.submit "Créer mon compte" %></div>
+<% end %>
+
+<%= render "devise/shared/links" %>

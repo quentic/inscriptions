@@ -1,0 +1,12 @@
+= form_for @<%= singular_table_name %> do |f|
+  = afficher_erreurs(@<%= singular_table_name %>, 'la modification de ce <%= human_name %> :')
+
+  fieldset
+<% attributes.each do |attribute| -%>
+    .field
+      = f.label :<%= attribute.name %>
+      div.champ
+        = f.<%= attribute.field_type %> :<%= attribute.name %>
+  
+<% end -%>
+    .actions = f.submit "Enregistrer"

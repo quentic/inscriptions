@@ -1,0 +1,54 @@
+fr:
+  number:
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion:
+            one: milliard
+            other: milliards
+          million:
+            one: million
+            other: millions
+          quadrillion:
+            one: million de milliards
+            other: millions de milliards
+          thousand:
+            one: millier
+            other: milliers
+          trillion:
+            one: billion
+            other: billions
+          unit: ''
+  activerecord:
+    models:
+    errors:
+      template:
+        header:
+          one:    "1 erreur a empêché l'enregistrement de %{model}"
+          other:  "%{count} erreurs ont empêché l'enregistrement de %{model}"
+        header_specifique:
+          one:    "1 erreur a empêché %{message_erreur}"
+          other:  "%{count} erreurs ont empêché %{message_erreur}"
+        # The variable :count is also available
+        body: "Un problème a été rencontré sur les champs suivants :"
+
+      messages:
+        blank: " => Ce champ est obligatoire : vous devez fournir une valeur"
+        taken: " => Cette valeur existe déjà : choisissez une autre valeur"
+        record_invalid: " => données incompatibles avec les règles de validation : enregistrement refusé"
+        restrict_dependent_destroy:
+          has_one: "Vous ne pouvez pas supprimer l'enregistrement car un(e) %{record} dépendant(e) existe"
+          has_many: "Vous ne pouvez pas supprimer l'enregistrement parce que les %{record} dépendants existent"
+
+  support:
+    select:
+      # default value for :prompt => true in FormOptionsHelper
+      prompt: "Veuillez choisir..."
+
+  unauthorized:
+      manage:
+        all: "Tu n'es pas autorisé(e) à effectuer l'action : %{action} sur %{subject}. <br />Es-tu connecté(e)/authentifié(e) à l'application ?"
+        user: "Non autorisé à gérer les comptes des autres utilisateurs."
+      update:
+        project: "Not allowed to update this project."

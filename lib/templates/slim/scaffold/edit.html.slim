@@ -1,0 +1,10 @@
+- content_for :nav do
+  li = link_to 'Accueil', home_path
+  li = link_to 'Nouveau <%= singular_table_name %>', new_<%= singular_table_name %>_path if (can? :create, <%= class_name %>)
+  li = link_to 'Voir toutes les <%= table_name %>', <%= table_name %>_path
+  li = aide_via_wiki '<%= class_name %>Edit'
+
+- content_for :page_title do
+  ' Modifier un #{<%= class_name %>.model_name.human}
+
+== render 'form'
