@@ -1,8 +1,8 @@
 header#bandeau_top
   a{href="/"}
-    = image_tag "xerox.png"
+    = image_tag "norev.png"
   h1
-    = raw "#{yield :page_title}" || "Offres Print"
+    = raw "#{yield :page_title}" || "Raid NOREV 2018"
     
 div#flash_message
   - flash.each do |name, msg|
@@ -13,8 +13,7 @@ div#flash_message
 nav.yui-g
   ul
     = yield :nav
-    li= signaler_un_bug
-
+	
     - if user_signed_in?
       li#deconnexion= link_to("Déconnecter #{current_user.prenom}", destroy_user_session_path, method: :delete)
     - else
