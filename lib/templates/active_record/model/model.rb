@@ -13,11 +13,11 @@ class <%= class_name %> < <%= parent_class_name.classify %>
   def self.contenant(terme)
     terme = full_text(terme)
 
-    where("reference LIKE ? OR designation LIKE ?", terme, terme)
+    where("nom LIKE ?", terme)
   end
 
   # Recherche les objets relatifs à la recherche (passée en paramètre)
-  def self.rechercher(terme)
+  def self.filtre_par(terme)
     select("*").
     order(id: :desc).
     contenant(terme)
