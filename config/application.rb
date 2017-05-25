@@ -1,4 +1,4 @@
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
 
 require 'rails/all'
 
@@ -6,8 +6,11 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module DscmPrint
+module Inscriptions
   class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 5.1
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -23,19 +26,8 @@ module DscmPrint
     # config.time_zone = 'Central Time (US & Canada)'
     config.time_zone = 'Paris'
 
-    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
-
     # Pour un controleur donné, on n'inclut que application_helper et le helper spécifique à ce controleur
     config.action_controller.include_all_helpers = false
-
-    # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
-
-    I18n.available_locales = :fr
-    # Pour faire taire le message d'avertissement apparu depuis Rails 4
-    I18n.enforce_available_locales = false
 
     # Configurer le générateur
     config.generators do |g|
@@ -47,4 +39,3 @@ module DscmPrint
 
   end
 end
-
