@@ -18,7 +18,11 @@ gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 gem 'slim-rails'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
+# Pour des controlleurs simplifiés
 gem 'inherited_resources'
+# Pour des formulaires par défaut super simples
+gem 'simple_form'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
