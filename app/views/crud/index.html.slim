@@ -1,0 +1,31 @@
+- content_for :nav do
+  li = link_to 'Accueil', home_path
+  li = link_to 'Nouvel ' + resource_class.to_s.downcase, [:new, resource_class.to_s.downcase.to_sym] if (can? :create, resource_class)
+  li = link_to 'Tous les ' + resource_class.to_s.downcase.pluralize, resource_class.to_s.downcase.pluralize + '_path'
+
+- content_for :page_title do
+  ' Liste des #{resource_class.to_s.downcase.pluralize}
+
+= filtrer('', 'Filtrer par nom&nbsp;:', :filtre, 'Saisis qq car.')
+= will_paginate collection
+
+table.list
+  thead
+    tr
+      - attrs_for_index.each do |attr|
+        th.centre = attr.to_s.titlecase
+      th.action Détails
+      th.action Modifier
+      th.action Supprimer
+
+
+  tbody
+    - collection.each do |resource|
+      tr
+        - attrs_for_index.each do |attr|
+          td = link_to resource.attributes[attr.to_s], resource
+
+        td = link_to '', [:show, resource], class: :loupe
+        td = link_to '', [:edit, resource], class: :edit
+        td = link_to '', resource, data: {:confirm => 'Es-tu sûr(e) ?'}, :method => :delete, class: :bin      		
+
