@@ -1,0 +1,15 @@
+- content_for :nav do
+  li = link_to 'Gestion des utilisateurs', users_path if (can? :manage, User)
+
+- content_for :page_title do
+	= "Afficher un #{resource}" 
+
+table
+  tr
+    th Key
+    th Value
+  - resource.attributes.sort.each do |key, value|
+  tr
+    td= key
+    td= value
+
