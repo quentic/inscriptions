@@ -9,8 +9,13 @@ jQuery ->
     quand le contenu du filtre change
   ###
   $("#filtre").keyup ->
+    terme = $(this).val()
+
     ### make a GET call and replace the content ###
-    if $(this).val().length > 3
-      $.get("<%= table_name %>/rechercher?terme=" + $(this).val(), (data) ->
+    if terme.length > 3
+      $.get("<%= table_name %>/rechercher?terme=" + terme, (data) ->
         $("#liste_body").html(data)
       )
+    
+
+
