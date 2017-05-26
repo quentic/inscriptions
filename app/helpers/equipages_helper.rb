@@ -1,0 +1,2 @@
+module EquipagesHelper
+end
