@@ -50,7 +50,7 @@ class <%= controller_class_name %>Controller < CrudController
   # Filtre les opérations du stock en fonction d'un terme recherché
   # - On limite à 100 résultats
   def rechercher
-    @<%= plural_table_name %> = <%= orm_class %>.filtre_par(@filtre).limit(100)
+    @<%= plural_table_name %> = <%= class_name %>.filtre_par(@filtre).limit(100)
     render @<%= plural_table_name %>
   end
 
