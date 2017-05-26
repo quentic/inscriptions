@@ -19,7 +19,7 @@ gem 'slim-rails'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Pour des controlleurs simplifiés
-gem 'inherited_resources'
+#gem 'inherited_resources'
 # Pour des formulaires par défaut super simples
 gem 'simple_form'
 
