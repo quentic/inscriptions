@@ -1,0 +1,2 @@
+module EquipiersHelper
+end

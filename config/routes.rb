@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :equipiers
+  resources :equipages
   devise_for :users, controllers: {registrations: "users/registrations"}
 
   resources :users do
