@@ -1,6 +1,7 @@
 class CreateEquipages < ActiveRecord::Migration[5.1]
   def change
     create_table :equipages do |t|
+      t.integer :numero, limit: 1
       t.string :type_puissance, limit: 20
       t.string :carte_grise_titulaire
       t.date :carte_grise_date_emission
