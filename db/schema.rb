@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 20170526211717) do
 
   create_table "equipages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "numero", limit: 1
     t.string "type_puissance", limit: 20
     t.string "carte_grise_titulaire"
     t.date "carte_grise_date_emission"
