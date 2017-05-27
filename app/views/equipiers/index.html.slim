@@ -1,0 +1,33 @@
+- content_for :nav do
+  li = link_to 'Accueil', home_path
+  li = link_to 'Nouvel équipier', new_equipage_equipier_path(@equipage) if (can? :create, Equipier)
+  li = link_to 'Tous les equipiers', equipiers_path
+  li = link_to "Voir l'équipage", equipages_path(id: @equipage)
+
+- content_for :page_title do
+  ' Liste des équipiers
+
+= filtrer('', 'Filtrer par nom&nbsp;:', :filtre, 'Saisis qq car. du nom de equipier')
+= will_paginate @equipiers
+
+table.list
+  thead
+    tr
+      th.centre = t(:nom)
+      th.centre = t(:prenom)
+      th.centre = t(:telephone_portable)
+      th.centre = t(:email)
+      th Détails
+      th Modifier
+      th Supprimer
+
+  tbody
+    - @equipiers.each do |equipier|
+      tr
+        td = equipier.nom
+        td = equipier.prenom
+        td = equipier.email
+        td = equipier.telephone_portable
+        td = link_to '', equipier_path(equipier), class: :loupe
+        td = link_to '', edit_equipier_path(equipier), class: :edit
+        td = link_to '', equipier, data: {:confirm => 'Es-tu sûr(e) ?'}, :method => :delete, class: :bin
