@@ -1,3 +1,9 @@
-h1 "Nouveau #{resource_class.to_s.titlecase}
+- content_for :nav do
+  li = link_to 'Accueil', home_path
+  li = link_to 'Annuler', :back
+
+- content_for :page_title do
+  = "Nouvel " + resource_class.to_s.titlecase
+
 = render 'form'
 

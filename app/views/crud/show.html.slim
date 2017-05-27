@@ -2,14 +2,14 @@
   li = link_to 'Gestion des utilisateurs', users_path if (can? :manage, User)
 
 - content_for :page_title do
-	= "Afficher un #{resource}" 
+	= "Afficher un #{resource_class.to_s.downcase}" 
 
 table
   tr
-    th Key
-    th Value
+    th Info
+    th Valeur
   - resource.attributes.sort.each do |key, value|
-  tr
-    td= key
-    td= value
+    tr
+      td = key
+      td = value
 

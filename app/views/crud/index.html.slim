@@ -1,7 +1,7 @@
 - content_for :nav do
   li = link_to 'Accueil', home_path
   li = link_to 'Nouvel ' + resource_class.to_s.downcase, [:new, resource_class.to_s.downcase.to_sym] if (can? :create, resource_class)
-  li = link_to 'Tous les ' + resource_class.to_s.downcase.pluralize, resource_class.to_s.downcase.pluralize + '_path'
+  li = link_to 'Tous les ' + resource_class.to_s.downcase.pluralize, resource_class.to_s.downcase.pluralize
 
 - content_for :page_title do
   ' Liste des #{resource_class.to_s.downcase.pluralize}
@@ -25,7 +25,7 @@ table.list
         - attrs_for_index.each do |attr|
           td = link_to resource.attributes[attr.to_s], resource
 
-        td = link_to '', [:show, resource], class: :loupe
+        td = link_to '', [resource], class: :loupe
         td = link_to '', [:edit, resource], class: :edit
         td = link_to '', resource, data: {:confirm => 'Es-tu sûr(e) ?'}, :method => :delete, class: :bin      		
 
