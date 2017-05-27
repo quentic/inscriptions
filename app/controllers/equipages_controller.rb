@@ -2,12 +2,14 @@ class EquipagesController < CrudController
   #custom_actions :resource => [:cloner]
 
   def attrs_for_index
-    [:type_puissance, :carte_grise_titulaire, :carte_grise_date_emission, :premiere_mise_en_circ, :immatriculation, :cie_assurance]
+    [:numero, :type_puissance, :immatriculation]
   end
 
   def attrs_for_form
-    [:type_puissance, :carte_grise_titulaire, :carte_grise_date_emission, :premiere_mise_en_circ, :immatriculation, :cie_assurance]
+    [:numero, :type_puissance, :carte_grise_titulaire, :carte_grise_date_emission, :premiere_mise_en_circ, :immatriculation, :cie_assurance]
   end
+
+  before_action :set_equipage, only: [:index]
 
   # GET /equipages
   def index
@@ -29,6 +31,9 @@ class EquipagesController < CrudController
 
   # POST /equipages
   def create
+    @equipage = Equipage.new(equipage_params)
+    @equipage.user = current_user
+
     super(notice: 'Equipage ajouté.')
   end
 
@@ -52,6 +57,14 @@ class EquipagesController < CrudController
 private
   # Only allow a trusted parameter "white list" through.
   def equipage_params
-    params.require(:equipage).permit(:type_puissance, :carte_grise_titulaire, :carte_grise_date_emission, :premiere_mise_en_circ, :immatriculation, :cie_assurance)
+    params.require(:equipage).permit(:numero, :type_puissance, 
+	:carte_grise_titulaire, :carte_grise_date_emission, :premiere_mise_en_circ, :immatriculation, 
+	:cie_assurance,
+	:user_id)
   end
+
+  def set_equipage
+    @equipage = Equipage.find(params[:id]) unless params[:id].blank?
+  end
+
 end

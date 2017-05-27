@@ -2,12 +2,14 @@ class EquipiersController < CrudController
   #custom_actions :resource => [:cloner]
 
   def attrs_for_index
-    [:nom, :prenom, :rue, :cp, :ville, :telephone_fixe, :telephone_portable, :email, :profession, :date_naissance, :date, :lieu_naissance, :nationalite, :num_permis_conduire, :passeport_num, :passeport_date_delivrance, :passeport_lieu_delivrance, :passeport_date_validite, :groupe_sanguin, :nom_prenom_a_prevenir, :tel_a_prevenir, :equipage_id]
+    [:nom, :prenom, :telephone_fixe, :telephone_portable, :email]
   end
 
-  def attrs_for_form
-    [:nom, :prenom, :rue, :cp, :ville, :telephone_fixe, :telephone_portable, :email, :profession, :date_naissance, :date, :lieu_naissance, :nationalite, :num_permis_conduire, :passeport_num, :passeport_date_delivrance, :passeport_lieu_delivrance, :passeport_date_validite, :groupe_sanguin, :nom_prenom_a_prevenir, :tel_a_prevenir, :equipage_id]
+  def attrs_for_form	
+[:nom, :prenom, :rue, :cp, :ville, :telephone_fixe, :telephone_portable, :email, :profession, :date_naissance, :lieu_naissance, :nationalite, :num_permis_conduire, :passeport_num, :passeport_date_delivrance, :passeport_lieu_delivrance, :passeport_date_validite, :groupe_sanguin, :nom_prenom_a_prevenir, :tel_a_prevenir, :equipage_id]
   end
+
+  before_action :set_equipage, only: [:index, :new, :create, :edit, :update, :destroy]
 
   # GET /equipiers
   def index
@@ -27,9 +29,20 @@ class EquipiersController < CrudController
     @equipiers = equipiers.page(@page)
   end
 
+  # GET /equipier
+  def new
+    @equipier = @equipage.equipiers.new
+    super
+  end
+
   # POST /equipiers
   def create
-    super(notice: 'Equipier ajouté.')
+    @equipier = @equipage.equipiers.new(equipier_params)
+    @equipier.user = current_user
+
+    super(notice: 'Equipier ajouté.') {
+      equipage_equipiers_path(@equipage)
+    }
   end
 
   # PATCH/PUT /equipiers/1
@@ -52,6 +65,24 @@ class EquipiersController < CrudController
 private
   # Only allow a trusted parameter "white list" through.
   def equipier_params
-    params.require(:equipier).permit(:nom, :prenom, :rue, :cp, :ville, :telephone_fixe, :telephone_portable, :email, :profession, :date_naissance, :date, :lieu_naissance, :nationalite, :num_permis_conduire, :passeport_num, :passeport_date_delivrance, :passeport_lieu_delivrance, :passeport_date_validite, :groupe_sanguin, :nom_prenom_a_prevenir, :tel_a_prevenir, :equipage_id)
+    params.require(:equipier).permit(:nom, :prenom, 
+	:rue, :cp, :ville, 
+	:telephone_fixe, :telephone_portable, :email, 
+	:profession, 
+	:date_naissance, :lieu_naissance, :nationalite, 
+	:num_permis_conduire, 
+	:passeport_num, :passeport_date_delivrance, :passeport_lieu_delivrance, :passeport_date_validite, 
+	:groupe_sanguin, 
+	:nom_prenom_a_prevenir, :tel_a_prevenir, 
+	:equipage_id, 
+	:user_id)
   end
+
+  def set_equipage
+    @equipage = Equipage.find(params[:equipage_id]) unless params[:equipage_id].blank?
+    unless @equipage
+      @equipage = Equipage.find(params[:equipier][:equipage_id]) unless params[:equipier][:equipage_id].blank?
+    end
+  end
+
 end
