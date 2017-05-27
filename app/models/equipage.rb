@@ -1,6 +1,7 @@
 class Equipage < ApplicationRecord
   include Commun
 
+  has_many :equipiers
 
   # Recherche les objets avec une référence ou une désignation contenant le mot-clé recherché
   def self.contenant(terme)

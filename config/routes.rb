@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :equipiers
-  resources :equipages
   devise_for :users, controllers: {registrations: "users/registrations"}
 
   resources :users do
@@ -12,8 +10,13 @@ Rails.application.routes.draw do
     end
   end
 
-
-  resources :inscriptions
+  resources :equipiers
+  resources :equipages do
+    collection do
+      get :rechercher
+    end
+    resources :equipiers
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

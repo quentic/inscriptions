@@ -1,0 +1,39 @@
+- content_for :nav do
+  li = link_to 'Accueil', home_path
+  li = link_to 'Nouvel équipage', new_equipage_path if (can? :create, Equipage)
+  li = link_to 'Tous les équipages', equipages_path
+
+- content_for :page_title do
+  ' Liste des #{Equipage.model_name.human}
+
+= filtrer('', 'Filtrer par nom&nbsp;:', :filtre, 'Saisis qq car. du nom de equipage')
+= will_paginate @equipages
+
+table.list
+  thead
+    tr
+      th.centre = t(:type_puissance)
+      th.centre = t(:carte_grise_titulaire)
+      th.centre = t(:carte_grise_date_emission)
+      th.centre = t(:premiere_mise_en_circ)
+      th.centre = t(:immatriculation)
+      th.centre = t(:cie_assurance)
+      th.action liste des équipiers
+
+      th Détails
+      th.action Modifier
+      th.action Supprimer
+
+  tbody
+    - @equipages.each do |equipage|
+      tr
+        td = equipage.type_puissance
+        td = equipage.carte_grise_titulaire
+        td = equipage.carte_grise_date_emission
+        td = equipage.premiere_mise_en_circ
+        td = equipage.immatriculation
+        td = equipage.cie_assurance
+        td = link_to '', equipage_equipiers_path(equipage), class: :loupe
+        td = link_to '', equipage_path(equipage), class: :loupe
+        td = link_to '', edit_equipage_path(equipage), class: :edit
+        td = link_to '', equipage, data: {:confirm => 'Es-tu sûr(e) ?'}, :method => :delete, class: :bin
