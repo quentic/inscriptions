@@ -13,29 +13,29 @@
 ActiveRecord::Schema.define(version: 20170526211717) do
 
   create_table "equipages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string "type_puissance"
+    t.string "type_puissance", limit: 20
     t.string "carte_grise_titulaire"
     t.date "carte_grise_date_emission"
     t.date "premiere_mise_en_circ"
-    t.string "immatriculation"
-    t.string "string"
+    t.string "immatriculation", limit: 15
     t.string "cie_assurance"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_equipages_on_user_id"
   end
 
   create_table "equipiers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "nom"
     t.string "prenom"
     t.string "rue"
-    t.string "cp"
+    t.string "cp", limit: 5
     t.string "ville"
-    t.string "telephone_fixe"
-    t.string "telephone_portable"
+    t.string "telephone_fixe", limit: 15
+    t.string "telephone_portable", limit: 15
     t.string "email"
     t.string "profession"
-    t.string "date_naissance"
-    t.string "date"
+    t.date "date_naissance"
     t.string "lieu_naissance"
     t.string "nationalite"
     t.string "num_permis_conduire"
@@ -43,13 +43,16 @@ ActiveRecord::Schema.define(version: 20170526211717) do
     t.date "passeport_date_delivrance"
     t.string "passeport_lieu_delivrance"
     t.date "passeport_date_validite"
-    t.string "groupe_sanguin"
+    t.string "groupe_sanguin", limit: 3
     t.string "nom_prenom_a_prevenir"
-    t.string "tel_a_prevenir"
+    t.string "tel_a_prevenir", limit: 15
+    t.string "taille_t_shirt", limit: 4
     t.bigint "equipage_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["equipage_id"], name: "index_equipiers_on_equipage_id"
+    t.index ["user_id"], name: "index_equipiers_on_user_id"
   end
 
   create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
