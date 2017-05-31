@@ -1,0 +1,10 @@
+fr:
+  date_naissance: date de naissance
+  num_permis_conduire: numéro de permis de conduire
+  passeport_num: "passeport : numéro"
+  passeport_date_delivrance: "passeport : date de délivrance"
+  passeport_lieu_delivrance: "passeport : lieu de délivrance"
+  passeport_date_validite: "passeport : date de validité"
+  nom_prenom_a_prevenir: personne à prevenir	 
+  tel_a_prevenir: téléphone à prévenir		 
+  taille_t_shirt: taille de T-shirt
