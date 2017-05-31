@@ -1,7 +1,9 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-    before_filter :update_sanitized_params, if: :devise_controller?
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
-    def update_sanitized_params
-       devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:nom, :prenom, :email,   :password, :password_confirmation)}
-    end
+protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nom, :prenom, :email, :password, :password_confirmation])
+  end
 end
