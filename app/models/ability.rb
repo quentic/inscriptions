@@ -38,6 +38,13 @@ class Ability
     end
 
     if user.inscription_manager?
+      can :manage, :all
+    end
+
+    if user.inscription_user?
+      can :read, :all
+      can [:update, :destroy], [Equipage, Equipier], user_id: user.id
+      can :create, Equipage
     end
 
   end
