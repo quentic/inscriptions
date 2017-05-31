@@ -1,4 +1,5 @@
 - content_for :nav do
+  li = link_to 'Retour', :back
   li = link_to 'Gestion des utilisateurs', users_path if (can? :manage, User)
 
 - content_for :page_title do
@@ -8,8 +9,8 @@ table
   tr
     th Info
     th Valeur
-  - resource.attributes.sort.each do |key, value|
+  - resource.attributes.each do |key, value|
     tr
-      td = key
+      th = t(key)
       td = value
 
