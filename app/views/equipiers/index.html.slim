@@ -1,8 +1,8 @@
 - content_for :nav do
   li = link_to 'Accueil', home_path
   li = link_to 'Nouvel équipier', new_equipage_equipier_path(@equipage) if (can? :create, Equipier)
-  li = link_to 'Tous les equipiers', equipiers_path
   li = link_to "Voir l'équipage", equipages_path(id: @equipage)
+  li = link_to 'Tous les équipages', equipages_path
 
 - content_for :page_title do
   ' Liste des équipiers
@@ -18,8 +18,8 @@ table.list
       th.centre = t(:telephone_portable)
       th.centre = t(:email)
       th Détails
-      th Modifier
-      th Supprimer
+      th.action Modifier
+      th.action Supprimer
 
   tbody
     - @equipiers.each do |equipier|
@@ -28,6 +28,6 @@ table.list
         td = equipier.prenom
         td = equipier.email
         td = equipier.telephone_portable
-        td = link_to '', equipier_path(equipier), class: :loupe
-        td = link_to '', edit_equipier_path(equipier), class: :edit
-        td = link_to '', equipier, data: {:confirm => 'Es-tu sûr(e) ?'}, :method => :delete, class: :bin
+        td = link_to '', equipage_equipier_path(@equipage, equipier), class: :loupe
+        td = link_to '', edit_equipage_equipier_path(@equipage, equipier), class: :edit if (can? :edit, equipier)
+        td = link_to '', equipier, data: {:confirm => 'Es-tu sûr(e) ?'}, :method => :delete, class: :bin if (can? :destroy, equipier)
