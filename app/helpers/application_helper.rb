@@ -1,6 +1,6 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  PROFILS = %w(campagne_manager)
+  PROFILS = %w(inscription_manager)
 
   # Vérifie si l'utilisateur est un administrateur authentifié
   def admin_logged_in?
@@ -120,9 +120,9 @@ HTML
     number_with_delimiter(quantite) + " " + unite
   end
 
-  # Affiche le créateur de l'élément de campagne
+  # Affiche le créateur
   def info_element_cree_par(user, cree_le, mise_a_jour_le)
-    title = "Element créé"
+    title = "equipage créé"
     title += " par #{user.prenom}" if user
     title += ", le " + cree_le.strftime('%d/%m/%Y à %H:%M') unless cree_le.blank?
     title += ", mise à jour le " + mise_a_jour_le.strftime('%d/%m/%Y à %H:%M') unless mise_a_jour_le.blank? || (cree_le == mise_a_jour_le)
