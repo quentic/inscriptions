@@ -5,7 +5,7 @@ header, nav {
   display: block;
 }
 html {
-  background: #363835;
+  background: #AA8;
 }
 body {
   margin: 0;
@@ -15,7 +15,7 @@ body {
 }
 header#bandeau_top{
     border-radius: 22px 22px 0 0;
-    background: #fff;
+    background: #131313;
 }
 header a{
   float:left;
@@ -349,7 +349,7 @@ th::first-letter, label::first-letter{
 }
 th.action {
   padding: 4px;
-  background: #C8BDA4;
+  background: orange;
 }
 th.nil {
   background: transparent;
