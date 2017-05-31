@@ -14,11 +14,11 @@ table.list
     tr
       th.centre Numéro d'équipage
       th.centre = t(:immatriculation)
-      th.action liste des équipiers
+      th.centre.action liste des équipiers
 
-      th Détails
-      th.action Modifier
-      th.action Supprimer
+      th.centre Détails
+      th.centre.action Modifier
+      th.centre.action Supprimer
 
   tbody
     - @equipages.each do |equipage|
@@ -27,5 +27,5 @@ table.list
         td = equipage.immatriculation
         td = link_to '', equipage_equipiers_path(equipage), class: :loupe
         td = link_to '', equipage_path(equipage), class: :loupe
-        td = link_to '', edit_equipage_path(equipage), class: :edit
-        td = link_to '', equipage, data: {:confirm => 'Es-tu sûr(e) ?'}, :method => :delete, class: :bin
+        td = link_to '', edit_equipage_path(equipage), class: :edit if (can? :edit, equipage)
+        td = link_to '', equipage, data: {:confirm => 'Es-tu sûr(e) ?'}, :method => :delete, class: :bin if (can? :destroy, equipage)
