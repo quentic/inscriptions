@@ -26,9 +26,9 @@ class UsersController < ApplicationController
   end
 
 
-  # Positionne les droits de gestionnaire de campagne DSCM
-  def toggle_campagne_manager
-    @user.toggle!(:campagne_manager)
+  # Positionne les droits de gestionnaire d'inscriptions
+  def toggle_inscription_manager
+    @user.toggle!(:inscription_manager)
     render :nothing => true
   end
 
