@@ -12,7 +12,7 @@ FactoryGirl.define do
 
     factory :inscription_manager do
       email 'inscription_manager@gmail.com'
-      campagne_manager true
+      inscription_manager true
     end
 
   end

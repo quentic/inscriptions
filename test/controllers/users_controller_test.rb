@@ -4,7 +4,7 @@ class UsersControllerTest < ActionController::TestCase
   include Devise::TestHelpers
 
   setup do
-    @user = create(:campagne_manager)
+    @user = create(:inscription_manager)
 
     @administrateur = create(:administrateur)
     sign_in @administrateur
