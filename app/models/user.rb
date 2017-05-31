@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :campagnes
+  has_many :equipages
+  has_many :equipiers
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
