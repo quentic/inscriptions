@@ -3,6 +3,7 @@ class CreateEquipiers < ActiveRecord::Migration[5.1]
     create_table :equipiers do |t|
       t.string :nom
       t.string :prenom
+      t.string :photo
       t.string :rue
       t.string :cp, limit: 5
       t.string :ville
@@ -13,8 +14,10 @@ class CreateEquipiers < ActiveRecord::Migration[5.1]
       t.date :date_naissance
       t.string :lieu_naissance
       t.string :nationalite
-      t.string :num_permis_conduire
+      t.string :permis_conduire_num
+      t.string :permis_conduire_doc
       t.string :passeport_num
+      t.string :passeport_doc
       t.date :passeport_date_delivrance
       t.string :passeport_lieu_delivrance
       t.date :passeport_date_validite
@@ -27,5 +30,6 @@ class CreateEquipiers < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+    add_index :equipiers, :passeport_num, unique: true
   end
 end

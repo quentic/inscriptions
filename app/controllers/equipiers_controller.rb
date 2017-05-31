@@ -6,7 +6,7 @@ class EquipiersController < CrudController
   end
 
   def attrs_for_form	
-[:nom, :prenom, :rue, :cp, :ville, :telephone_fixe, :telephone_portable, :email, :profession, :date_naissance, :lieu_naissance, :nationalite, :num_permis_conduire, :passeport_num, :passeport_date_delivrance, :passeport_lieu_delivrance, :passeport_date_validite, :groupe_sanguin, :nom_prenom_a_prevenir, :tel_a_prevenir, :equipage_id]
+[:nom, :prenom, :rue, :cp, :ville, :telephone_fixe, :telephone_portable, :email, :profession, :date_naissance, :lieu_naissance, :nationalite, :permis_conduire_num, :permis_conduire_doc, :passeport_num, :passeport_doc, :passeport_date_delivrance, :passeport_lieu_delivrance, :passeport_date_validite, :groupe_sanguin, :nom_prenom_a_prevenir, :tel_a_prevenir, :equipage_id]
   end
 
   before_action :set_equipage, only: [:index, :new, :create, :edit, :update, :destroy]
@@ -16,6 +16,10 @@ class EquipiersController < CrudController
     if (@filtre && !@filtre.empty?)
       # Affiche les objets résultant d'un filtrage
       equipiers = Equipier.filtre_par(@filtre)
+
+    # listage d'un élément spécifié par son id
+    elsif (@equipage)
+      equipiers = @equipage.equipiers
 
     # listage d'un élément spécifié par son id
     elsif (@equipier)
@@ -39,6 +43,7 @@ class EquipiersController < CrudController
   def create
     @equipier = @equipage.equipiers.new(equipier_params)
     @equipier.user = current_user
+    @equipier.photo_doc = equipier_params[:photo]
 
     super(notice: 'Equipier ajouté.') {
       equipage_equipiers_path(@equipage)
@@ -47,12 +52,16 @@ class EquipiersController < CrudController
 
   # PATCH/PUT /equipiers/1
   def update
-    super(notice: 'Equipier mis à jour.')
+    super(notice: 'Equipier mis à jour.') {
+      equipage_equipiers_path(@equipage)
+    }
   end
 
   # DELETE /equipiers/1
   def destroy
-    super(notice: 'Equipier supprimé.')
+    super(notice: 'Equipier supprimé.') {
+      equipage_equipiers_path(@equipage)
+    }
   end
 
   # Filtre les opérations du stock en fonction d'un terme recherché
@@ -65,13 +74,13 @@ class EquipiersController < CrudController
 private
   # Only allow a trusted parameter "white list" through.
   def equipier_params
-    params.require(:equipier).permit(:nom, :prenom, 
+    params.require(:equipier).permit(:nom, :prenom, :photo,
 	:rue, :cp, :ville, 
 	:telephone_fixe, :telephone_portable, :email, 
 	:profession, 
 	:date_naissance, :lieu_naissance, :nationalite, 
-	:num_permis_conduire, 
-	:passeport_num, :passeport_date_delivrance, :passeport_lieu_delivrance, :passeport_date_validite, 
+	:permis_conduire_num, :permis_conduire_doc, 
+	:passeport_num, :passeport_doc, :passeport_date_delivrance, :passeport_lieu_delivrance, :passeport_date_validite, 
 	:groupe_sanguin, 
 	:nom_prenom_a_prevenir, :tel_a_prevenir, 
 	:equipage_id, 

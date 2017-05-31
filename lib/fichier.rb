@@ -6,6 +6,7 @@
 class Fichier
   attr_reader :ref_fichier
   attr_reader :ref_fichier_sans_extension
+  attr_reader :extension
   attr_accessor :chemin
   attr_reader :rimage
   attr_reader :prefixe
@@ -16,6 +17,7 @@ class Fichier
     @chemin = @ref_fichier
     @ref_fichier = File.basename(@ref_fichier) # Ne conserve que le nom du fichier sans le chemin
     @ref_fichier_sans_extension = @ref_fichier.gsub(/\..*$/, "") # supprime l'extension
+    @extension = @ref_fichier.gsub(/.*\./, "")
 
     @prefixe = prefixe.to_s
 

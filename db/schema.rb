@@ -23,12 +23,14 @@ ActiveRecord::Schema.define(version: 20170526211717) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["numero"], name: "index_equipages_on_numero", unique: true
     t.index ["user_id"], name: "index_equipages_on_user_id"
   end
 
   create_table "equipiers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "nom"
     t.string "prenom"
+    t.string "photo"
     t.string "rue"
     t.string "cp", limit: 5
     t.string "ville"
@@ -39,8 +41,10 @@ ActiveRecord::Schema.define(version: 20170526211717) do
     t.date "date_naissance"
     t.string "lieu_naissance"
     t.string "nationalite"
-    t.string "num_permis_conduire"
+    t.string "permis_conduire_num"
+    t.string "permis_conduire_doc"
     t.string "passeport_num"
+    t.string "passeport_doc"
     t.date "passeport_date_delivrance"
     t.string "passeport_lieu_delivrance"
     t.date "passeport_date_validite"
@@ -53,6 +57,7 @@ ActiveRecord::Schema.define(version: 20170526211717) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["equipage_id"], name: "index_equipiers_on_equipage_id"
+    t.index ["passeport_num"], name: "index_equipiers_on_passeport_num", unique: true
     t.index ["user_id"], name: "index_equipiers_on_user_id"
   end
 
@@ -78,6 +83,7 @@ ActiveRecord::Schema.define(version: 20170526211717) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.boolean "inscription_manager", default: false, null: false
+    t.boolean "inscription_user", default: true, null: false
   end
 
   add_foreign_key "equipiers", "equipages"
