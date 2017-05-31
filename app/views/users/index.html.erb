@@ -11,7 +11,7 @@
       <tr>
         <th>email</th>
         <th class="action">administrateur</th>
-        <th class="action">DSCM campagne manager</th>
+        <th class="action">inscriptions manager</th>
         <th class="action">Supprimer</th>
       </tr>
     </thead>
@@ -20,7 +20,7 @@
       <tr>
         <td class="text"><%= user.email %></td>
         <td class="asaisir centre"><%= check_box_tag("", 1, user.admin) %></td>
-        <td class="asaisir centre"><%= check_box_tag("", 1, user.campagne_manager, "data-user_id" => user.id, class: :campagne_manager) %></td>
+        <td class="asaisir centre"><%= check_box_tag("", 1, user.inscription_manager, "data-user_id" => user.id, class: :inscription_manager) %></td>
         <td><%= link_to '', user, data: { confirm: 'Tu vas supprimer cet utilisateur. Es-tu sûr(e) ?' }, method: :delete, class: :bin %></td>
       </tr>
       <% end %>
