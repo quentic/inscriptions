@@ -1,0 +1,40 @@
+= simple_form_for [@equipage, @equipier] do |f|
+  = afficher_erreurs(@equipier, 'la modification de cet équipier :')
+  
+  fieldset
+    legend = "Equipier pour l'équipage #{@equipier.equipage.numero}"
+    = f.input :nom
+    = f.input :prenom
+    = image_tag("/images/#{@equipier.id}/#{@equipier.photo}", size: 100) unless @equipier.photo.nil?
+    = f.input :photo, as: :file
+    = f.input :rue
+    = f.input :cp
+    = f.input :ville
+    = f.input :telephone_fixe
+    = f.input :telephone_portable
+    = f.input :email
+    = f.input :profession
+    = f.input :date_naissance
+    = f.input :lieu_naissance
+    = f.input :nationalite
+
+  fieldset
+    legend Permis de conduire
+    = f.input :permis_conduire_num
+    = f.input :permis_conduire_doc, as: :file
+
+  fieldset
+    legend Passeport
+    = f.input :passeport_num, required: true
+    = f.input :passeport_doc, as: :file
+    = f.input :passeport_date_delivrance
+    = f.input :passeport_lieu_delivrance
+    = f.input :passeport_date_validite
+    = f.input :groupe_sanguin
+
+  fieldset
+    legend Personne à prévenir en cas de problème
+    = f.input :nom_prenom_a_prevenir
+    = f.input :tel_a_prevenir
+  
+  .actions = f.submit "Enregistrer"

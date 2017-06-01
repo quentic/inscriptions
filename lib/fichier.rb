@@ -16,8 +16,8 @@ class Fichier
     @ref_fichier = (ref_fichier.blank? ? "sans_nom" : ref_fichier.delete(" "))
     @chemin = @ref_fichier
     @ref_fichier = File.basename(@ref_fichier) # Ne conserve que le nom du fichier sans le chemin
-    @ref_fichier_sans_extension = @ref_fichier.gsub(/\..*$/, "") # supprime l'extension
-    @extension = @ref_fichier.gsub(/.*\./, "")
+    @ref_fichier_sans_extension = File.basename(@ref_fichier, ".*") # supprime l'extension
+    @extension = File.extname(@ref_fichier).strip.downcase
 
     @prefixe = prefixe.to_s
 

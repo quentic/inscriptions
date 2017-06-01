@@ -8,7 +8,7 @@ class Equipier < ApplicationRecord
   # Cela permet de récupérer le contenu du fichier photo dans le modèle (par défaut, il n'est accessible que dans le controleur)
   attr_accessor :photo_doc
 
-  after_save :enregistrer_photo
+  before_save :enregistrer_photo
   
   # Recherche les objets avec une référence ou une désignation contenant le mot-clé recherché
   def self.contenant(terme)
@@ -25,14 +25,16 @@ class Equipier < ApplicationRecord
   end
   
 private
-  
   def enregistrer_photo
+    return if photo_doc.nil?
+
     fichier = Fichier.new(photo_doc.original_filename)
     nom_fichier = fichier.ref_fichier_sans_extension + rand(10000).to_s + "." + fichier.extension
-    chemin_fichier = "public/images/#{self.id}/#{nom_fichier}"
-    
     # on n'enregistre que le nom du fichier dans la base
     self.photo = nom_fichier 
+
+    chemin_fichier = "public/images/#{equipage.id}/#{nom_fichier}"
+    
     # on enregistre le fichier dans l'arborescence de fichiers de l'appli
     publier(photo_doc, chemin_fichier)
   end

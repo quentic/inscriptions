@@ -9,6 +9,7 @@ class EquipiersController < CrudController
 [:nom, :prenom, :rue, :cp, :ville, :telephone_fixe, :telephone_portable, :email, :profession, :date_naissance, :lieu_naissance, :nationalite, :permis_conduire_num, :permis_conduire_doc, :passeport_num, :passeport_doc, :passeport_date_delivrance, :passeport_lieu_delivrance, :passeport_date_validite, :groupe_sanguin, :nom_prenom_a_prevenir, :tel_a_prevenir, :equipage_id]
   end
 
+  before_action :set_equipier, only: [:update]
   before_action :set_equipage, only: [:index, :new, :create, :edit, :update, :destroy]
 
   # GET /equipiers
@@ -50,14 +51,16 @@ class EquipiersController < CrudController
     }
   end
 
-  # PATCH/PUT /equipiers/1
+  # PATCH/PUT /equipage/x/equipiers/1
   def update
+    @equipier.photo_doc = equipier_params[:photo]
+
     super(notice: 'Equipier mis à jour.') {
       equipage_equipiers_path(@equipage)
     }
   end
 
-  # DELETE /equipiers/1
+  # DELETE /equipage/x/equipiers/1
   def destroy
     super(notice: 'Equipier supprimé.') {
       equipage_equipiers_path(@equipage)
@@ -85,6 +88,10 @@ private
 	:nom_prenom_a_prevenir, :tel_a_prevenir, 
 	:equipage_id, 
 	:user_id)
+  end
+
+  def set_equipier
+    @equipier = Equipier.find(params[:id])
   end
 
   def set_equipage

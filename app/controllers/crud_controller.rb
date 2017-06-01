@@ -25,19 +25,19 @@ class CrudController < InheritedResources::Base
   end
 
   # Appelle la méthode update! de InheritedResources et reroute avec la page d'origine en paramètre (et le filtre)
-  def update(options={})
+  def update(options={}, &block)
     page   = @page.blank?   ? '' : "?page=#{@page}"
     filtre = @filtre.blank? ? '' : "&filtre=#{@filtre}"
 
-    update!(options) { collection_url + "#{page}#{filtre}" }
+    update!(options) { block_given? ? block : collection_url + "#{page}#{filtre}"}
   end
 
   # Appelle la méthode destroy! de InheritedResources et reroute avec la page d'origine en paramètre (et le filtre)
-  def destroy(options={})
+  def destroy(options={}, &block)
     page   = @page.blank?   ? '' : "?page=#{@page}"
     filtre = @filtre.blank? ? '' : "&filtre=#{@filtre}"
 
-    destroy!(options) { collection_url + "#{page}#{filtre}" }
+    destroy!(options) { block_given? ? block : collection_url + "#{page}#{filtre}"}
   end
 
  private
