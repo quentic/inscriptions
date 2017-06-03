@@ -10,13 +10,14 @@
     = f.input :rue
     = f.input :cp
     = f.input :ville
-    = f.input :telephone_fixe
-    = f.input :telephone_portable
-    = f.input :email
+    = f.input :telephone_fixe, as: :tel
+    = f.input :telephone_portable, as: :tel
+    = f.input :email, as: :email
     = f.input :profession
-    = f.input :date_naissance
+    = f.input :date_naissance, as: :date, html5: true
     = f.input :lieu_naissance
     = f.input :nationalite
+    = f.input :taille_t_shirt
 
   fieldset
     legend Permis de conduire
@@ -25,16 +26,16 @@
 
   fieldset
     legend Passeport
-    = f.input :passeport_num, required: true
+    = f.input :passeport_num
     = f.input :passeport_doc, as: :file
-    = f.input :passeport_date_delivrance
+    = f.input :passeport_date_delivrance, as: :date, html5: true
     = f.input :passeport_lieu_delivrance
-    = f.input :passeport_date_validite
+    = f.input :passeport_date_validite, as: :date, html5: true
     = f.input :groupe_sanguin
 
   fieldset
     legend Personne à prévenir en cas de problème
     = f.input :nom_prenom_a_prevenir
-    = f.input :tel_a_prevenir
+    = f.input :tel_a_prevenir, as: :tel
   
   .actions = f.submit "Enregistrer"
