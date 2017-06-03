@@ -37,23 +37,6 @@ class EquipagesController < CrudController
     super(notice: 'Equipage ajouté.')
   end
 
-  # PATCH/PUT /equipages/1
-  def update
-    super(notice: 'Equipage mis à jour.')
-  end
-
-  # DELETE /equipages/1
-  def destroy
-    super(notice: 'Equipage supprimé.')
-  end
-
-  # Filtre les opérations du stock en fonction d'un terme recherché
-  # - On limite à 100 résultats
-  def rechercher
-    @equipages = Equipage.filtre_par(@filtre).limit(100)
-    render @equipages
-  end
-
 private
   # Only allow a trusted parameter "white list" through.
   def equipage_params

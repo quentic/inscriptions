@@ -55,23 +55,16 @@ class EquipiersController < CrudController
   def update
     @equipier.photo_doc = equipier_params[:photo]
 
-    super(notice: 'Equipier mis à jour.') {
+    super {
       equipage_equipiers_path(@equipage)
     }
   end
 
   # DELETE /equipage/x/equipiers/1
   def destroy
-    super(notice: 'Equipier supprimé.') {
+    super {
       equipage_equipiers_path(@equipage)
     }
-  end
-
-  # Filtre les opérations du stock en fonction d'un terme recherché
-  # - On limite à 100 résultats
-  def rechercher
-    @equipiers = Equipier.filtre_par(@filtre).limit(100)
-    render @equipiers
   end
 
 private

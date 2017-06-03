@@ -24,20 +24,42 @@ class CrudController < InheritedResources::Base
     render collection
   end
 
-  # Appelle la méthode update! de InheritedResources et reroute avec la page d'origine en paramètre (et le filtre)
-  def update(options={}, &block)
-    page   = @page.blank?   ? '' : "?page=#{@page}"
-    filtre = @filtre.blank? ? '' : "&filtre=#{@filtre}"
+  def update(options={})
+    update! do |succes, echec|
+      succes.html do
+        flash[:notice] = "#{t(resource_class.to_s.downcase)}_maj"
+	if block_given?
+	  redirect_to yield
+        else        
+          redirect_to collection_url(page: @page)
+        end
+      end
 
-    update!(options) { block_given? ? block : collection_url + "#{page}#{filtre}"}
+      echec.html do
+        render action: 'edit'
+      end
+    end
   end
 
-  # Appelle la méthode destroy! de InheritedResources et reroute avec la page d'origine en paramètre (et le filtre)
-  def destroy(options={}, &block)
-    page   = @page.blank?   ? '' : "?page=#{@page}"
-    filtre = @filtre.blank? ? '' : "&filtre=#{@filtre}"
+  def destroy(options={})
+    destroy! do |succes, echec|
+      succes.html do
+        flash[:notice] = "#{t(resource_class.to_s.downcase)}_supprime"
+	if block_given?
+	  redirect_to yield
+        else        
+          redirect_to collection_url(page: @page)
+        end
+      end
 
-    destroy!(options) { block_given? ? block : collection_url + "#{page}#{filtre}"}
+      echec.html do
+        flash[:error] = "Impossible de supprimer ce(tte) #{t(resource_class.to_s)}"
+        flash[:error] << '<br />' + resource.errors[:base][0]
+        redirect_to collection_url(page: @page)
+      end
+
+    end
+
   end
 
  private
