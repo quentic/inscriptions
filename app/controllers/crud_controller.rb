@@ -25,7 +25,7 @@ class CrudController < InheritedResources::Base
   end
 
   def update(options={})
-    update! do |succes, echec|
+    update!(options) do |succes, echec|
       succes.html do
         flash[:notice] = t(resource_class.to_s.downcase + '_maj')
 	if block_given?
@@ -42,7 +42,7 @@ class CrudController < InheritedResources::Base
   end
 
   def destroy(options={})
-    destroy! do |succes, echec|
+    destroy!(options) do |succes, echec|
       succes.html do
         flash[:notice] = t(resource_class.to_s.downcase + '_supprime')
 	if block_given?
