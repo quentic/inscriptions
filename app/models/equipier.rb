@@ -4,11 +4,12 @@ class Equipier < ApplicationRecord
   belongs_to :equipage
   belongs_to :user
 
-  # On ajoute photo_doc au modèle bien qu'il ne soit pas dans les champs la table equipiers.
+  # On ajoute photo_doc, permis_conduire_doc au modèle bien qu'il ne soit pas dans les champs la table equipiers.
   # Cela permet de récupérer le contenu du fichier photo dans le modèle (par défaut, il n'est accessible que dans le controleur)
   attr_accessor :photo_doc
+  attr_accessor :permis_conduire_doc
 
-  before_save :enregistrer_photo
+  before_save :enregistrer_photo, :enregistrer_permis_conduire
   
   # Recherche les objets avec une référence ou une désignation contenant le mot-clé recherché
   def self.contenant(terme)
@@ -39,6 +40,20 @@ private
     publier(photo_doc, chemin_fichier)
   end
     
+  def enregistrer_permis_conduire
+    return if permis_conduire_doc.nil?
+
+    fichier = Fichier.new(permis_conduire_doc.original_filename)
+    nom_fichier = fichier.ref_fichier_sans_extension + rand(10000).to_s + fichier.extension
+    # on n'enregistre que le nom du fichier dans la base
+    self.permis_conduire = nom_fichier 
+
+    chemin_fichier = "public/images/#{equipage.id}/#{nom_fichier}"
+    
+    # on enregistre le fichier dans l'arborescence de fichiers de l'appli
+    publier(permis_conduire_doc, chemin_fichier)
+  end
+
   # enregistre le document téléversé dans l'espace de publication
   def publier(doc, chemin_fichier)
     Fichier.new(chemin_fichier).cree_dossier_si_nexiste_pas

@@ -6,7 +6,7 @@ class EquipiersController < CrudController
   end
 
   def attrs_for_form	
-[:nom, :prenom, :rue, :cp, :ville, :telephone_fixe, :telephone_portable, :email, :profession, :date_naissance, :lieu_naissance, :nationalite, :permis_conduire_num, :permis_conduire_doc, :passeport_num, :passeport_doc, :passeport_date_delivrance, :passeport_lieu_delivrance, :passeport_date_validite, :groupe_sanguin, :nom_prenom_a_prevenir, :tel_a_prevenir, :equipage_id]
+[:nom, :prenom, :rue, :cp, :ville, :telephone_fixe, :telephone_portable, :email, :profession, :date_naissance, :lieu_naissance, :nationalite, :permis_conduire_num, :permis_conduire, :passeport_num, :passeport, :passeport_date_delivrance, :passeport_lieu_delivrance, :passeport_date_validite, :groupe_sanguin, :nom_prenom_a_prevenir, :tel_a_prevenir, :equipage_id]
   end
 
   before_action :set_equipier, only: [:update]
@@ -45,6 +45,7 @@ class EquipiersController < CrudController
     @equipier = @equipage.equipiers.new(equipier_params)
     @equipier.user = current_user
     @equipier.photo_doc = equipier_params[:photo]
+    @equipier.permis_conduire_doc = equipier_params[:permis_conduire]
 
     super(notice: 'Equipier ajouté.') {
       equipage_equipiers_path(@equipage)
@@ -54,6 +55,7 @@ class EquipiersController < CrudController
   # PATCH/PUT /equipage/x/equipiers/1
   def update
     @equipier.photo_doc = equipier_params[:photo]
+    @equipier.permis_conduire_doc = equipier_params[:permis_conduire]
 
     super {
       equipage_equipiers_path(@equipage)
@@ -75,8 +77,8 @@ private
 	:telephone_fixe, :telephone_portable, :email, 
 	:profession, 
 	:date_naissance, :lieu_naissance, :nationalite, 
-	:permis_conduire_num, :permis_conduire_doc, 
-	:passeport_num, :passeport_doc, :passeport_date_delivrance, :passeport_lieu_delivrance, :passeport_date_validite, 
+	:permis_conduire_num, :permis_conduire, 
+	:passeport_num, :passeport, :passeport_date_delivrance, :passeport_lieu_delivrance, :passeport_date_validite, 
 	:groupe_sanguin, 
 	:nom_prenom_a_prevenir, :tel_a_prevenir, 
 	:equipage_id, 

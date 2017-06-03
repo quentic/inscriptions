@@ -15,9 +15,9 @@ class CreateEquipiers < ActiveRecord::Migration[5.1]
       t.string :lieu_naissance
       t.string :nationalite
       t.string :permis_conduire_num
-      t.string :permis_conduire_doc
+      t.string :permis_conduire
       t.string :passeport_num
-      t.string :passeport_doc
+      t.string :passeport
       t.date :passeport_date_delivrance
       t.string :passeport_lieu_delivrance
       t.date :passeport_date_validite
