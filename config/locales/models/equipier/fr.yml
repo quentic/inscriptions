@@ -1,0 +1,18 @@
+fr:
+ simple_form:
+    labels:
+      equipier:
+        date_naissance: date de naissance
+        lieu_naissance: lieu de naissance
+        nationalite: nationalité
+        permis_conduire_num: numéro de permis de conduire
+        permis_conduire_doc: télécharger le permis de conduire
+        passeport_num: numéro
+        passeport_doc: télécharger le passeport
+        passeport_date_delivrance: date de délivrance
+        passeport_lieu_delivrance: lieu de délivrance
+        passeport_date_validite: date de validité
+        nom_prenom_a_prevenir: personne à prevenir	 
+        tel_a_prevenir: téléphone à prévenir		 
+        taille_t_shirt: taille de T-shirt
+        
