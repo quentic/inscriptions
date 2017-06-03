@@ -26,8 +26,8 @@ table.list
       tr
         td = equipier.nom
         td = equipier.prenom
-        td = equipier.email
         td = equipier.telephone_portable
+        td = equipier.email
         td = link_to '', equipage_equipier_path(@equipage, equipier), class: :loupe
         td = link_to '', edit_equipage_equipier_path(@equipage, equipier), class: :edit if (can? :edit, equipier)
         td = link_to '', equipage_equipier_path(@equipage, equipier), data: {:confirm => 'Es-tu sûr(e) ?'}, :method => :delete, class: :bin if (can? :destroy, equipier)
