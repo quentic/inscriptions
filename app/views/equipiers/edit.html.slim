@@ -1,0 +1,9 @@
+- content_for :nav do
+  li = link_to 'Accueil', home_path
+  li = link_to 'Annuler', :back
+
+- content_for :page_title do
+  = "Modifier l'équipier #{@equipier.prenom_nom}"
+
+= render 'form'
+
