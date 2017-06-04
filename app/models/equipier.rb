@@ -3,6 +3,8 @@ class Equipier < ApplicationRecord
 
   belongs_to :equipage
   belongs_to :user
+  
+  validates_uniqueness_of :passeport_num
 
   # On ajoute photo_doc, permis_conduire_doc et passeport_doc au modèle bien qu'il ne soit pas dans les champs la table equipiers.
   # Cela permet de récupérer le contenu du fichier dans le modèle (par défaut, il n'est accessible que dans le controleur)
@@ -26,6 +28,10 @@ class Equipier < ApplicationRecord
     contenant(terme)
   end
   
+  def prenom_nom
+    self.prenom + " " + self.nom
+  end
+
 private
   def enregistrer_photo
     return if photo_doc.nil?
