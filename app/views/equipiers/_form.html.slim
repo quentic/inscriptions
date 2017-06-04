@@ -28,6 +28,7 @@
   fieldset
     legend Passeport
     = f.input :passeport_num
+    = link_to("", "/images/#{@equipage.id}/#{@equipier.passeport}", class: :pdf, style: "float:left") unless @equipier.passeport.nil?
     = f.input :passeport, as: :file
     = f.input :passeport_date_delivrance, as: :date, html5: true
     = f.input :passeport_lieu_delivrance

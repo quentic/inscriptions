@@ -46,6 +46,7 @@ class EquipiersController < CrudController
     @equipier.user = current_user
     @equipier.photo_doc = equipier_params[:photo]
     @equipier.permis_conduire_doc = equipier_params[:permis_conduire]
+    @equipier.passeport_doc = equipier_params[:passeport]
 
     super(notice: 'Equipier ajouté.') {
       equipage_equipiers_path(@equipage)
@@ -56,6 +57,7 @@ class EquipiersController < CrudController
   def update
     @equipier.photo_doc = equipier_params[:photo]
     @equipier.permis_conduire_doc = equipier_params[:permis_conduire]
+    @equipier.passeport_doc = equipier_params[:passeport]
 
     super {
       equipage_equipiers_path(@equipage)
