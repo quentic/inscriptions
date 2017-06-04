@@ -4,6 +4,8 @@ class Equipage < ApplicationRecord
   has_many :equipiers
   belongs_to :user
 
+  acts_as_xlsx
+
   # Recherche les objets avec une référence ou une désignation contenant le mot-clé recherché
   def self.contenant(terme)
     terme = full_text(terme)

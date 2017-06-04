@@ -25,8 +25,13 @@ class EquipagesController < CrudController
       equipages = Equipage.all.order(:numero)
 
     end
-
-    @equipages = equipages.page(@page)
+    
+    respond_to do |format|
+      format.html { 
+        @equipages = equipages.page(@page)
+      }
+      format.xlsx
+    end
   end
 
   # POST /equipages

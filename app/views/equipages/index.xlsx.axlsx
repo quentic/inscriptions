@@ -1,0 +1,12 @@
+wb = xlsx_package.workbook
+
+Equipage.all.each do |equipage|
+  wb.add_worksheet(name: "Equipages #{equipage.numero}") do |sheet|
+    sheet.add_row [equipage.numero, equipage.immatriculation]
+
+    equipage.equipiers.all.each do |equipier|
+      sheet.add_row [equipier.prenom, equipier.nom]
+    end
+
+  end
+end

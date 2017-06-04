@@ -55,6 +55,12 @@ gem 'cancancan', '~> 1.10'
 
 gem 'pdf-toolkit', '~> 1.1.0'
 
+# Pour la génération de rapports au format Office Open XML (xlsx, LibreOffice)
+gem 'rubyzip', '~> 1.1.0'
+gem 'axlsx', '2.1.0.pre'
+gem 'axlsx_rails'
+gem 'acts_as_xlsx'
+
 group :development, :test do
  # Ajoute l'environnement Pry complet pour déboguer et naviguer dans le code
   gem 'pry-rails'
