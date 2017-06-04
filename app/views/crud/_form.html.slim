@@ -1,6 +1,6 @@
 = simple_form_for resource do |f|
   - attrs_for_form.each do |attr|
-    = f.input attr
+    = f.input attr, html5: true
 
   = f.button :submit
 
