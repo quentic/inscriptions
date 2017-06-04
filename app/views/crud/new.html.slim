@@ -3,7 +3,7 @@
   li = link_to 'Annuler', :back
 
 - content_for :page_title do
-  = "Nouvel " + resource_class.to_s.titlecase
+  = "Nouvel " + t(resource_class.to_s)
 
 = render 'form'
 

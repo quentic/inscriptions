@@ -3,7 +3,7 @@
   li = link_to 'Annuler', :back
 
 - content_for :page_title do
-  = "Modifier #{resource_class.to_s.titlecase} #{ resource.id }"
+  = "Modifier t(resource_class.to_s) #{ resource.id }"
 
 = render 'form'
 
