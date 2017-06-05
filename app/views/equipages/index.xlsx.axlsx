@@ -10,7 +10,23 @@ wb.styles do |s|
       passager   = equipage.equipiers.last
 
       if (!conducteur.nil? && !passager.nil?)
-        sheet.add_row [equipage.numero, conducteur.photo, passager.photo], :style => titre
+        img = File.expand_path("#{Rails.root}/public/images/#{equipage.id}/#{conducteur.photo}", __FILE__)
+
+        sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
+          image.width=75
+          image.height=100
+          image.start_at 1, 0
+        end
+
+        img = File.expand_path("#{Rails.root}/public/images/#{equipage.id}/#{passager.photo}", __FILE__)
+
+        sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
+          image.width=75
+          image.height=100
+          image.start_at 2, 0
+        end
+
+        sheet.add_row [equipage.numero], :style => titre, :height => 75, :alignment => {:horizontal => :center}
 
         sheet.add_row ["", "Conducteur", "Passager"], :sz => 16
         sheet.add_row ["Nom",     conducteur.nom,        passager.nom]
