@@ -1,121 +1,128 @@
 wb = xlsx_package.workbook
 
-Equipage.all.each do |equipage|
-  wb.add_worksheet(name: "Equipages #{equipage.numero}") do |sheet|
+wb.styles do |s|
+  titre = s.add_style :bg_color => "666688", :fg_color => "FF", :sz => 20
 
-    conducteur = equipage.equipiers.first
-    passager   = equipage.equipiers.last
+  Equipage.all.each do |equipage|
+    wb.add_worksheet(name: "Equipages #{equipage.numero}") do |sheet|
 
-    if (!conducteur.nil? && !passager.nil?)
-      sheet.add_row [equipage.numero, conducteur.photo, passager.photo]
+      conducteur = equipage.equipiers.first
+      passager   = equipage.equipiers.last
 
-      sheet.add_row ["Nom",     conducteur.nom,        passager.nom]
-      sheet.add_row ["Preom",   conducteur.prenom,     passager.prenom]
-      sheet.add_row ["Adresse", conducteur.rue,        passager.rue]
-      sheet.add_row ["CP",      conducteur.cp,         passager.cp]
-      sheet.add_row ["Ville",   conducteur.ville,      passager.ville]
-      sheet.add_row ["Tel. fixe",       conducteur.telephone_fixe,     passager.telephone_fixe]
-      sheet.add_row ["Tel. portable",   conducteur.telephone_portable, passager.telephone_portable]
-      sheet.add_row ["e-mail",          conducteur.email,              passager.email]
-      sheet.add_row ["Profession",      conducteur.profession,         passager.profession]
-      sheet.add_row ["Date de naissance",   conducteur.date_naissance, passager.date_naissance]
-      sheet.add_row ["Lieu de naissance",   conducteur.lieu_naissance, passager.lieu_naissance]
-      sheet.add_row ["Nationalité",         conducteur.nationalite,    passager.nationalite]
-      sheet.add_row ["Numéro de permis de conduire",   conducteur.permis_conduire_num, passager.permis_conduire_num]
-      sheet.add_row ["Numéro de passeport",  conducteur.passeport_num,             passager.passeport_num]
-      sheet.add_row ["Date de délivrance",   conducteur.passeport_date_delivrance, passager.passeport_date_delivrance]
-      sheet.add_row ["Lieu de délivrance",   conducteur.passeport_lieu_delivrance, passager.passeport_lieu_delivrance]
-      sheet.add_row ["Date de validité",     conducteur.passeport_date_validite,   passager.passeport_date_validite]
-      sheet.add_row ["Groupe sanguin",       conducteur.groupe_sanguin,            passager.groupe_sanguin]
+      if (!conducteur.nil? && !passager.nil?)
+        sheet.add_row [equipage.numero, conducteur.photo, passager.photo], :style => titre
+
+        sheet.add_row ["", "Conducteur", "Passager"], :sz => 16
+        sheet.add_row ["Nom",     conducteur.nom,        passager.nom]
+        sheet.add_row ["Prénom",  conducteur.prenom,     passager.prenom]
+        sheet.add_row ["Adresse", conducteur.rue,        passager.rue]
+        sheet.add_row ["CP",      conducteur.cp,         passager.cp]
+        sheet.add_row ["Ville",   conducteur.ville,      passager.ville]
+        sheet.add_row ["Tel. fixe",       conducteur.telephone_fixe,     passager.telephone_fixe]
+        sheet.add_row ["Tel. portable",   conducteur.telephone_portable, passager.telephone_portable]
+        sheet.add_row ["e-mail",          conducteur.email,              passager.email]
+        sheet.add_row ["Profession",      conducteur.profession,         passager.profession]
+        sheet.add_row ["Date de naissance",   conducteur.date_naissance, passager.date_naissance]
+        sheet.add_row ["Lieu de naissance",   conducteur.lieu_naissance, passager.lieu_naissance]
+        sheet.add_row ["Nationalité",         conducteur.nationalite,    passager.nationalite]
+        sheet.add_row ["Numéro de permis de conduire",   conducteur.permis_conduire_num, passager.permis_conduire_num]
+        sheet.add_row ["Numéro de passeport",  conducteur.passeport_num,             passager.passeport_num]
+        sheet.add_row ["Date de délivrance",   conducteur.passeport_date_delivrance, passager.passeport_date_delivrance]
+        sheet.add_row ["Lieu de délivrance",   conducteur.passeport_lieu_delivrance, passager.passeport_lieu_delivrance]
+        sheet.add_row ["Date de validité",     conducteur.passeport_date_validite,   passager.passeport_date_validite]
+        sheet.add_row ["Groupe sanguin",       conducteur.groupe_sanguin,            passager.groupe_sanguin]
+        
+        sheet.add_row ["Taille T-shirt",       conducteur.taille_t_shirt,        passager.taille_t_shirt]
+
+        sheet.add_row ["Personnes à prévenir"], :style => titre
+        sheet.add_row ["Nom Prénom",           conducteur.nom_prenom_a_prevenir, passager.nom_prenom_a_prevenir]
+        sheet.add_row ["Tel",                  conducteur.tel_a_prevenir,        passager.tel_a_prevenir]
+
+        sheet.add_row ["Véhicule"], :style => titre
+        sheet.add_row ["Type/Puissance",         equipage.type_puissance]
+        sheet.add_row ["Titulaire carte grise",  equipage.carte_grise_titulaire]
+        sheet.add_row ["Carte grise émise le",   equipage.carte_grise_date_emission]
+        sheet.add_row ["1ère mise en circ",      equipage.premiere_mise_en_circ]
+        sheet.add_row ["Immatriculation",        equipage.immatriculation]
+        sheet.add_row ["Cie assurance",          equipage.cie_assurance]
       
-      sheet.add_row ["Personnes à prévenir"]
-      sheet.add_row ["Nom Prénom",           conducteur.nom_prenom_a_prevenir, passager.nom_prenom_a_prevenir]
-      sheet.add_row ["Tel",                  conducteur.tel_a_prevenir,        passager.tel_a_prevenir]
+        sheet["A1:A31"].each { |c| c.b = true }
+        
+      # Le conducteur n'est pas renseigné
+      elsif (conducteur.nil? && !passager.nil?)
+        sheet.add_row [equipage.numero, "", passager.photo]
 
-      sheet.add_row ["Taille T-shirt",       conducteur.taille_t_shirt,        passager.taille_t_shirt]
+        sheet.add_row ["Nom",     "", passager.nom]
+        sheet.add_row ["Preom",   "", passager.prenom]
+        sheet.add_row ["Adresse", "", passager.rue]
+        sheet.add_row ["CP",      "", passager.cp]
+        sheet.add_row ["Ville",   "", passager.ville]
+        sheet.add_row ["Tel. fixe",       "", passager.telephone_fixe]
+        sheet.add_row ["Tel. portable",   "", passager.telephone_portable]
+        sheet.add_row ["e-mail",          "", passager.email]
+        sheet.add_row ["Profession",      "", passager.profession]
+        sheet.add_row ["Date de naissance",   "", passager.date_naissance]
+        sheet.add_row ["Lieu de naissance",   "", passager.lieu_naissance]
+        sheet.add_row ["Nationalité",         "", passager.nationalite]
+        sheet.add_row ["Numéro de permis de conduire",   "", passager.permis_conduire_num]
+        sheet.add_row ["Numéro de passeport",  "", passager.passeport_num]
+        sheet.add_row ["Date de délivrance",   "", passager.passeport_date_delivrance]
+        sheet.add_row ["Lieu de délivrance",   "", passager.passeport_lieu_delivrance]
+        sheet.add_row ["Date de validité",     "", passager.passeport_date_validite]
+        sheet.add_row ["Groupe sanguin",       "", passager.groupe_sanguin]
 
-      sheet.add_row ["Véhicule"]
-      sheet.add_row ["Type/Puissance",         equipage.type_puissance]
-      sheet.add_row ["Titulaire carte grise",  equipage.carte_grise_titulaire]
-      sheet.add_row ["Carte grise émise le",   equipage.carte_grise_date_emission]
-      sheet.add_row ["1ère mise en circ",      equipage.premiere_mise_en_circ]
-      sheet.add_row ["Immatriculation",        equipage.immatriculation]
-      sheet.add_row ["Cie assurance",          equipage.cie_assurance]
-   
-    # Le conducteur n'est pas renseigné
-    elsif (conducteur.nil? && !passager.nil?)
-      sheet.add_row [equipage.numero, "", passager.photo]
+        sheet.add_row ["Taille T-shirt",       "", passager.taille_t_shirt]
+        
+        sheet.add_row ["Personnes à prévenir"]
+        sheet.add_row ["Nom Prénom",           "", passager.nom_prenom_a_prevenir]
+        sheet.add_row ["Tel",                  "", passager.tel_a_prevenir]
 
-      sheet.add_row ["Nom",     "", passager.nom]
-      sheet.add_row ["Preom",   "", passager.prenom]
-      sheet.add_row ["Adresse", "", passager.rue]
-      sheet.add_row ["CP",      "", passager.cp]
-      sheet.add_row ["Ville",   "", passager.ville]
-      sheet.add_row ["Tel. fixe",       "", passager.telephone_fixe]
-      sheet.add_row ["Tel. portable",   "", passager.telephone_portable]
-      sheet.add_row ["e-mail",          "", passager.email]
-      sheet.add_row ["Profession",      "", passager.profession]
-      sheet.add_row ["Date de naissance",   "", passager.date_naissance]
-      sheet.add_row ["Lieu de naissance",   "", passager.lieu_naissance]
-      sheet.add_row ["Nationalité",         "", passager.nationalite]
-      sheet.add_row ["Numéro de permis de conduire",   "", passager.permis_conduire_num]
-      sheet.add_row ["Numéro de passeport",  "", passager.passeport_num]
-      sheet.add_row ["Date de délivrance",   "", passager.passeport_date_delivrance]
-      sheet.add_row ["Lieu de délivrance",   "", passager.passeport_lieu_delivrance]
-      sheet.add_row ["Date de validité",     "", passager.passeport_date_validite]
-      sheet.add_row ["Groupe sanguin",       "", passager.groupe_sanguin]
-      
-      sheet.add_row ["Personnes à prévenir"]
-      sheet.add_row ["Nom Prénom",           "", passager.nom_prenom_a_prevenir]
-      sheet.add_row ["Tel",                  "", passager.tel_a_prevenir]
+        sheet.add_row ["Véhicule"]
+        sheet.add_row ["Type/Puissance",         equipage.type_puissance]
+        sheet.add_row ["Titulaire carte grise",  equipage.carte_grise_titulaire]
+        sheet.add_row ["Carte grise émise le",   equipage.carte_grise_date_emission]
+        sheet.add_row ["1ère mise en circ",      equipage.premiere_mise_en_circ]
+        sheet.add_row ["Immatriculation",        equipage.immatriculation]
+        sheet.add_row ["Cie assurance",          equipage.cie_assurance]
 
-      sheet.add_row ["Taille T-shirt",       "", passager.taille_t_shirt]
+      # Le passager n'est pas renseigné
+      elsif (!conducteur.nil? && passager.nil?)
+        sheet.add_row [equipage.numero, conducteur.photo, passager.photo]
 
-      sheet.add_row ["Véhicule"]
-      sheet.add_row ["Type/Puissance",         equipage.type_puissance]
-      sheet.add_row ["Titulaire carte grise",  equipage.carte_grise_titulaire]
-      sheet.add_row ["Carte grise émise le",   equipage.carte_grise_date_emission]
-      sheet.add_row ["1ère mise en circ",      equipage.premiere_mise_en_circ]
-      sheet.add_row ["Immatriculation",        equipage.immatriculation]
-      sheet.add_row ["Cie assurance",          equipage.cie_assurance]
+        sheet.add_row ["Nom",     conducteur.nom]
+        sheet.add_row ["Preom",   conducteur.prenom]
+        sheet.add_row ["Adresse", conducteur.rue]
+        sheet.add_row ["CP",      conducteur.cp]
+        sheet.add_row ["Ville",   conducteur.ville]
+        sheet.add_row ["Tel. fixe",       conducteur.telephone_fixe]
+        sheet.add_row ["Tel. portable",   conducteur.telephone_portable]
+        sheet.add_row ["e-mail",          conducteur.email]
+        sheet.add_row ["Profession",      conducteur.profession]
+        sheet.add_row ["Date de naissance",   conducteur.date_naissance]
+        sheet.add_row ["Lieu de naissance",   conducteur.lieu_naissance]
+        sheet.add_row ["Nationalité",         conducteur.nationalite]
+        sheet.add_row ["Numéro de permis de conduire",   conducteur.permis_conduire_num]
+        sheet.add_row ["Numéro de passeport",  conducteur.passeport_num]
+        sheet.add_row ["Date de délivrance",   conducteur.passeport_date_delivrance]
+        sheet.add_row ["Lieu de délivrance",   conducteur.passeport_lieu_delivrance]
+        sheet.add_row ["Date de validité",     conducteur.passeport_date_validite]
+        sheet.add_row ["Groupe sanguin",       conducteur.groupe_sanguin]
+        
+        sheet.add_row ["Taille T-shirt",       conducteur.taille_t_shirt]
 
-    # Le passager n'est pas renseigné
-    elsif (!conducteur.nil? && passager.nil?)
-      sheet.add_row [equipage.numero, conducteur.photo, passager.photo]
+        sheet.add_row ["Personnes à prévenir"]
+        sheet.add_row ["Nom Prénom",           conducteur.nom_prenom_a_prevenir]
+        sheet.add_row ["Tel",                  conducteur.tel_a_prevenir]
 
-      sheet.add_row ["Nom",     conducteur.nom]
-      sheet.add_row ["Preom",   conducteur.prenom]
-      sheet.add_row ["Adresse", conducteur.rue]
-      sheet.add_row ["CP",      conducteur.cp]
-      sheet.add_row ["Ville",   conducteur.ville]
-      sheet.add_row ["Tel. fixe",       conducteur.telephone_fixe]
-      sheet.add_row ["Tel. portable",   conducteur.telephone_portable]
-      sheet.add_row ["e-mail",          conducteur.email]
-      sheet.add_row ["Profession",      conducteur.profession]
-      sheet.add_row ["Date de naissance",   conducteur.date_naissance]
-      sheet.add_row ["Lieu de naissance",   conducteur.lieu_naissance]
-      sheet.add_row ["Nationalité",         conducteur.nationalite]
-      sheet.add_row ["Numéro de permis de conduire",   conducteur.permis_conduire_num]
-      sheet.add_row ["Numéro de passeport",  conducteur.passeport_num]
-      sheet.add_row ["Date de délivrance",   conducteur.passeport_date_delivrance]
-      sheet.add_row ["Lieu de délivrance",   conducteur.passeport_lieu_delivrance]
-      sheet.add_row ["Date de validité",     conducteur.passeport_date_validite]
-      sheet.add_row ["Groupe sanguin",       conducteur.groupe_sanguin]
-      
-      sheet.add_row ["Personnes à prévenir"]
-      sheet.add_row ["Nom Prénom",           conducteur.nom_prenom_a_prevenir]
-      sheet.add_row ["Tel",                  conducteur.tel_a_prevenir]
+        sheet.add_row ["Véhicule"]
+        sheet.add_row ["Type/Puissance",         equipage.type_puissance]
+        sheet.add_row ["Titulaire carte grise",  equipage.carte_grise_titulaire]
+        sheet.add_row ["Carte grise émise le",   equipage.carte_grise_date_emission]
+        sheet.add_row ["1ère mise en circ",      equipage.premiere_mise_en_circ]
+        sheet.add_row ["Immatriculation",        equipage.immatriculation]
+        sheet.add_row ["Cie assurance",          equipage.cie_assurance]
 
-      sheet.add_row ["Taille T-shirt",       conducteur.taille_t_shirt]
-
-      sheet.add_row ["Véhicule"]
-      sheet.add_row ["Type/Puissance",         equipage.type_puissance]
-      sheet.add_row ["Titulaire carte grise",  equipage.carte_grise_titulaire]
-      sheet.add_row ["Carte grise émise le",   equipage.carte_grise_date_emission]
-      sheet.add_row ["1ère mise en circ",      equipage.premiere_mise_en_circ]
-      sheet.add_row ["Immatriculation",        equipage.immatriculation]
-      sheet.add_row ["Cie assurance",          equipage.cie_assurance]
-
+      end
     end
   end
 end
