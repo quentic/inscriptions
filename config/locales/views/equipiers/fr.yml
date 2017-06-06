@@ -1,7 +1,11 @@
 fr:
   Equipier: équipier
+  new_equipier: créer un équipier
+  edit_equipier: modifier le équipier
+  show_equipier: voir le détail du équipier
   equipier_maj: équipier modifié !
   equipier_supprime: équipier supprimé !
+
   date_naissance: date de naissance
   num_permis_conduire: numéro de permis de conduire
   passeport_num: numéro

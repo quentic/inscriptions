@@ -1,0 +1,7 @@
+- collection.each do |resource|
+  tr
+    - attrs_for_index.each do |attr|
+      td= resource.attributes[attr.to_s]
+
+    td= link_to '', [:edit, resource], {class: :edit, title: "Modifier le #{resource_class.to_s}"}
+    td= link_to '', resource, data: {confirm: "Vous allez supprimer ce #{resource_class}. Etes-vous sûr ?"}, method: :delete, class: :bin

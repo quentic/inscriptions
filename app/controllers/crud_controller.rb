@@ -21,7 +21,7 @@ class CrudController < InheritedResources::Base
   # Filtre les objets en fonction d'un terme recherché
   def rechercher
     set_collection_ivar(resource_class.filtre_par(@filtre).limit(100))
-    render collection
+    render partial: 'liste', collection: collection
   end
 
   def update(options={})

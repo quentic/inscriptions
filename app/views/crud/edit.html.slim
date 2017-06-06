@@ -3,7 +3,7 @@
   li = link_to 'Annuler', :back
 
 - content_for :page_title do
-  = "Modifier t(resource_class.to_s) #{ resource.id }"
+  = t("edit_" + resource_class.to_s) + ' ' + resource.id
 
 = render 'form'
 
