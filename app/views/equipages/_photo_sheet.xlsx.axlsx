@@ -1,0 +1,8 @@
+  img = File.expand_path("#{Rails.root}/public/images/#{equipage.id}/#{equipier.photo}", __FILE__)
+
+  sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
+    image.width=75
+    image.height=100
+    image.start_at colonne, 0
+  end
+

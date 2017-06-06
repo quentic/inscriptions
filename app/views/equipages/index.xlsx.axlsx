@@ -1,32 +1,19 @@
 wb = xlsx_package.workbook
 
 wb.styles do |s|
-  titre = s.add_style :bg_color => "666688", :fg_color => "FF", :sz => 20
+  titre = s.add_style bg_color: "666688", fg_color: "FFFFFF", sz: 20, alignment: {horizontal: :center}
 
   Equipage.all.each do |equipage|
-    wb.add_worksheet(name: "Equipages #{equipage.numero}") do |sheet|
+    wb.add_worksheet(name: "Equipage #{equipage.numero}") do |sheet|
 
+      nb_equipiers = equipage.equipiers.count
       conducteur = equipage.equipiers.first
-      passager   = equipage.equipiers.last
+      passager   = equipage.equipiers.last if nb_equipiers >= 2
 
-      if (!conducteur.nil? && !passager.nil?)
-        img = File.expand_path("#{Rails.root}/public/images/#{equipage.id}/#{conducteur.photo}", __FILE__)
-
-        sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
-          image.width=75
-          image.height=100
-          image.start_at 1, 0
-        end
-
-        img = File.expand_path("#{Rails.root}/public/images/#{equipage.id}/#{passager.photo}", __FILE__)
-
-        sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
-          image.width=75
-          image.height=100
-          image.start_at 2, 0
-        end
-
-        sheet.add_row [equipage.numero], :style => titre, :height => 75, :alignment => {:horizontal => :center}
+      if (nb_equipiers >= 2)
+        sheet.add_row [equipage.numero], :style => [titre], :height => 75, sz: 60
+        render :partial => 'photo_sheet', :locals => { sheet: sheet, equipage: equipage, equipier: conducteur, colonne: 1 }
+        render :partial => 'photo_sheet', :locals => { sheet: sheet, equipage: equipage, equipier: passager, colonne: 2 }
 
         sheet.add_row ["", "Conducteur", "Passager"], :sz => 16
         sheet.add_row ["Nom",     conducteur.nom,        passager.nom]
@@ -50,11 +37,11 @@ wb.styles do |s|
         
         sheet.add_row ["Taille T-shirt",       conducteur.taille_t_shirt,        passager.taille_t_shirt]
 
-        sheet.add_row ["Personnes à prévenir"], :style => titre
+        sheet.add_row ["Personnes à prévenir", "", ""], :style => [titre, titre, titre], height: 40 
         sheet.add_row ["Nom Prénom",           conducteur.nom_prenom_a_prevenir, passager.nom_prenom_a_prevenir]
         sheet.add_row ["Tel",                  conducteur.tel_a_prevenir,        passager.tel_a_prevenir]
 
-        sheet.add_row ["Véhicule"], :style => titre
+        sheet.add_row ["Véhicule", "", ""], :style => [titre, titre, titre], height: 40
         sheet.add_row ["Type/Puissance",         equipage.type_puissance]
         sheet.add_row ["Titulaire carte grise",  equipage.carte_grise_titulaire]
         sheet.add_row ["Carte grise émise le",   equipage.carte_grise_date_emission]
@@ -65,9 +52,11 @@ wb.styles do |s|
         sheet["A1:A31"].each { |c| c.b = true }
         
       # Le conducteur n'est pas renseigné
-      elsif (conducteur.nil? && !passager.nil?)
-        sheet.add_row [equipage.numero, "", passager.photo]
+      elsif (nb_equipiers == 1 && conducteur.nil?)
+        sheet.add_row [equipage.numero], :style => [titre], :height => 75, sz: 60
+        render :partial => 'photo_sheet', :locals => { sheet: sheet, equipage: equipage, equipier: passager, colonne: 2 }
 
+        sheet.add_row ["", "Conducteur", "Passager"], :sz => 16
         sheet.add_row ["Nom",     "", passager.nom]
         sheet.add_row ["Preom",   "", passager.prenom]
         sheet.add_row ["Adresse", "", passager.rue]
@@ -102,9 +91,11 @@ wb.styles do |s|
         sheet.add_row ["Cie assurance",          equipage.cie_assurance]
 
       # Le passager n'est pas renseigné
-      elsif (!conducteur.nil? && passager.nil?)
-        sheet.add_row [equipage.numero, conducteur.photo, passager.photo]
+      elsif (nb_equipiers == 1 && passager.nil?)
+        sheet.add_row [equipage.numero], :style => [titre], :height => 75, sz: 60
+        render :partial => 'photo_sheet', :locals => { sheet: sheet, equipage: equipage, equipier: conducteur, colonne: 1 }
 
+        sheet.add_row ["", "Conducteur", "Passager"], :sz => 16
         sheet.add_row ["Nom",     conducteur.nom]
         sheet.add_row ["Preom",   conducteur.prenom]
         sheet.add_row ["Adresse", conducteur.rue]
@@ -141,4 +132,6 @@ wb.styles do |s|
       end
     end
   end
+
 end
+
