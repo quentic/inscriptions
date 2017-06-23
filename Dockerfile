@@ -1,16 +1,16 @@
 FROM ruby:2.3-slim
 MAINTAINER Christian Quentin <christian.quentin@xerox.com>
 LABEL version="1.0" \
-      description="Application de gestion des offres d'impression"
+      description="Saisie des équipages NOREV"
 
-ENV http_proxy "http://proxyprod.xtsfrance.com:8000"
-ENV https_proxy "http://proxyprod.xtsfrance.com:8000"
-RUN export http_proxy=$http_proxy
-RUN export https_proxy=$https_proxy
+#ENV http_proxy "http://proxyprod.xtsfrance.com:8000"
+#ENV https_proxy "http://proxyprod.xtsfrance.com:8000"
+#RUN export http_proxy=$http_proxy
+#RUN export https_proxy=$https_proxy
 
 RUN apt-get update -qq
 RUN apt-get install -y build-essential \
-       mysql-client \
+       mysql-client libmysqlclient-dev \
        pdftk
            
 ENV RAILS_ENV=production  
