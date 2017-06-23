@@ -88,9 +88,6 @@ group :test do
 
   #gem 'cucumber-rails'
   #gem "cucumber"
-
-  # utiliser le pré-loader spring pour accélerer le lancement des tests
-  gem 'spring'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 #gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
