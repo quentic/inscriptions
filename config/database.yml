@@ -8,11 +8,10 @@ default: &default
   adapter: mysql2
   encoding: utf8
   username: root
-  password: Pass123.
-  socket: /var/run/mysqld/mysqld.sock
-#  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  password: zzz
+  host: db
+  port: 3306
+  database: zzz
 
 development:
   <<: *default
