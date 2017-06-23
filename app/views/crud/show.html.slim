@@ -3,7 +3,7 @@
   li = link_to 'Gestion des utilisateurs', users_path if (can? :manage, User)
 
 - content_for :page_title do
-  = t("show_" + resource_class.to_s)
+  = t("show_" + resource_class.name.underscore)
 
 table
   tr
