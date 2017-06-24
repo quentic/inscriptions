@@ -33,6 +33,8 @@ module Inscriptions
     config.generators do |g|
       g.stylesheets false
 
+      # Pas de views SVP, on utilise l'héritage de vues de crud (views/crud) 
+      g.views false
       # Pas de fixture SVP, on utilise FactoryGirl
       g.test_framework  :test_unit, fixture: false
     end
