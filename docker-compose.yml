@@ -1,29 +1,35 @@
-app:
-  # pour construire l'image
-  #build: .
-  # pour utiliser l'image
-  #image: app
-  container_name: app
-  # pour construire l'image
-  #volumes:
-  #  - .:/myapp
-  ports:
-    - "8000:3000"
-  links:
-    - db
-  env_file: app.env
+version: '2'
+services:
+  # Le serveur MySQL avec les données NOREV
+  db:
+    container_name: db_norev
+    image: mysql
+    ports:
+      - "13306:3306"
+    env_file: db.env
+    volumes:
+      - db_data:/var/lib/mysql
+  
+  app:
+    container_name: app
+    # pour construire l'image
+    build: .
+    volumes:
+      - .:/myapp
+    # pour utiliser l'image
+    #image: app
+    ports:
+      - "3000:3000"
+    links:
+      - db
 
-db:
-  image: mysql
-  container_name: db
-  ports:
-    - "13306:3306"
-  env_file: db.env
+  adminer:
+    container_name: adminer
+    image: adminer
+    ports:
+      - "8080:8080"
+    links:
+      - db
 
-adminer:
-  image: adminer
-  container_name: adminer
-  ports:
-    - "8080:8080"
-  links:
-    - db
+volumes:
+  db_data:
