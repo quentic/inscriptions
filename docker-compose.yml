@@ -22,6 +22,10 @@ services:
       - "3000:3000"
     links:
       - db
+    environment:
+      SECRET_KEY_BASE: abcdefg
+      VIRTUAL_HOST: beer.docker
+      RAILS_ENV: development
 
   adminer:
     container_name: adminer
