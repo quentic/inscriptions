@@ -1,21 +1,35 @@
-FROM ruby:2.3-slim
-MAINTAINER Christian Quentin <christian.quentin@xerox.com>
-LABEL version="1.0" \
-      description="Saisie des équipages NOREV"
+FROM ruby:2.3-alpine 
 
-#ENV http_proxy "http://proxyprod.xtsfrance.com:8000"
-#ENV https_proxy "http://proxyprod.xtsfrance.com:8000"
-#RUN export http_proxy=$http_proxy
-#RUN export https_proxy=$https_proxy
+#ENV http_proxy = "http://proxyprod.xtsfrance.com:8000" \
+#    https_proxy = "http://proxyprod.xtsfrance.com:8000"
+#RUN export http_proxy=$http_proxy && \
+#     export https_proxy=$https_proxy
 
-RUN apt-get update -qq
-RUN apt-get install -y build-essential \
-       mysql-client libmysqlclient-dev \
-       pdftk \
-    && rm -rf /var/lib/apt/lists/*
-           
-ENV RAILS_ENV=development   
-ENV RACK_ENV=development
+ENV BUILD_PACKAGES="curl-dev ruby-dev build-base" \ 
+    DEV_PACKAGES="tzdata mysql mysql-dev mysql-client nodejs" \
+    RAILS_VERSION="5.1.1" 
+
+RUN \ 
+  apk --update --upgrade add --no-cache $BUILD_PACKAGES $DEV_PACKAGES
+
+RUN \
+  #gem install -N nokogiri -- --use-system-libraries && \ 
+  #gem install -N rails --version "$RAILS_VERSION" && \ 
+  echo 'gem: --no-document' >> ~/.gemrc && \ 
+  cp ~/.gemrc /etc/gemrc && \ 
+  chmod uog+r /etc/gemrc && \ 
+  
+  # cleanup and settings 
+  #bundle config --global build.nokogiri "--use-system-libraries" && \ 
+  #bundle config --global build.nokogumbo "--use-system-libraries" && \ 
+  find / -type f -iname \*.apk-new -delete && \ 
+  rm -rf /var/cache/apk/* && \ 
+  rm -rf /usr/lib/lib/ruby/gems/*/cache/* && \ 
+  rm -rf ~/.gem 
+
+
+ENV RAILS_ENV=production   
+ENV RACK_ENV=production
 
 # On sépare la zone des gems (qui ne bouge pas souvent)
 # de la zone de l'appli (qui est plus susceptible de changer)
@@ -32,6 +46,10 @@ COPY . $INSTALL_PATH
 #RUN bundle exec rake db:migrate
 #RUN bundle exec rake db:seed
 RUN bundle exec rake assets:precompile
+
+MAINTAINER Christian Quentin <christian.quentin@xerox.com>
+LABEL version="1.0" \
+      description="Saisie des équipages NOREV"
 
 # Start puma
 CMD bundle exec puma -C config/puma.rb
