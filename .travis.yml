@@ -6,9 +6,16 @@ script:
 # prepare qemu
 - docker run --rm --privileged multiarch/qemu-user-static:register --reset
 # build image
-- docker-compose build -t quentic/rpi-inscriptions .
+- docker-compose pull
+- docker-compose build
+- docker-compose start
+# You will want this for logging. If one of your containers does not build for
+# whatever reason it's best to report that now before your tests start
+# otherwise it can be really tricky to debug why tests are failing sometimes.
+- docker ps
+
 # test image
-- docker-compose run quentic/rpi-inscriptions app bash
+#- docker-compose run quentic/rpi-inscriptions app bash
 # push image
 - >
   if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
