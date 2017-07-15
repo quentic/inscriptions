@@ -8,7 +8,7 @@ script:
 # build image
 - docker-compose build -t quentic/rpi-inscriptions .
 # test image
-- docker run quentic/rpi-inscriptions bash
+- docker-compose run quentic/rpi-inscriptions app bash
 # push image
 - >
   if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then

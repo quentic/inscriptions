@@ -43,8 +43,6 @@ RUN mkdir $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 COPY . $INSTALL_PATH
 
-#RUN bundle exec rake db:migrate
-#RUN bundle exec rake db:seed
 RUN bundle exec rake assets:precompile
 
 MAINTAINER Christian Quentin <christian.quentin@xerox.com>
