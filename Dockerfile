@@ -1,4 +1,4 @@
-FROM ruby:2.3-alpine 
+FROM hypriot/rpi-ruby 
 
 #ENV http_proxy = "http://proxyprod.xtsfrance.com:8000" \
 #    https_proxy = "http://proxyprod.xtsfrance.com:8000"
