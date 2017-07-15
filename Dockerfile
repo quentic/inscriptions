@@ -1,12 +1,4 @@
-FROM ruby:2.3-slim
-MAINTAINER Christian Quentin <christian.quentin@xerox.com>
-LABEL version="1.0" \
-      description="Saisie des équipages NOREV"
-
-#ENV http_proxy "http://proxyprod.xtsfrance.com:8000"
-#ENV https_proxy "http://proxyprod.xtsfrance.com:8000"
-#RUN export http_proxy=$http_proxy
-#RUN export https_proxy=$https_proxy
+FROM hypriot/rpi-ruby
 
 RUN apt-get update -qq
 RUN apt-get install -y build-essential \
@@ -32,6 +24,10 @@ COPY . $INSTALL_PATH
 #RUN bundle exec rake db:migrate
 #RUN bundle exec rake db:seed
 RUN bundle exec rake assets:precompile
+
+MAINTAINER Christian Quentin <christian.quentin@xerox.com>
+LABEL version="1.0" \
+      description="Saisie des équipages NOREV"
 
 # Start puma
 CMD bundle exec puma -C config/puma.rb
