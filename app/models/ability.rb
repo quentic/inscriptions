@@ -31,7 +31,7 @@ class Ability
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
     alias_action :create, :read, :update, :to => :cru
 
-    user ||= User.new # guest user (not logged in)
+    user ||= User.new(inscription_user: false) # guest user (not logged in)
 
     if user.admin?
       can :manage, :all
