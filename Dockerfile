@@ -1,7 +1,4 @@
 FROM ruby:2.3-slim
-MAINTAINER Christian Quentin <christian.quentin@xerox.com>
-LABEL version="1.0" \
-      description="Saisie des équipages NOREV"
 
 #ENV http_proxy "http://proxyprod.xtsfrance.com:8000"
 #ENV https_proxy "http://proxyprod.xtsfrance.com:8000"
@@ -27,11 +24,16 @@ RUN bundle install
 ENV INSTALL_PATH /myapp
 RUN mkdir $INSTALL_PATH
 WORKDIR $INSTALL_PATH
-COPY . $INSTALL_PATH
+COPY . .
 
 #RUN bundle exec rake db:migrate
 #RUN bundle exec rake db:seed
 RUN bundle exec rake assets:precompile
+
+MAINTAINER Christian Quentin <christian.quentin@architecte-du-web.com>
+
+LABEL version="1.0" \
+      description="Saisie des équipages NOREV"
 
 # Start puma
 CMD bundle exec puma -C config/puma.rb
