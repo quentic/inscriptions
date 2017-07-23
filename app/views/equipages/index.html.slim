@@ -2,6 +2,7 @@
   li = link_to 'Accueil', home_path
   li = link_to 'Nouvel équipage', new_equipage_path if (can? :create, Equipage)
   li = link_to 'Tous les équipages', equipages_path
+  li = link_to 'Voir le récap', recap_equipages_path
 
 - content_for :page_title do
   ' Liste des équipages

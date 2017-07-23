@@ -21,4 +21,9 @@ class Equipage < ApplicationRecord
     contenant(terme)
   end
 
+  def self.avec_equipiers
+    includes(:equipiers).
+    order(numero: :asc)
+  end
+
 end

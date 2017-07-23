@@ -42,6 +42,11 @@ class EquipagesController < CrudController
     super(notice: 'Equipage ajouté.')
   end
 
+  # GET /equipages/recap
+  def recap
+    @equipages = Equipage.avec_equipiers
+  end
+
 private
   # Only allow a trusted parameter "white list" through.
   def equipage_params

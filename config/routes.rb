@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :equipages do
     collection do
       get :rechercher
+      get :recap
     end
     resources :equipiers
   end
