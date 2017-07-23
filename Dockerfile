@@ -19,7 +19,7 @@ ENV RACK_ENV=development
 # => le bundle install est le souvent ignoré lors d'un docker-compose build
 COPY Gemfile* /tmp/
 WORKDIR /tmp
-RUN bundle install
+RUN gem install bundler && bundle install
 
 ENV INSTALL_PATH /myapp
 RUN mkdir $INSTALL_PATH
