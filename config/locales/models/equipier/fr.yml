@@ -2,6 +2,7 @@ fr:
   simple_form:
     labels:
       equipier:
+        prenom: prénom
         date_naissance: date de naissance	
         lieu_naissance: lieu de naissance
         nationalite: nationalité
@@ -15,3 +16,11 @@ fr:
         nom_prenom_a_prevenir: personne à prévenir	 
         tel_a_prevenir: téléphone		 
         taille_t_shirt: taille de T-shirt
+
+  activerecord:
+    errors:
+      models:
+        equipier:
+          attributes:
+            user:
+              required: ": utilisateur requis"

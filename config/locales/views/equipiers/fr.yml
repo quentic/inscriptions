@@ -6,6 +6,7 @@ fr:
   equipier_maj: équipier modifié !
   equipier_supprime: équipier supprimé !
 
+  prenom: prénom
   date_naissance: date de naissance
   num_permis_conduire: numéro de permis de conduire
   passeport_num: numéro
