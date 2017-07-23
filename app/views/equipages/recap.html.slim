@@ -39,8 +39,8 @@ table.list
 
   - @equipages.each do |equipage|
     tbody
-      tr
-        th = "Equipage #{equipage.numero}"
+      tr.equipage
+        th{colspan=100} = "Equipage #{equipage.numero}"
 
       - equipage.equipiers.each do |equipier|
         - photo = File.expand_path("#{Rails.root}/public/images/#{equipage.id}/#{equipier.photo}", __FILE__)
