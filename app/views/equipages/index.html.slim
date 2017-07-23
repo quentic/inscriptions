@@ -6,7 +6,7 @@
 - content_for :page_title do
   ' Liste des équipages
 
-= filtrer('', 'Filtrer par nom&nbsp;:', :filtre, 'Saisis qq car. du nom de equipage')
+= filtrer('', 'Filtrer par nom&nbsp;:', :filtre, "Saisis qq car. de l'équipage ou de l'équipier")
 = will_paginate @equipages
 
 table.list

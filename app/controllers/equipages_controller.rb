@@ -6,7 +6,7 @@ class EquipagesController < CrudController
   end
 
   def attrs_for_form
-    [:numero, :type_puissance, :carte_grise_titulaire, :carte_grise_date_emission, :premiere_mise_en_circ, :immatriculation, :cie_assurance]
+[:numero, :type_puissance, :carte_grise_titulaire, :carte_grise_date_emission, :premiere_mise_en_circ, :immatriculation, :cie_assurance]
   end
 
   before_action :set_equipage, only: [:index]

@@ -10,7 +10,8 @@ class Equipage < ApplicationRecord
   def self.contenant(terme)
     terme = full_text(terme)
 
-    where("nom LIKE ?", terme)
+    joins(:equipiers).
+    where("numero LIKE ? OR immatriculation LIKE ? OR equipiers.nom LIKE ? OR equipiers.prenom LIKE ?", terme, terme, terme, terme)
   end
 
   # Recherche les objets relatifs à la recherche (passée en paramètre)
