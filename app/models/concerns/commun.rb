@@ -2,12 +2,12 @@
 module Commun
   extend ActiveSupport::Concern
 
-  # Renvoie une chaîne SQL pour une recherche full text
-  def full_text(terme)
-    terme.blank? ? "%" : "%#{terme.strip}%"
-  end
-
   module ClassMethods
+
+    # Renvoie une chaîne SQL pour une recherche full text
+    def full_text(terme)
+      terme.blank? ? "%" : "%#{terme.strip}%"
+    end
 
     # nombre d'éléments affichés par page de liste
     def per_page
