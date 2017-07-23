@@ -129,19 +129,7 @@ HTML
     {title: title}
   end
 
-  def classe_etat(etat_dossier)
-    case etat_dossier
-    when 'annule'
-      {class: 'annule'}
-    when 'engage'
-      {class: 'engage'}
-    when 'livre'
-      {class: 'livre'}
-    when 'previsionnel'
-      {class: 'previsionnel'}
-    else
-      {}
-    end
+  def affiche_booleen(indicateur)
+    raw (indicateur ? "&#x2705;" : "")
   end
-
 end

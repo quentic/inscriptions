@@ -74,7 +74,7 @@ class EquipiersController < CrudController
 private
   # Only allow a trusted parameter "white list" through.
   def equipier_params
-    params.require(:equipier).permit(:nom, :prenom, :photo,
+    params.require(:equipier).permit(:conducteur, :nom, :prenom, :photo,
 	:rue, :cp, :ville, 
 	:telephone_fixe, :telephone_portable, :email, 
 	:profession, 

@@ -1,6 +1,7 @@
 class CreateEquipiers < ActiveRecord::Migration[5.1]
   def change
     create_table :equipiers do |t|
+      t.boolean :conducteur, null: false, default: false
       t.string :nom
       t.string :prenom
       t.string :photo

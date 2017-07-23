@@ -3,6 +3,8 @@
   
   fieldset
     legend = "Equipier pour l'équipage #{@equipier.equipage.numero}"
+    div    
+      = f.collection_radio_buttons :conducteur, [[true, 'Conducteur'] ,[false, 'Passager']], :first, :last
     = f.input :nom
     = f.input :prenom
     = image_tag("/images/#{@equipage.id}/#{@equipier.photo}", size: 100) unless @equipier.photo.nil?
