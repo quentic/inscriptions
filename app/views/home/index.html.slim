@@ -5,9 +5,12 @@
   ' inscriptions au Raid NOREV 2018
 
 section.contenu
-  p Vous êtes sur le portail de Gestion des inscriptions au raid NOREV 2018. Vous pouvez :
+  p Vous êtes sur le portail de Gestion des inscriptions au raid NOREV 2018.
   ul.action
-    li.action--equipage  = link_to 'Voir les équipages', equipages_path 
+    - if user_signed_in?
+      li.action--equipage  = link_to 'Voir les équipages', equipages_path 
+    - else
+      li.action--connexion = link_to 'Se connecter au portail', new_user_session_path
 
 section.moteur
   hr

@@ -14,7 +14,7 @@ article li{
   height:50%;
   width:50%;
 }
-.action--equipage{
+.action--equipage, .action--connexion {
   float:left;
   width:45%;
   margin-left:1%;
@@ -38,6 +38,9 @@ article li{
   background-color:#b9b396;
 }
 .action--equipage a{
+  background-image: url(catalogue.png);
+}
+.action--connexion a{
   background-image: url(catalogue.png);
 }
 .moteur{
