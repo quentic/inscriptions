@@ -3,7 +3,11 @@
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Je crée mon compte", new_registration_path(resource_name) %><br />
+  <%= p = "ou :" %>
+  <fieldset>
+    <legend class="connexion">Tu n'as pas encore de compte pour l'inscription au raid 2018 ?</legend>
+    <%= link_to "Je crée mon compte", new_registration_path(resource_name), class: :bouton %><br />
+  </fieldset>
 <% end -%>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
