@@ -17,7 +17,7 @@ nav.yui-g
     - if user_signed_in?
       li#deconnexion= link_to("Déconnecter #{current_user.prenom}", destroy_user_session_path, method: :delete)
     - else
-      li#deconnexion= link_to("Se connecter", new_user_session_path)
+      li#connexion= link_to("Se connecter", new_user_session_path)
 
 article.yui-g
   h2= yield :page_title
