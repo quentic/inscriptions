@@ -31,6 +31,9 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  # pour émettre des mails de ré-initialisation de mot de passe
+  config.action_mailer.default_url_options = { host: "norev.transparence-c.com" }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
