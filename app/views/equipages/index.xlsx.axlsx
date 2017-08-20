@@ -1,11 +1,11 @@
 wb = xlsx_package.workbook
 
 wb.styles do |s|
-  titre = s.add_style bg_color: "666688", fg_color: "FFFFFF", sz: 20, alignment: {horizontal: :center}
+  titre = s.add_style bg_color: "666688", fg_color: "FFFFFF", sz: 20, alignment: {horizontal: :center, vertical: :center}
 
   Equipage.all.each do |equipage|
     wb.add_worksheet(name: "Equipage #{equipage.numero}") do |sheet|
-
+      sheet.sheet_view.show_grid_lines = true
       nb_equipiers = equipage.equipiers.count
       conducteur = equipage.equipiers.first
       passager   = equipage.equipiers.last if nb_equipiers >= 2
@@ -15,7 +15,7 @@ wb.styles do |s|
         render :partial => 'photo_sheet', :locals => { sheet: sheet, equipage: equipage, equipier: conducteur, colonne: 1 }
         render :partial => 'photo_sheet', :locals => { sheet: sheet, equipage: equipage, equipier: passager, colonne: 2 }
 
-        sheet.add_row ["", "Conducteur", "Passager"], :sz => 16
+        sheet.add_row ["",        "Conducteur",          "Passager"], :sz => 16
         sheet.add_row ["Nom",     conducteur.nom,        passager.nom]
         sheet.add_row ["Prénom",  conducteur.prenom,     passager.prenom]
         sheet.add_row ["Adresse", conducteur.rue,        passager.rue]
@@ -29,7 +29,7 @@ wb.styles do |s|
         sheet.add_row ["Lieu de naissance",   conducteur.lieu_naissance, passager.lieu_naissance]
         sheet.add_row ["Nationalité",         conducteur.nationalite,    passager.nationalite]
         sheet.add_row ["Numéro de permis de conduire",   conducteur.permis_conduire_num, passager.permis_conduire_num]
-        sheet.add_row ["Numéro de passeport",  conducteur.passeport_num,             passager.passeport_num]
+        sheet.add_row ["Numéro de passeport ou CNI",  conducteur.passeport_num,  passager.passeport_num]
         sheet.add_row ["Date de délivrance",   conducteur.passeport_date_delivrance, passager.passeport_date_delivrance]
         sheet.add_row ["Lieu de délivrance",   conducteur.passeport_lieu_delivrance, passager.passeport_lieu_delivrance]
         sheet.add_row ["Date de validité",     conducteur.passeport_date_validite,   passager.passeport_date_validite]
@@ -58,7 +58,7 @@ wb.styles do |s|
 
         sheet.add_row ["", "Conducteur", "Passager"], :sz => 16
         sheet.add_row ["Nom",     "", passager.nom]
-        sheet.add_row ["Preom",   "", passager.prenom]
+        sheet.add_row ["Prénom",   "", passager.prenom]
         sheet.add_row ["Adresse", "", passager.rue]
         sheet.add_row ["CP",      "", passager.cp]
         sheet.add_row ["Ville",   "", passager.ville]
@@ -70,7 +70,7 @@ wb.styles do |s|
         sheet.add_row ["Lieu de naissance",   "", passager.lieu_naissance]
         sheet.add_row ["Nationalité",         "", passager.nationalite]
         sheet.add_row ["Numéro de permis de conduire",   "", passager.permis_conduire_num]
-        sheet.add_row ["Numéro de passeport",  "", passager.passeport_num]
+        sheet.add_row ["Numéro de passeport ou CNI",  passager.passeport_num]
         sheet.add_row ["Date de délivrance",   "", passager.passeport_date_delivrance]
         sheet.add_row ["Lieu de délivrance",   "", passager.passeport_lieu_delivrance]
         sheet.add_row ["Date de validité",     "", passager.passeport_date_validite]
@@ -97,7 +97,7 @@ wb.styles do |s|
 
         sheet.add_row ["", "Conducteur", "Passager"], :sz => 16
         sheet.add_row ["Nom",     conducteur.nom]
-        sheet.add_row ["Preom",   conducteur.prenom]
+        sheet.add_row ["Prénom",   conducteur.prenom]
         sheet.add_row ["Adresse", conducteur.rue]
         sheet.add_row ["CP",      conducteur.cp]
         sheet.add_row ["Ville",   conducteur.ville]
@@ -109,7 +109,7 @@ wb.styles do |s|
         sheet.add_row ["Lieu de naissance",   conducteur.lieu_naissance]
         sheet.add_row ["Nationalité",         conducteur.nationalite]
         sheet.add_row ["Numéro de permis de conduire",   conducteur.permis_conduire_num]
-        sheet.add_row ["Numéro de passeport",  conducteur.passeport_num]
+        sheet.add_row ["Numéro de passeport ou CNI",  conducteur.passeport_num]
         sheet.add_row ["Date de délivrance",   conducteur.passeport_date_delivrance]
         sheet.add_row ["Lieu de délivrance",   conducteur.passeport_lieu_delivrance]
         sheet.add_row ["Date de validité",     conducteur.passeport_date_validite]
