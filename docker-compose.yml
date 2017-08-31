@@ -25,7 +25,7 @@ services:
     environment:
       SECRET_KEY_BASE: abcdefg
       VIRTUAL_HOST: beer.docker
-      RAILS_ENV: development
+      RAILS_ENV: production
 
   adminer:
     container_name: adminer
