@@ -26,13 +26,13 @@ fr:
       signed_in: "Tu es bien connecté(e) à l'application."
       signed_out: "Tu es déconnecté(e) de l'application."
     passwords:
-      send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
+      send_instructions: 'Tu vas recevoir d'ici quelques minutes sun email contenant les instructions pour ré-initialiser ton mot de passe.'
       updated: 'Your password was changed successfully. You are now signed in.'
       updated_not_active: 'Your password was changed successfully.'
       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
     confirmations:
-      send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
+      send_instructions: 'Tu vas recevoir d'ici quelques minutes un email avec des instructions pour confirmeer ton comptes.'
       send_paranoid_instructions: 'If your email address exists in our database, you will receive an email with instructions about how to confirm your account in a few minutes.'
       confirmed: 'Your account was successfully confirmed. You are now signed in.'
     registrations:
