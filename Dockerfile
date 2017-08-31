@@ -9,8 +9,12 @@ RUN apt-get update -qq
 RUN apt-get install -y build-essential \
        mysql-client libmysqlclient-dev \
        pdftk \
+       ssmtp \
     && rm -rf /var/lib/apt/lists/*
            
+# copier le fichier de config de sSMTP
+COPY config/ssmtp.conf /etc/ssmtp/
+
 ENV RAILS_ENV=development   
 ENV RACK_ENV=development
 
