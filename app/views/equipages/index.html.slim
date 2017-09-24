@@ -1,21 +1,22 @@
 - content_for :nav do
   li = link_to 'Accueil', home_path
-  li = link_to 'Nouvel équipage', new_equipage_path if (can? :create, Equipage)
-  li = link_to 'Tous les équipages', equipages_path
+  li = link_to 'Nouveau véhicule', new_equipage_path
+  li = link_to 'Tous les véhicules', equipages_path
   li = link_to 'Voir le récap', recap_equipages_path
 
 - content_for :page_title do
-  ' Liste des équipages
+  ' Liste des équipages/véhicules
 
-= filtrer('', 'Filtrer par nom&nbsp;:', :filtre, "Saisis qq car. de l'équipage ou de l'équipier")
+= filtrer('', 'Filtrer par nom&nbsp;:', :filtre, "Saisissez qq car. du véhicule ou de l'équipier")
 = will_paginate @equipages
 
 table.list
   thead
     tr
       th.centre Numéro d'équipage
-      th.centre = t(:immatriculation)
-      th.centre.action liste des équipiers
+      th.centre Conducteur
+      th.centre Passager
+      th.centre.action équipiers
 
       th.centre Détails
       th.centre.action Modifier
@@ -25,10 +26,11 @@ table.list
     - @equipages.each do |equipage|
       tr
         td = equipage.numero
-        td = equipage.immatriculation
-        td = link_to '', equipage_equipiers_path(equipage), class: :loupe
+        td = equipage.equipiers.conducteur.take.prenom_nom if equipage.equipiers.conducteur.exists?
+        td = equipage.equipiers.passager.take.prenom_nom   if equipage.equipiers.passager.exists?
+        td = link_to '', equipage_equipiers_path(equipage), class: :edit
         td = link_to '', equipage_path(equipage), class: :loupe
         td = link_to '', edit_equipage_path(equipage), class: :edit if (can? :edit, equipage)
         td = link_to '', equipage, data: {:confirm => 'Es-tu sûr(e) ?'}, :method => :delete, class: :bin if (can? :destroy, equipage)
 
-= link_to 'Exporter en Excel', equipages_path(format: :xlsx), class: :bouton
+= link_to 'Exporter en Excel', equipages_path(format: :xlsx), class: :bouton if (can? :export, Equipage)
