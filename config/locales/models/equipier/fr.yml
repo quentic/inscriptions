@@ -3,6 +3,7 @@ fr:
     labels:
       equipier:
         prenom: prénom
+        cp: CP
         date_naissance: date de naissance	
         lieu_naissance: lieu de naissance
         nationalite: nationalité
