@@ -5,7 +5,6 @@ class Equipier < ApplicationRecord
   belongs_to :user
   
   validates_uniqueness_of :passeport_num
-  validates_uniqueness_of :conducteur, scope: :equipage, message: "Un seul conducteur par équipage !"
 
   # On ajoute photo_doc, permis_conduire_doc et passeport_doc au modèle bien qu'il ne soit pas dans les champs la table equipiers.
   # Cela permet de récupérer le contenu du fichier dans le modèle (par défaut, il n'est accessible que dans le controleur)
@@ -29,6 +28,14 @@ class Equipier < ApplicationRecord
     contenant(terme)
   end
   
+  def self.conducteur
+   where(conducteur: true)
+  end
+
+  def self.passager
+    where(conducteur: false)
+  end
+
   def prenom_nom
     self.prenom + " " + self.nom
   end
