@@ -9,7 +9,7 @@ table
   tr
     th Info
     th Valeur
-  - resource.attributes.each do |key, value|
+  - attrs_for_form.each do |key, value|
     tr
       th = t(key)
       td = value
