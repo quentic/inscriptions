@@ -3,6 +3,7 @@ fr:
   new_equipier: déclarer un équipier
   edit_equipier: modifier/compléter un équipier
   show_equipier: voir le détail de l'équipier
+  save_equipier: Enregistrer l'équipier
   equipier_maj: équipier modifié !
   equipier_supprime: équipier supprimé !
 

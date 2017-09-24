@@ -2,5 +2,6 @@
   - attrs_for_form.each do |attr|
     = f.input attr, html5: true
 
-  = f.button :submit
+  = f.button :submit,   t("save_" + resource_class.name.underscore)
+
 
