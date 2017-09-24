@@ -2,7 +2,7 @@
   = afficher_erreurs(@equipier, 'la modification de cet équipier :')
   
   fieldset
-    legend = "Equipier pour l'équipage #{@equipier.equipage.numero}"
+    legend = "Equipier pour l'équipage numéro #{@equipier.equipage.numero}"
     div    
       = f.collection_radio_buttons :conducteur, [[true, 'Conducteur'] ,[false, 'Passager']], :first, :last
     = f.input :nom

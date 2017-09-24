@@ -1,8 +1,8 @@
 fr:
   Equipier: équipier
-  new_equipier: créer un équipier
-  edit_equipier: modifier le équipier
-  show_equipier: voir le détail du équipier
+  new_equipier: déclarer un équipier
+  edit_equipier: modifier/compléter un équipier
+  show_equipier: voir le détail de l'équipier
   equipier_maj: équipier modifié !
   equipier_supprime: équipier supprimé !
 

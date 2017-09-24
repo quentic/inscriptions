@@ -49,7 +49,7 @@ fr:
 
   unauthorized:
       manage:
-        all: "Tu n'es pas autorisé(e) à effectuer l'action : %{action} sur %{subject}. <br />Es-tu connecté(e)/authentifié(e) à l'application ?"
+        all: "Vous n'êtes pas autorisé(e) à effectuer l'action : %{action} sur %{subject}. <br />Etes-vous connecté(e)/authentifié(e) à l'application ?"
         user: "Non autorisé à gérer les comptes des autres utilisateurs."
       update:
         project: "Not allowed to update this project."

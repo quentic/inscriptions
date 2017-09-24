@@ -1,10 +1,15 @@
 fr:
-  Equipage: équipage
-  new_equipage: créer un équipage
-  edit_equipage: modifier le équipage
-  show_equipage: voir le détail de l'équipage
-  equipage_maj: équipage modifié !
-  equipage_supprime: équipage supprimé !
+  Equipage: véhicule
+  new_equipage: déclarer un véhicule
+  edit_equipage: modifier/compléter le dossier véhicule
+  show_equipage: voir le détail du véhicule
+  equipage_maj: véhicule modifié !
+  equipage_supprime: véhicule supprimé !
 
+  numero: numéro
+  type_puissance: Type/Puissance
+  carte_grise_date_emission: Date d'émission de la carte grise
   carte_grise_titulaire: titulaire de la carte grise
+  premiere_mise_en_circ: date de première mise en circulation
+  cie_assurance: compagnie d'assurance
 

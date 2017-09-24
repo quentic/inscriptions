@@ -1,13 +1,12 @@
 - content_for :nav do
   li = link_to 'Accueil', home_path
-  li = link_to 'Nouvel équipier', new_equipage_equipier_path(@equipage) if (can? :create, Equipier)
-  li = link_to "Voir l'équipage", equipages_path(id: @equipage)
-  li = link_to 'Tous les équipages', equipages_path
+  li = link_to 'Nouvel équipier', new_equipage_equipier_path(@equipage)
+  li = link_to "Voir le véhicule", equipages_path(id: @equipage)
+  li = link_to 'Tous les véhicules', equipages_path
 
 - content_for :page_title do
   ' Les équipiers de l'équipage #{@equipage.numero}
 
-= filtrer('', 'Filtrer par nom&nbsp;:', :filtre, 'Saisis qq car. du nom de equipier')
 = will_paginate @equipiers
 
 table.list
@@ -19,7 +18,7 @@ table.list
       th.centre = t(:telephone_portable)
       th.centre = t(:email)
       th Détails
-      th.action Modifier
+      th.action Compléter/Modifier le véhicule
       th.action Supprimer
 
   tbody
