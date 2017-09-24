@@ -2,7 +2,7 @@ version: '2'
 services:
   # Le serveur MySQL avec les données NOREV
   db:
-    container_name: db_norev
+    container_name: norev_db
     image: mysql
     ports:
       - "13306:3306"
@@ -28,7 +28,7 @@ services:
       RAILS_ENV: development
 
   adminer:
-    container_name: adminer
+    container_name: norev_adminer
     image: adminer
     ports:
       - "8080:8080"
