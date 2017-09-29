@@ -1,7 +1,7 @@
 class Equipage < ApplicationRecord
   include Commun
 
-  has_many :equipiers
+  has_many :equipiers, dependent: :destroy
   belongs_to :user
 
   acts_as_xlsx
