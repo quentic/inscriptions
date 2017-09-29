@@ -4,6 +4,7 @@ fr:
   edit_equipage: modifier/compléter le descriptif du véhicule
   show_equipage: voir le détail du véhicule
   save_equipage: Enregistrer le véhicule
+  equipage_cree: "Véhicule enregistré : déclarez-vous maintenant comme conducteur ou passager !"
   equipage_maj: véhicule modifié !
   equipage_supprime: véhicule supprimé !
 
