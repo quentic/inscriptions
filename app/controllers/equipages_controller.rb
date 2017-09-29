@@ -39,7 +39,7 @@ class EquipagesController < CrudController
     @equipage = Equipage.new(equipage_params)
     @equipage.user = current_user
 
-    super(notice: 'Equipage ajouté.')
+    super(notice: t(:equipage_cree))
   end
 
   # GET /equipages/recap
