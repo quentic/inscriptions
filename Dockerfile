@@ -13,7 +13,7 @@ RUN apt-get install -y build-essential \
     && rm -rf /var/lib/apt/lists/*
            
 # copier le fichier de config de sSMTP
-COPY config/ssmtp.conf /etc/ssmtp/
+COPY config/pour_ssmtp/ssmtp.conf /etc/ssmtp/
 
 ENV RAILS_ENV=development   
 ENV RACK_ENV=development
