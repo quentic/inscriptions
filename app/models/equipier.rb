@@ -4,8 +4,6 @@ class Equipier < ApplicationRecord
   belongs_to :equipage
   belongs_to :user
   
-  validates_uniqueness_of :passeport_num
-
   mount_uploader :photo, PhotoUploader
   mount_uploader :permis_conduire, PermisConduireUploader
   mount_uploader :passeport, PasseportUploader
