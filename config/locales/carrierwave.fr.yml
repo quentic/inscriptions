@@ -1,0 +1,4 @@
+fr:
+  errors:
+    messages:
+      extension_whitelist_error: "n'a pas un format d'image autorisé : utilisez une le format jpg ou png)"

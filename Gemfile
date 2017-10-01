@@ -49,12 +49,14 @@ gem 'jquery-ui-rails'
 gem 'will_paginate'
 
 # Authentification des utilisateurs
-gem "devise"
+gem 'devise'
 # Gestion des droits utilisateur
 gem 'cancancan', '~> 1.10'
 
 gem 'pdf-toolkit', '~> 1.1.0'
 
+# Gère le téléversement de fichiers
+gem 'carrierwave', '~> 1.0'
 # Pour la génération de rapports au format Office Open XML (xlsx, LibreOffice)
 gem 'rubyzip', '~> 1.1.0'
 gem 'axlsx', '2.1.0.pre'
