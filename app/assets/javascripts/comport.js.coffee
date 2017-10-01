@@ -44,7 +44,8 @@ jQuery ->
     changeMonth: true,
     changeYear: true,
     showMonthAfterYear: true,
-    dateFormat: 'yy-mm-dd'
+    dateFormat: 'yy-mm-dd',
+    minDate: "-80y"
   )
   $("input[type=date]").datepicker()
 
