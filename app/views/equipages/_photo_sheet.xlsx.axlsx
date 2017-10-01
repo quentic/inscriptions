@@ -1,4 +1,4 @@
-  img = File.expand_path("#{Rails.root}/public/images/#{equipage.id}/#{equipier.photo}", __FILE__)
+  img = equipier.photo.url
 
   if File.exist?(img)
     sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
