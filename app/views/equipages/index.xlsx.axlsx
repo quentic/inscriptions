@@ -7,8 +7,8 @@ wb.styles do |s|
     wb.add_worksheet(name: "Equipage #{equipage.numero}") do |sheet|
       sheet.sheet_view.show_grid_lines = true
       nb_equipiers = equipage.equipiers.count
-      conducteur = equipage.equipiers.first
-      passager   = equipage.equipiers.last if nb_equipiers >= 2
+      conducteur = equipage.equipiers.conducteur.take
+      passager   = equipage.equipiers.passager.take
 
       if (nb_equipiers >= 2)
         sheet.add_row [equipage.numero], :style => [titre], :height => 75, sz: 60
@@ -58,19 +58,19 @@ wb.styles do |s|
 
         sheet.add_row ["", "Conducteur", "Passager"], :sz => 16
         sheet.add_row ["Nom",     "", passager.nom]
-        sheet.add_row ["Prénom",   "", passager.prenom]
-        sheet.add_row ["Adresse", "", passager.rue]
-        sheet.add_row ["CP",      "", passager.cp]
-        sheet.add_row ["Ville",   "", passager.ville]
-        sheet.add_row ["Tel. fixe",       "", passager.telephone_fixe]
-        sheet.add_row ["Tel. portable",   "", passager.telephone_portable]
-        sheet.add_row ["e-mail",          "", passager.email]
-        sheet.add_row ["Profession",      "", passager.profession]
+        sheet.add_row ["Prénom",              "", passager.prenom]
+        sheet.add_row ["Adresse",             "", passager.rue]
+        sheet.add_row ["CP",                  "", passager.cp]
+        sheet.add_row ["Ville",               "", passager.ville]
+        sheet.add_row ["Tel. fixe",           "", passager.telephone_fixe]
+        sheet.add_row ["Tel. portable",       "", passager.telephone_portable]
+        sheet.add_row ["e-mail",              "", passager.email]
+        sheet.add_row ["Profession",          "", passager.profession]
         sheet.add_row ["Date de naissance",   "", passager.date_naissance]
         sheet.add_row ["Lieu de naissance",   "", passager.lieu_naissance]
         sheet.add_row ["Nationalité",         "", passager.nationalite]
         sheet.add_row ["Numéro de permis de conduire",   "", passager.permis_conduire_num]
-        sheet.add_row ["Numéro de passeport ou CNI",  passager.passeport_num]
+        sheet.add_row ["Numéro de passeport ou CNI",  "",    passager.passeport_num]
         sheet.add_row ["Date de délivrance",   "", passager.passeport_date_delivrance]
         sheet.add_row ["Lieu de délivrance",   "", passager.passeport_lieu_delivrance]
         sheet.add_row ["Date de validité",     "", passager.passeport_date_validite]
@@ -98,13 +98,13 @@ wb.styles do |s|
         sheet.add_row ["", "Conducteur", "Passager"], :sz => 16
         sheet.add_row ["Nom",     conducteur.nom]
         sheet.add_row ["Prénom",   conducteur.prenom]
-        sheet.add_row ["Adresse", conducteur.rue]
-        sheet.add_row ["CP",      conducteur.cp]
-        sheet.add_row ["Ville",   conducteur.ville]
-        sheet.add_row ["Tel. fixe",       conducteur.telephone_fixe]
-        sheet.add_row ["Tel. portable",   conducteur.telephone_portable]
-        sheet.add_row ["e-mail",          conducteur.email]
-        sheet.add_row ["Profession",      conducteur.profession]
+        sheet.add_row ["Adresse",             conducteur.rue]
+        sheet.add_row ["CP",                  conducteur.cp]
+        sheet.add_row ["Ville",               conducteur.ville]
+        sheet.add_row ["Tel. fixe",           conducteur.telephone_fixe]
+        sheet.add_row ["Tel. portable",       conducteur.telephone_portable]
+        sheet.add_row ["e-mail",              conducteur.email]
+        sheet.add_row ["Profession",          conducteur.profession]
         sheet.add_row ["Date de naissance",   conducteur.date_naissance]
         sheet.add_row ["Lieu de naissance",   conducteur.lieu_naissance]
         sheet.add_row ["Nationalité",         conducteur.nationalite]
