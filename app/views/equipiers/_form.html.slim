@@ -7,7 +7,7 @@
       = f.collection_radio_buttons :conducteur, [[true, 'Conducteur'] ,[false, 'Passager']], :first, :last
     = f.input :nom
     = f.input :prenom
-    = image_tag(@equipier.photo.url, size: 100) if @equipier.photo?
+    = image_tag(@equipier.photo.url, size: "60x80") if @equipier.photo?
     = f.input :photo, as: :file
     = f.input :rue
     = f.input :cp
@@ -19,18 +19,21 @@
     = f.input :date_naissance, as: :date, html5: true
     = f.input :lieu_naissance
     = f.input :nationalite
-    = f.input :taille_t_shirt
+    
+    div
+      = f.label :taille_t_shirt
+      = f.select :taille_t_shirt, ["S", "M", "L", "XL", "XXL", "XXXL"]
 
   fieldset
     legend Permis de conduire
     = f.input :permis_conduire_num
-    = image_tag(@equipier.permis_conduire.url, style: "float:left", size: 100) if @equipier.permis_conduire?
+    = image_tag(@equipier.permis_conduire.url, style: "float:left", size: "60x80") if @equipier.permis_conduire?
     = f.input :permis_conduire, as: :file
 
   fieldset
     legend Passeport
     = f.input :passeport_num
-    = image_tag(@equipier.passeport.url, style: "float:left", size: 100) if @equipier.passeport?
+    = image_tag(@equipier.passeport.url, style: "float:left", size: "60x80") if @equipier.passeport?
     = f.input :passeport, as: :file
     = f.input :passeport_date_delivrance, as: :date, html5: true
     = f.input :passeport_lieu_delivrance

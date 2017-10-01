@@ -75,6 +75,7 @@ private
 	:permis_conduire_num, :permis_conduire, 
 	:passeport_num, :passeport, :passeport_date_delivrance, :passeport_lieu_delivrance, :passeport_date_validite, 
 	:groupe_sanguin, 
+        :taille_t_shirt,
 	:nom_prenom_a_prevenir, :tel_a_prevenir, 
 	:equipage_id, 
 	:user_id)
