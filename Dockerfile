@@ -5,9 +5,10 @@ FROM ruby:2.3-slim
 #RUN export http_proxy=$http_proxy
 #RUN export https_proxy=$https_proxy
 
-RUN apt-get update -qq
-RUN apt-get install -y build-essential \
+RUN apt-get update -qq \
+    && apt-get install -y build-essential \
        mysql-client libmysqlclient-dev \
+       imagemagick libmagickcore-dev libmagickwand-dev \
        pdftk \
        ssmtp \
     && rm -rf /var/lib/apt/lists/*

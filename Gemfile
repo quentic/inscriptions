@@ -63,6 +63,9 @@ gem 'axlsx', '2.1.0.pre'
 gem 'axlsx_rails'
 gem 'acts_as_xlsx'
 
+# La bibliothèque graphique RMagick
+gem 'rmagick'
+
 group :development, :test do
  # Ajoute l'environnement Pry complet pour déboguer et naviguer dans le code
   gem 'pry-rails'
