@@ -8,6 +8,8 @@ class Equipier < ApplicationRecord
   mount_uploader :permis_conduire, PermisConduireUploader
   mount_uploader :passeport, PasseportUploader
   
+  before_save :nom_en_majuscules, :prenom_avec_initiale_maj
+
   # Recherche les objets avec une référence ou une désignation contenant le mot-clé recherché
   def self.contenant(terme)
     terme = full_text(terme)
@@ -32,6 +34,16 @@ class Equipier < ApplicationRecord
 
   def prenom_nom
     self.prenom + " " + self.nom
+  end
+
+protected
+
+  def nom_en_majuscules
+    self.nom = nom.upcase
+  end
+
+  def prenom_avec_initiale_maj
+    self.prenom = prenom.capitalize
   end
 
 end
