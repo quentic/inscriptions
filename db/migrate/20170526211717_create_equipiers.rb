@@ -31,6 +31,5 @@ class CreateEquipiers < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index :equipiers, :passeport_num, unique: true
   end
 end
