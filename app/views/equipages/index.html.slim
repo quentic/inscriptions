@@ -14,7 +14,9 @@ table.list
   thead
     tr
       th.centre Numéro d'équipage
+      th
       th.centre Conducteur
+      th
       th.centre Passager
       th.centre.action Déclarer / Lister les équipiers
 
@@ -24,10 +26,18 @@ table.list
 
   tbody
     - @equipages.each do |equipage|
+      - conducteur = equipage.equipiers.conducteur.take if equipage.equipiers.conducteur.exists?
+      - passager   = equipage.equipiers.passager.take   if equipage.equipiers.passager.exists?
+
       tr
         td = equipage.numero
-        td = equipage.equipiers.conducteur.take.prenom_nom if equipage.equipiers.conducteur.exists?
-        td = equipage.equipiers.passager.take.prenom_nom   if equipage.equipiers.passager.exists?
+
+        td = image_tag(conducteur.photo.thumb_s.url) if conducteur && conducteur.photo? 
+        td = conducteur.prenom_nom if conducteur
+          
+        td = image_tag(passager.photo.thumb_s.url) if passager && passager.photo?
+        td = passager.prenom_nom if passager
+
         td = link_to '', equipage_equipiers_path(equipage), class: :edit
         td = link_to '', equipage_path(equipage), class: :loupe
         td = link_to '', edit_equipage_path(equipage), class: :edit if (can? :edit, equipage)

@@ -43,8 +43,6 @@ table.list
         th{colspan=100} = "Equipage #{equipage.numero}"
 
       - equipage.equipiers.each do |equipier|
-        - photo = File.expand_path("#{Rails.root}/public/images/#{equipage.id}/#{equipier.photo}", __FILE__)
-        - photo_exist = File.exist?(photo)
         - permis = File.expand_path("#{Rails.root}/public/images/#{equipage.id}/#{equipier.permis_conduire}", __FILE__)
         - permis_exist = !equipier.permis_conduire.nil? && File.exist?(permis)
         - passeport = File.expand_path("#{Rails.root}/public/images/#{equipage.id}/#{equipier.passeport}", __FILE__)
@@ -53,8 +51,8 @@ table.list
         tr
           td = equipier.nom
           td = equipier.prenom
-          - if photo_exist
-            td = image_tag("/images/#{equipage.id}/#{equipier.photo}", class: :vignette)
+          - if equipier.photo?
+            td = image_tag(equipier.photo.thumb_s.url)
           - else
             td.warning non définie
           td = equipier.rue
@@ -68,17 +66,17 @@ table.list
           td = equipier.lieu_naissance	 
           td = equipier.nationalite 
           td = equipier.permis_conduire_num		 
-          - if permis_exist
-            td fourni !
+          - if equipier.permis_conduire?
+            td = link_to(image_tag("icone_pdf.png"), equipier.permis_conduire.url)
           - else
             td.warning non fourni !
           td = equipier.passeport_num 
-          - if passeport_exist
-            td fourni !
+          - if equipier.passeport?
+            td = link_to(image_tag("icone_pdf.png"), equipier.passeport.url)
           - else
             td.warning non fourni !
-          td = equipier.passeport_date_delivrance	 
-          td = equipier.passeport_lieu_delivrance	 
+          td = equipier.passeport_date_delivrance
+          td = equipier.passeport_lieu_delivrance 
           td = equipier.passeport_date_validite
           td = equipier.groupe_sanguin
           td = equipier.nom_prenom_a_prevenir		 

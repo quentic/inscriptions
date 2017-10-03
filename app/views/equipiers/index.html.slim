@@ -13,6 +13,7 @@ table.list
   thead
     tr
       th.centre = t(:conducteur)
+      th.centre
       th.centre = t(:nom)
       th.centre = t(:prenom)
       th.centre = t(:telephone_portable)
@@ -25,6 +26,7 @@ table.list
     - @equipiers.each do |equipier|
       tr
         td.centre = affiche_booleen(equipier.conducteur)
+        td = image_tag(equipier.photo.thumb_s.url) if equipier.photo?
         td = equipier.nom
         td = equipier.prenom
         td = equipier.telephone_portable
