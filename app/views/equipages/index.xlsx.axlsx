@@ -52,7 +52,7 @@ wb.styles do |s|
         sheet["A1:A31"].each { |c| c.b = true }
         
       # Le conducteur n'est pas renseigné
-      elsif (nb_equipiers == 1 && conducteur.nil?)
+      elsif (nb_equipiers == 1 && passager)
         sheet.add_row [equipage.numero], :style => [titre], :height => 75, sz: 60
         render :partial => 'photo_sheet', :locals => { sheet: sheet, equipage: equipage, equipier: passager, colonne: 2 }
 
@@ -91,7 +91,7 @@ wb.styles do |s|
         sheet.add_row ["Cie assurance",          equipage.cie_assurance]
 
       # Le passager n'est pas renseigné
-      elsif (nb_equipiers == 1 && passager.nil?)
+      elsif (nb_equipiers == 1 && conducteur)
         sheet.add_row [equipage.numero], :style => [titre], :height => 75, sz: 60
         render :partial => 'photo_sheet', :locals => { sheet: sheet, equipage: equipage, equipier: conducteur, colonne: 1 }
 
