@@ -9,7 +9,7 @@ section.contenu
   ul.action
     - if user_signed_in?
       li.action--equipage  = link_to 'Déclarer un véhicule', new_equipage_path 
-      li.action--equipage  = link_to 'Voir les équipages/véhicules', equipages_path 
+      li.action--equipage  = link_to 'Voir ou modifier les véhicules/équipages', equipages_path 
     - else
       li.action--connexion = link_to 'Se connecter au portail', new_user_session_path
 

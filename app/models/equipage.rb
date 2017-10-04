@@ -25,8 +25,18 @@ class Equipage < ApplicationRecord
   end
 
   def self.avec_equipiers
+    select("*").
     includes(:equipiers).
     order(numero: :asc)
   end
+
+  def self.avec_equipiers_csv
+    select("equipages.*").
+    select("equipiers.*").
+    joins("LEFT JOIN equipiers ON equipiers.equipage_id = equipages.id").
+    order(numero: :asc)
+  end
+
+
 
 end
