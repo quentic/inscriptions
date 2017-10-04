@@ -2,7 +2,7 @@
   li = link_to 'Accueil', home_path
   li = link_to 'Nouveau véhicule', new_equipage_path
   li = link_to 'Tous les véhicules', equipages_path
-  li = link_to 'Voir le récap', recap_equipages_path
+  li = link_to 'Voir le récap', recap_equipages_path if (can? :export, Equipage)
 
 - content_for :page_title do
   ' Liste des équipages/véhicules
