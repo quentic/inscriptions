@@ -16,8 +16,8 @@ RUN apt-get update -qq \
 # copier le fichier de config de sSMTP
 COPY config/pour_ssmtp/ssmtp.conf /etc/ssmtp/
 
-ENV RAILS_ENV=development   
-ENV RACK_ENV=development
+ENV RAILS_ENV=production   
+ENV RACK_ENV=production
 
 # On sépare la zone des gems (qui ne bouge pas souvent)
 # de la zone de l'appli (qui est plus susceptible de changer)
