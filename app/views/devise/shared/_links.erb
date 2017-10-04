@@ -5,7 +5,7 @@
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
   <%= p = "ou :" %>
   <fieldset>
-    <legend class="connexion">Tu n'as pas encore de compte pour l'inscription au raid 2018 ?</legend>
+    <legend class="connexion">Vous n'avez pas encore de compte pour l'inscription au raid 2018 ?</legend>
     <%= link_to "Je crée mon compte", new_registration_path(resource_name), class: :bouton %><br />
   </fieldset>
 <% end -%>
