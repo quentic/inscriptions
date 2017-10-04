@@ -44,7 +44,7 @@ class Ability
     if user.inscription_user?
       can :read, :all
       can [:update, :destroy], [Equipage, Equipier], user_id: user.id
-      can :create, Equipage
+      can :create, [Equipage, Equipier]
     end
 
   end

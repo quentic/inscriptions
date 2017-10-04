@@ -18,8 +18,12 @@ jQuery ->
     # Les messages d'erreur disparaissent quand on clique dessus
     $("#flash_notice, #flash_alert, #flash_error, #error_explanation").click ->
       $(this).fadeOut("slow")
+ 
+  auto_fade_flash = ->
+    $("#flash_notice, #flash_alert, #flash_error, #error_explanation").delay(3000).fadeOut("slow")
 
-  fade_flash()
+  auto_fade_flash()
+  #fade_flash()
 
   show_ajax_message = (msg, type) ->
     if (type == "notice") || (type == "alert") || (type == "error")
@@ -44,7 +48,9 @@ jQuery ->
     changeMonth: true,
     changeYear: true,
     showMonthAfterYear: true,
-    dateFormat: 'yy-mm-dd'
+    dateFormat: 'yy-mm-dd',
+    minDate: "-80y"
+    yearRange: "-80:+0"
   )
   $("input[type=date]").datepicker()
 

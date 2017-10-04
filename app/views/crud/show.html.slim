@@ -7,10 +7,11 @@
 
 table
   tr
-    th Info
-    th Valeur
+    th.centre Info
+    th.centre Valeur
   - resource.attributes.each do |key, value|
-    tr
-      th = t(key)
-      td = value
-
+    - if attrs_for_form.include? key.to_sym
+      tr
+        th = t(key)
+        td = value
+   

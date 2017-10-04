@@ -1,9 +1,10 @@
-  img = File.expand_path("#{Rails.root}/public/images/#{equipage.id}/#{equipier.photo}", __FILE__)
+  photo = equipier.photo.thumb
 
-  if File.exist?(img)
-    sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
-      image.width=75
-      image.height=100
+  unless photo.file.nil?
+    sheet.add_image(:image_src => photo.current_path, :noSelect => true, :noMove => true) do |image|
+      grande_longueur = [photo.height, photo.width].max
+      image.width= 100 * photo.width/grande_longueur
+      image.height= 100 * photo.height/grande_longueur
       image.start_at colonne, 0
     end
   end

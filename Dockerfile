@@ -5,15 +5,16 @@ FROM ruby:2.3-slim
 #RUN export http_proxy=$http_proxy
 #RUN export https_proxy=$https_proxy
 
-RUN apt-get update -qq
-RUN apt-get install -y build-essential \
+RUN apt-get update -qq \
+    && apt-get install -y build-essential \
        mysql-client libmysqlclient-dev \
+       imagemagick libmagickcore-dev libmagickwand-dev \
        pdftk \
        ssmtp \
     && rm -rf /var/lib/apt/lists/*
            
 # copier le fichier de config de sSMTP
-COPY config/ssmtp.conf /etc/ssmtp/
+COPY config/pour_ssmtp/ssmtp.conf /etc/ssmtp/
 
 ENV RAILS_ENV=development   
 ENV RACK_ENV=development

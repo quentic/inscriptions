@@ -44,9 +44,6 @@ class EquipiersController < CrudController
   def create
     @equipier = @equipage.equipiers.new(equipier_params)
     @equipier.user = current_user
-    @equipier.photo_doc = equipier_params[:photo]
-    @equipier.permis_conduire_doc = equipier_params[:permis_conduire]
-    @equipier.passeport_doc = equipier_params[:passeport]
 
     super(notice: 'Equipier ajouté.') {
       equipage_equipiers_path(@equipage)
@@ -55,10 +52,6 @@ class EquipiersController < CrudController
 
   # PATCH/PUT /equipage/x/equipiers/1
   def update
-    @equipier.photo_doc = equipier_params[:photo]
-    @equipier.permis_conduire_doc = equipier_params[:permis_conduire]
-    @equipier.passeport_doc = equipier_params[:passeport]
-
     super {
       equipage_equipiers_path(@equipage)
     }
@@ -82,6 +75,7 @@ private
 	:permis_conduire_num, :permis_conduire, 
 	:passeport_num, :passeport, :passeport_date_delivrance, :passeport_lieu_delivrance, :passeport_date_validite, 
 	:groupe_sanguin, 
+        :taille_t_shirt,
 	:nom_prenom_a_prevenir, :tel_a_prevenir, 
 	:equipage_id, 
 	:user_id)

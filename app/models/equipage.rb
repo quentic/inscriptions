@@ -1,7 +1,7 @@
 class Equipage < ApplicationRecord
   include Commun
 
-  has_many :equipiers
+  has_many :equipiers, dependent: :destroy
   belongs_to :user
 
   acts_as_xlsx
@@ -17,13 +17,26 @@ class Equipage < ApplicationRecord
   # Recherche les objets relatifs à la recherche (passée en paramètre)
   def self.filtre_par(terme)
     select("*").
+    select("equipages.id as id").
+    select("prenom").
+    select("nom").
     order(id: :desc).
     contenant(terme)
   end
 
   def self.avec_equipiers
+    select("*").
     includes(:equipiers).
     order(numero: :asc)
   end
+
+  def self.avec_equipiers_csv
+    select("equipages.*").
+    select("equipiers.*").
+    joins("LEFT JOIN equipiers ON equipiers.equipage_id = equipages.id").
+    order(numero: :asc)
+  end
+
+
 
 end

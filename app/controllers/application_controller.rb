@@ -2,9 +2,18 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+  before_action :authenticate
   before_action :set_page, only: [:index, :update, :destroy]
   before_action :set_filtre, only: [:index, :update, :destroy, :rechercher]
   #helper :all # include all helpers, all the time
+
+protected
+
+   def authenticate
+     authenticate_or_request_with_http_basic do |username, password|
+       username == "norev" && password == "veron!"
+     end
+   end
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store

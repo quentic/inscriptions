@@ -2,10 +2,10 @@ fr:
   activerecord:
     attributes:
       equipage:
-        numero: Numéro d'équipage
-        type_puissance: Type/puissance
+        numero: numéro d'équipage
+        type_puissance: type/puissance
         carte_grise_titulaire: titulaire de la carte grise
-        carte_grise_date_emission: Date d'émission de la carte grise
-        premiere_mise_en_circ: Date de première mise en circulation
-        cie_assurance: Compagnie d'assurance
+        carte_grise_date_emission: date d'émission de la carte grise
+        premiere_mise_en_circ: date de première mise en circulation
+        cie_assurance: compagnie d'assurance
         

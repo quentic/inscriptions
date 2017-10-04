@@ -1,0 +1,12 @@
+= simple_form_for @equipage do |f|
+  = afficher_erreurs(@equipage, 'la modification de cet équipage :')
+  
+  = f.input :numero, title: "Uniquement pour les participants au DERNIER raid 2016 : si vous souhaitez conserver votre numéro de véhicule, indiquez-le. Autres cas : laissez ce champ vide"
+  = f.input :type_puissance
+  = f.input :carte_grise_titulaire
+  = f.input :carte_grise_date_emission, as: :date, html5: true
+  = f.input :premiere_mise_en_circ, as: :date, html5: true
+  = f.input :immatriculation
+  = f.input :cie_assurance    
+
+  .actions = f.submit t(:save_equipage)

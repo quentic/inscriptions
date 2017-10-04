@@ -1,0 +1,88 @@
+- content_for :nav do
+  li = link_to 'Retour', :back
+  li = link_to 'Gestion des utilisateurs', users_path if (can? :manage, User)
+
+- content_for :page_title do
+  = t("show_equipier")
+
+table
+  tr
+    th.centre Info
+    th.centre Valeur
+  tr
+    th = t(:conducteur)
+    td = @equipier.conducteur ? "Oui" : "Non"
+  tr
+    th = t(:nom)
+    td = @equipier.nom
+  tr
+    th = t(:prenom)
+    td = @equipier.prenom
+  tr
+    th = t(:photo)
+    td = image_tag(@equipier.photo.thumb.url) unless @equipier.photo.file.nil?
+  tr
+    th = t(:rue)
+    td = @equipier.rue
+  tr
+    th = t(:cp)
+    td = @equipier.cp
+  tr
+    th = t(:ville)
+    td = @equipier.ville
+  tr
+    th = t(:telephone_fixe)
+    td = @equipier.telephone_fixe
+  tr
+    th = t(:telephone_portable)
+    td = @equipier.telephone_portable
+  tr
+    th = t(:email)
+    td = @equipier.email
+  tr
+    th = t(:profession)
+    td = @equipier.profession
+  tr
+    th = t(:date_naissance)
+    td = @equipier.date_naissance
+  tr
+    th = t(:lieu_naissance)
+    td = @equipier.lieu_naissance
+  tr
+    th = t(:nationalite)
+    td = @equipier.nationalite
+  tr
+    th = t(:permis_conduire_num)
+    td = @equipier.permis_conduire_num
+  tr
+    th = t(:permis_conduire)
+    td = link_to(image_tag("icone_pdf.png"), @equipier.permis_conduire.url) unless @equipier.permis_conduire.file.nil?
+  tr
+    th = t(:passeport_num)
+    td = @equipier.passeport_num
+  tr
+    th = t(:passeport)
+    td = link_to(image_tag("icone_pdf.png"), @equipier.passeport.url) unless @equipier.passeport.file.nil?
+  tr
+    th = t(:passeport_date_delivrance)
+    td = @equipier.passeport_date_delivrance
+  tr
+    th = t(:passeport_lieu_delivrance)
+    td = @equipier.passeport_lieu_delivrance
+  tr
+    th = t(:passeport_date_validite)
+    td = @equipier.passeport_date_validite
+  tr
+    th = t(:groupe_sanguin)
+    td = @equipier.groupe_sanguin
+  tr
+    th = t(:nom_prenom_a_prevenir)
+    td = @equipier.nom_prenom_a_prevenir
+  tr
+    th = t(:tel_a_prevenir)
+    td = @equipier.tel_a_prevenir
+  tr
+    th = t(:taille_t_shirt)
+    td = @equipier.taille_t_shirt
+
+

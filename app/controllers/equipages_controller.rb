@@ -1,4 +1,6 @@
 class EquipagesController < CrudController
+  include RenderCsv
+
   #custom_actions :resource => [:cloner]
 
   def attrs_for_index
@@ -39,12 +41,48 @@ class EquipagesController < CrudController
     @equipage = Equipage.new(equipage_params)
     @equipage.user = current_user
 
-    super(notice: 'Equipage ajouté.')
+    super(notice: t(:equipage_cree))
   end
 
   # GET /equipages/recap
   def recap
-    @equipages = Equipage.avec_equipiers
+
+    respond_to do |format|
+      format.html {
+        @equipages = Equipage.avec_equipiers
+        # recap.html.slim
+      }
+      format.csv { 
+        @equipages = Equipage.avec_equipiers_csv
+        render plain: to_csv(
+          @equipages.all,
+          [
+            :numero,
+            :prenom,
+            :nom,
+            :rue,
+            :cp,
+            :ville,
+            :telephone_fixe,
+            :telephone_portable,
+            :email,
+            :profession,
+            :date_naissance,
+            :lieu_naissance,
+            :nationalite,
+            :permis_conduire_num,
+            :passeport_num,
+            :passeport_date_delivrance,
+            :passeport_lieu_delivrance,
+            :passeport_date_validite,
+            :groupe_sanguin,
+            :nom_prenom_a_prevenir,
+            :tel_a_prevenir,
+            :taille_t_shirt
+          ]
+        )
+      }
+     end
   end
 
 private

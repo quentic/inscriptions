@@ -2,12 +2,12 @@
   = afficher_erreurs(@equipier, 'la modification de cet équipier :')
   
   fieldset
-    legend = "Equipier pour l'équipage #{@equipier.equipage.numero}"
+    legend = "Equipier pour l'équipage numéro #{@equipier.equipage.numero}"
     div    
       = f.collection_radio_buttons :conducteur, [[true, 'Conducteur'] ,[false, 'Passager']], :first, :last
     = f.input :nom
     = f.input :prenom
-    = image_tag("/images/#{@equipage.id}/#{@equipier.photo}", size: 100) unless @equipier.photo.nil?
+    = image_tag(@equipier.photo.thumb.url) if @equipier.photo?
     = f.input :photo, as: :file
     = f.input :rue
     = f.input :cp
@@ -19,18 +19,21 @@
     = f.input :date_naissance, as: :date, html5: true
     = f.input :lieu_naissance
     = f.input :nationalite
-    = f.input :taille_t_shirt
+    
+    div
+      = f.label :taille_t_shirt
+      = f.select :taille_t_shirt, ["S", "M", "L", "XL", "XXL", "XXXL"]
 
   fieldset
     legend Permis de conduire
     = f.input :permis_conduire_num
-    = link_to("", "/images/#{@equipage.id}/#{@equipier.permis_conduire}", class: :pdf, style: "float:left") unless @equipier.permis_conduire.nil?
+    = link_to(image_tag("icone_pdf.png"), @equipier.permis_conduire.url) if @equipier.permis_conduire?
     = f.input :permis_conduire, as: :file
 
   fieldset
     legend Passeport
     = f.input :passeport_num
-    = link_to("", "/images/#{@equipage.id}/#{@equipier.passeport}", class: :pdf, style: "float:left") unless @equipier.passeport.nil?
+    = link_to(image_tag("icone_pdf.png"), @equipier.passeport.url) if @equipier.passeport?
     = f.input :passeport, as: :file
     = f.input :passeport_date_delivrance, as: :date, html5: true
     = f.input :passeport_lieu_delivrance
@@ -42,4 +45,4 @@
     = f.input :nom_prenom_a_prevenir
     = f.input :tel_a_prevenir, as: :tel
   
-  .actions = f.submit "Enregistrer"
+  .actions = f.submit t(:save_equipier)
