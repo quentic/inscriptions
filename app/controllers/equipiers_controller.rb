@@ -18,9 +18,9 @@ class EquipiersController < CrudController
       # Affiche les objets résultant d'un filtrage
       equipiers = Equipier.filtre_par(@filtre)
 
-    # listage d'un élément spécifié par son id
+    # listage des équipiers d'un équipage donné
     elsif (@equipage)
-      equipiers = @equipage.equipiers
+      equipiers = @equipage.equipiers.order(conducteur: :desc)
 
     # listage d'un élément spécifié par son id
     elsif (@equipier)
