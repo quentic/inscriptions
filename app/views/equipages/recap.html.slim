@@ -11,15 +11,11 @@ table.list
       th.centre{rowspan=2} = t(:nom)
       th.centre{rowspan=2} = t(:prenom)
       th.centre{rowspan=2} = t(:photo)
-      th.centre{rowspan=2} = t(:rue)
-      th.centre{rowspan=2} = t(:cp)
       th.centre{rowspan=2} = t(:ville)
       th.centre{rowspan=2} = t(:telephone_fixe)
       th.centre{rowspan=2} = t(:telephone_portable)
       th.centre{rowspan=2} = t(:email)
-      th.centre{rowspan=2} = t(:profession)		 
       th.centre{rowspan=2} = t(:date_naissance)	 
-      th.centre{rowspan=2} = t(:lieu_naissance)	 
       th.centre{rowspan=2} = t(:nationalite) 
       th.centre{colspan=2} permis
       th.centre{colspan=5} passeport
@@ -31,8 +27,6 @@ table.list
       th.centre = t(:permis_conduire)
       th.centre = t(:passeport_num) 
       th.centre = t(:passeport)
-      th.centre = t(:passeport_date_delivrance)	 
-      th.centre = t(:passeport_lieu_delivrance)	 
       th.centre = t(:passeport_date_validite)
       th.centre = t(:nom_prenom_a_prevenir)		 
       th.centre = t(:tel_a_prevenir)
@@ -50,15 +44,11 @@ table.list
             td = image_tag(equipier.photo.thumb_s.url)
           - else
             td.warning non définie
-          td = equipier.rue
-          td = equipier.cp
           td = equipier.ville
           td = equipier.telephone_fixe
           td = equipier.telephone_portable
           td = equipier.email
-          td = equipier.profession		 
           td = equipier.date_naissance	 
-          td = equipier.lieu_naissance	 
           td = equipier.nationalite
           td = equipier.permis_conduire_num		 
           - if equipier.permis_conduire?
@@ -70,8 +60,6 @@ table.list
             td = link_to(image_tag("icone_pdf.png"), equipier.passeport.url)
           - else
             td.warning non fourni !
-          td = equipier.passeport_date_delivrance
-          td = equipier.passeport_lieu_delivrance 
           td = equipier.passeport_date_validite
           td = equipier.groupe_sanguin
           td = equipier.nom_prenom_a_prevenir		 
