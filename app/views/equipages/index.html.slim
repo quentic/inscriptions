@@ -41,6 +41,6 @@ table.list
         td = link_to '', equipage_equipiers_path(equipage), class: :edit
         td = link_to '', equipage_path(equipage), class: :loupe
         td = link_to '', edit_equipage_path(equipage), class: :edit if (can? :edit, equipage)
-        td = link_to '', equipage, data: {:confirm => 'Es-tu sûr(e) ?'}, :method => :delete, class: :bin if (can? :destroy, equipage)
+        td = link_to '', equipage, data: {:confirm => 'Etes-vous sûr(e) ?'}, :method => :delete, class: :bin if (can? :destroy, equipage)
 
 = link_to 'Exporter en Excel', equipages_path(format: :xlsx), class: :bouton if (can? :export, Equipage)
