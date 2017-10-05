@@ -1,0 +1,12 @@
+#!/bin/bash
+# On se met la sauvegarde n-1 et la n-2 de côté
+cp /home/christian/sauvegardes_bdd/sauvegarde_norev_db_backup1.tgz    /home/christian/sauvegardes_bdd/sauvegarde_norev_db_backup2.tgz
+cp /home/christian/sauvegardes_bdd/sauvegarde_norev_db.tgz    /home/christian/sauvegardes_bdd/sauvegarde_norev_db_backup1.tgz
+
+# Sauvegarde les bases de données Giraf dans le dossier de christian
+docker run --rm --volumes-from norev_db -v /home/christian/sauvegardes_bdd:/backup debian:jessie tar zcvf /backup/sauvegarde_norev_db.tgz    /var/lib/mysql
+
+scp -r /home/christian/sauvegardes_bdd pi@10.0.0.4:/home/pi/sauvegardes_norev
+# Sauvegarde des documents
+scp -r /home/christian/docker/NOREV_inscriptions_RoR/public/uploads pi@10.0.0.4:/home/pi/sauvegardes_norev
+
