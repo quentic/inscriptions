@@ -3,8 +3,10 @@ wb = xlsx_package.workbook
 wb.styles do |s|
   titre = s.add_style bg_color: "666688", fg_color: "FFFFFF", sz: 20, alignment: {horizontal: :center, vertical: :center}
 
-  Equipage.all.each do |equipage|
-    wb.add_worksheet(name: "Equipage #{equipage.numero}") do |sheet|
+  Equipage.avec_numero_ou_conducteur.all.each do |equipage|
+    texte_onglet = equipage.numero.present? ? equipage.numero : equipage.equipiers.conducteur.take.nom
+
+    wb.add_worksheet(name: "Equipage #{texte_onglet}") do |sheet|
       sheet.sheet_view.show_grid_lines = true
       nb_equipiers = equipage.equipiers.count
       conducteur = equipage.equipiers.conducteur.take
@@ -78,11 +80,11 @@ wb.styles do |s|
 
         sheet.add_row ["Taille T-shirt",       "", passager.taille_t_shirt]
         
-        sheet.add_row ["Personnes à prévenir"]
+        sheet.add_row ["Personnes à prévenir", "", ""], :style => [titre, titre, titre], height: 40 
         sheet.add_row ["Nom Prénom",           "", passager.nom_prenom_a_prevenir]
         sheet.add_row ["Tel",                  "", passager.tel_a_prevenir]
 
-        sheet.add_row ["Véhicule"]
+        sheet.add_row ["Véhicule", "", ""], :style => [titre, titre, titre], height: 40
         sheet.add_row ["Type/Puissance",         equipage.type_puissance]
         sheet.add_row ["Titulaire carte grise",  equipage.carte_grise_titulaire]
         sheet.add_row ["Carte grise émise le",   equipage.carte_grise_date_emission]
@@ -117,11 +119,22 @@ wb.styles do |s|
         
         sheet.add_row ["Taille T-shirt",       conducteur.taille_t_shirt]
 
-        sheet.add_row ["Personnes à prévenir"]
+        sheet.add_row ["Personnes à prévenir", "", ""], :style => [titre, titre, titre], height: 40 
         sheet.add_row ["Nom Prénom",           conducteur.nom_prenom_a_prevenir]
         sheet.add_row ["Tel",                  conducteur.tel_a_prevenir]
 
-        sheet.add_row ["Véhicule"]
+        sheet.add_row ["Véhicule", "", ""], :style => [titre, titre, titre], height: 40
+        sheet.add_row ["Type/Puissance",         equipage.type_puissance]
+        sheet.add_row ["Titulaire carte grise",  equipage.carte_grise_titulaire]
+        sheet.add_row ["Carte grise émise le",   equipage.carte_grise_date_emission]
+        sheet.add_row ["1ère mise en circ",      equipage.premiere_mise_en_circ]
+        sheet.add_row ["Immatriculation",        equipage.immatriculation]
+        sheet.add_row ["Cie assurance",          equipage.cie_assurance]
+ 
+      else 
+        sheet.add_row [equipage.numero], :style => [titre], :height => 75, sz: 60
+
+        sheet.add_row ["Véhicule", "", ""], :style => [titre, titre, titre], height: 40
         sheet.add_row ["Type/Puissance",         equipage.type_puissance]
         sheet.add_row ["Titulaire carte grise",  equipage.carte_grise_titulaire]
         sheet.add_row ["Carte grise émise le",   equipage.carte_grise_date_emission]

@@ -27,7 +27,16 @@ class Equipage < ApplicationRecord
   def self.avec_equipiers
     select("*").
     includes(:equipiers).
-    order(numero: :asc)
+    order(:numero).
+    order("equipiers.nom")
+  end
+
+  def self.avec_numero_ou_conducteur
+    select("*").
+    includes(:equipiers).
+    where("equipages.numero IS NOT NULL OR equipiers.conducteur OR equipiers.id IS NULL").
+    order(:numero).
+    order("equipiers.nom")
   end
 
   def self.avec_equipiers_csv
