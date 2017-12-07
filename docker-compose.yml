@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   # Le serveur MySQL avec les données NOREV
   db:
@@ -9,7 +9,9 @@ services:
     env_file: db.env
     volumes:
       - db_data:/var/lib/mysql
-  
+    networks:
+      - backend
+
   app:
     container_name: app
     # pour construire l'image
@@ -24,8 +26,8 @@ services:
       - db
     environment:
       SECRET_KEY_BASE: abcdefg
-      VIRTUAL_HOST: beer.docker
-      RAILS_ENV: development
+    networks:
+      - frontend
 
   adminer:
     container_name: norev_adminer
@@ -34,6 +36,13 @@ services:
       - "8080:8080"
     links:
       - db
+    networks:
+      - frontend
+      - backend
 
 volumes:
   db_data:
+
+networks:
+  frontend:
+  backend:

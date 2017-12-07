@@ -56,13 +56,13 @@ table
     td = @equipier.permis_conduire_num
   tr
     th = t(:permis_conduire)
-    td = link_to(image_tag("icone_pdf.png"), @equipier.permis_conduire.url) unless @equipier.permis_conduire.file.nil?
+    td = link_to(image_tag("icone_pdf.png"), @equipier.permis_conduire.url) unless @equipier.permis_conduire.file.nil? || (cannot? :edit, @equipier)
   tr
     th = t(:passeport_num)
     td = @equipier.passeport_num
   tr
     th = t(:passeport)
-    td = link_to(image_tag("icone_pdf.png"), @equipier.passeport.url) unless @equipier.passeport.file.nil?
+    td = link_to(image_tag("icone_pdf.png"), @equipier.passeport.url) unless @equipier.passeport.file.nil? || (cannot? :edit, @equipier)
   tr
     th = t(:passeport_date_delivrance)
     td = @equipier.passeport_date_delivrance
