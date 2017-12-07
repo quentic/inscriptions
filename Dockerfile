@@ -1,44 +1,41 @@
-FROM ruby:2.3-slim
+FROM giraf:2.3
 
-#ENV http_proxy "http://proxyprod.xtsfrance.com:8000"
-#ENV https_proxy "http://proxyprod.xtsfrance.com:8000"
+LABEL maintainer Christian Quentin <christian.quentin@architecte-du-web.com> \
+      version="1.1" \
+      description="Saisie des équipages NOREV"
+
+#ENV http_proxy "http://proxy.xtsfrance.com:8000"
+#ENV https_proxy "http://proxy.xtsfrance.com:8000"
+#ENV http_proxy "http://10.14.1.48:3128"
+#ENV https_proxy "http://10.14.1.48:3128"
 #RUN export http_proxy=$http_proxy
 #RUN export https_proxy=$https_proxy
-
+ 
 RUN apt-get update -qq \
-    && apt-get install -y build-essential \
-       mysql-client libmysqlclient-dev \
-       imagemagick libmagickcore-dev libmagickwand-dev \
-       pdftk \
+    && apt-get install -y \
        ssmtp \
     && rm -rf /var/lib/apt/lists/*
            
 # copier le fichier de config de sSMTP
 COPY config/pour_ssmtp/ssmtp.conf /etc/ssmtp/
 
-ENV RAILS_ENV=production   
-ENV RACK_ENV=production
+ENV RAILS_ENV production 
+ENV RACK_ENV production
 
-# On sépare la zone des gems (qui ne bouge pas souvent)
-# de la zone de l'appli (qui est plus susceptible de changer)
-# => le bundle install est le souvent ignoré lors d'un docker-compose build
-COPY Gemfile* /tmp/
-WORKDIR /tmp
-RUN gem install bundler && bundle install
-
+# Configure the main working directory. This is the base
+# directory used in any further RUN, COPY, and ENTRYPOINT
+# commands.
 ENV INSTALL_PATH /myapp
-RUN mkdir $INSTALL_PATH
+RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
+
+COPY Gemfile Gemfile.lock ./ 
+RUN gem install bundler && bundle install --jobs 2 --without development test
+
 COPY . .
 
-#RUN bundle exec rake db:migrate
-#RUN bundle exec rake db:seed
-RUN bundle exec rake assets:precompile
-
-MAINTAINER Christian Quentin <christian.quentin@architecte-du-web.com>
-
-LABEL version="1.0" \
-      description="Saisie des équipages NOREV"
+# A priori, il faut effectuer cette opération dans le conteneur app pour que les assets précompilés restent sous public/assets
+#RUN rake assets:precompile
 
 # Start puma
 CMD bundle exec puma -C config/puma.rb
