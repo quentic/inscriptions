@@ -1,10 +1,11 @@
 # Exclure les dossiers suivants de la fabrication de l'image Docker
-	test	
-	/tmp/* 
-	/log/*
-	.git
+test	
+tmp/* 
+log/*
+doc/*
+.git
 
 # Exclure les fichiers suivants :
-	Dockerfile
-	.dockerignore
-	docker-compose.yml
+Dockerfile
+.dockerignore
+docker-compose.yml
