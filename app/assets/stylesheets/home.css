@@ -38,10 +38,10 @@ article li{
   background-color:#b9b396;
 }
 .action--equipage a{
-  background-image: url(catalogue.png);
+  background-image: image-url('catalogue.png');
 }
 .action--connexion a{
-  background-image: url(catalogue.png);
+  background-image: image-url('catalogue.png');
 }
 .moteur{
   clear:left;
