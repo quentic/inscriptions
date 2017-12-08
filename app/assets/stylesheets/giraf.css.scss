@@ -287,10 +287,6 @@ table.list input {
   float: none;
 }
 td.text{text-align: left}
-td.en_cours {
-  width: 18px;
-  background: asset-url('en_cours.gif') no-repeat;
-}
 td.total {
   font-weight: bold
 }
@@ -422,7 +418,7 @@ a.bouton {
   max-width: 700px;
   padding: 1em;
   border: 2px solid red;
-  background: white asset-url('fermer.png') no-repeat 99% 5%;
+  background: white image-url('fermer.png') no-repeat 99% 5%;
   color: red;
   border-radius: 7px;
   box-shadow: 10px 10px 15px #555;
@@ -469,7 +465,7 @@ fieldset fieldset{
   left: 25px;
   height: 45px;
   width: 155px;
-  background: asset-url('sprite.png') 227px 48px;
+  background: image-url('sprite.png') 227px 48px;
 }
 table a.email {
   display: inline;
@@ -483,7 +479,7 @@ a[href*=".pdf"]{
   margin: auto;
   width: 30px;
   height: 30px;
-  background: asset-url('sprite.png') no-repeat;
+  background: image-url('sprite.png') no-repeat;
   background-position: -66px -0px;
 }
 .annuler{
@@ -491,7 +487,7 @@ a[href*=".pdf"]{
   margin: auto;
   width: 30px;
   height: 30px;
-  background: asset-url('sprite.png') no-repeat;
+  background: image-url('sprite.png') no-repeat;
 }
 .annuler{background-position:-240px -30px}
 /* Fin de positionnement des vignettes pour affichage via le sprite sprite.png */
@@ -502,7 +498,7 @@ a[href*=".pdf"]{
   background-repeat: no-repeat;
   width:16px;
   height:16px;
-  background: asset-url('sprite.png') no-repeat;
+  background: image-url('sprite.png') no-repeat;
 }
 .ajouter{background-position: 0 -2px}
 .retirer{background-position: -16px -2px}

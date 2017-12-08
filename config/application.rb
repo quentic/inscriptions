@@ -8,7 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Inscriptions
   class Application < Rails::Application
-    Rails.application.routes.default_url_options[:port]= 8080
+    Rails.application.routes.default_url_options[:port]= 80
     
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1

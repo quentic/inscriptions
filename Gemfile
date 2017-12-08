@@ -95,7 +95,4 @@ end
 group :test do
   # Pour remplacer les fixtures dans les tests
   gem 'factory_girl_rails'
-
-  #gem 'cucumber-rails'
-  #gem "cucumber"
 end
