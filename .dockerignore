@@ -3,6 +3,7 @@ test
 tmp/* 
 log/*
 doc/*
+public/uploads/*
 .git
 
 # Exclure les fichiers suivants :
