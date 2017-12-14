@@ -13,7 +13,7 @@ services:
       - backend
 
   app:
-    container_name: app
+    container_name: norev_app
     # pour construire l'image
     build: .
     volumes:
