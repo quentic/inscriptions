@@ -13,7 +13,7 @@ services:
       - backend
 
   app:
-    container_name: app
+    container_name: norev_app
     # pour construire l'image
     build: .
     volumes:
@@ -28,6 +28,7 @@ services:
       SECRET_KEY_BASE: abcdefg
     networks:
       - frontend
+      - backend
 
   adminer:
     container_name: norev_adminer
