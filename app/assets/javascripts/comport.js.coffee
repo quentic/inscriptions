@@ -43,14 +43,3 @@ jQuery ->
   # Donne le focus au champ qui a la classe "focus_defaut"
   # S'il y en a plusieurs, c'est le premier rencontré qui reçoit le focus
   $(".focus_defaut").first().focus().select()
-
-  $.datepicker.setDefaults(
-    changeMonth: true,
-    changeYear: true,
-    showMonthAfterYear: true,
-    dateFormat: 'yy-mm-dd',
-    minDate: "-80y"
-    yearRange: "-80:+0"
-  )
-  $("input[type=date]").datepicker()
-
