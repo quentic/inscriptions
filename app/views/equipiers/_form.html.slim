@@ -16,7 +16,7 @@
     = f.input :telephone_portable, as: :tel
     = f.input :email, as: :email
     = f.input :profession
-    = f.input :date_naissance, as: :date, html5: true
+    = f.input :date_naissance, start_year: Date.today.year - 90, end_year: Date.today.year - 18
     = f.input :lieu_naissance
     = f.input :nationalite
     
@@ -35,9 +35,9 @@
     = f.input :passeport_num
     = link_to(image_tag("icone_pdf.png"), @equipier.passeport.url) if @equipier.passeport? &&  (can? :edit, @equipier)
     = f.input :passeport, as: :file
-    = f.input :passeport_date_delivrance, as: :date, html5: true
+    = f.input :passeport_date_delivrance, start_year: Date.today.year - 10, end_year: Date.today.year
     = f.input :passeport_lieu_delivrance
-    = f.input :passeport_date_validite, as: :date, html5: true
+    = f.input :passeport_date_validite, start_year: Date.today.year, end_year: Date.today.year + 10
     = f.input :groupe_sanguin
 
   fieldset
