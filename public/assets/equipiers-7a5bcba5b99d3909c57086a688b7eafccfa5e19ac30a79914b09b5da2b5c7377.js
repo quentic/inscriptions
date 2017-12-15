@@ -1,0 +1,1 @@
+(function(){jQuery(function(){return $("#filtre").keyup(function(){var e;if(e=$(this).val(),e.length>3)return $.get("equipiers/rechercher?terme="+e,function(e){return $("#liste_body").html(e)})}),$("input#equipier_passeport_date_validite").datepicker({minDate:"0",yearRange:"+0:+10"})})}).call(this);
