@@ -2,7 +2,7 @@
   li = link_to 'Accueil', home_path
   li = link_to 'Nouvel équipier', new_equipage_equipier_path(@equipage)
   li = link_to "Voir le véhicule", equipages_path(id: @equipage)
-  li = link_to 'Tous les véhicules', equipages_path
+  li = link_to 'Tous les véhicules', equipages_path if inscription_manager_logged_in?
 
 - content_for :page_title do
   ' Les équipiers du véhicule #{@equipage.numero}

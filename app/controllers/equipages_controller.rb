@@ -23,7 +23,7 @@ class EquipagesController < CrudController
     elsif (@equipage)
       equipages = Equipage.where(id: @equipage)
 
-    elsif current_user.inscription_manager?
+    elsif current_user.admin? || current_user.inscription_manager?
       equipages = Equipage.tous
       
     else
