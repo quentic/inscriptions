@@ -16,14 +16,15 @@ class Equipage < ApplicationRecord
 
   # Recherche les objets relatifs à la recherche (passée en paramètre)
   def self.filtre_par(terme)
-    select("*").
-    select("equipages.id as id").
-    select("prenom").
-    select("nom").
     order(id: :desc).
-    contenant(terme)
+    contenant(terme).
+    group(:id)
   end
 
+  def self.tous
+	all.avec_equipiers
+  end
+	
   def self.avec_equipiers
     select("*").
     includes(:equipiers).

@@ -21,15 +21,18 @@ class EquipagesController < CrudController
 
     # listage d'un élément spécifié par son id
     elsif (@equipage)
-      equipages = Equipage.where(id: @equipage.id)
+      equipages = Equipage.where(id: @equipage)
 
+    elsif current_user.inscription_manager?
+      equipages = Equipage.tous
+      
     else
-      equipages = Equipage.all.order(:numero)
+      equipages = Equipage.where(user_id: current_user)
 
     end
     
     respond_to do |format|
-      format.html { 
+      format.html {
         @equipages = equipages.page(@page)
       }
       format.xlsx
