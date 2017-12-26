@@ -24,7 +24,7 @@ class EquipagesController < CrudController
       equipages = Equipage.where(id: @equipage.id)
 
     else
-      equipages = Equipage.all.order(:numero)
+      equipages = Equipage.tous
 
     end
     
