@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :equipages
+  has_one :equipage
   has_many :equipiers
 
   # Include default devise modules. Others available are:
