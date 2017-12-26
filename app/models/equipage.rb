@@ -22,14 +22,19 @@ class Equipage < ApplicationRecord
   end
 
   def self.tous
-	all.avec_equipiers
+    all.avec_equipiers
   end
 	
   def self.avec_equipiers
-    select("*").
-    includes(:equipiers).
+    select(:id).
+    select("max(numero) AS numero").
+    select("max(conducteur.prenom)").select("max(conducteur.nom)").
+    select("max(passager.prenom)").select("max(passager.nom)").
+    joins("LEFT JOIN equipiers conducteur ON conducteur.equipage_id = equipages.id AND conducteur.conducteur").
+    joins("LEFT JOIN equipiers passager ON passager.equipage_id = equipages.id AND NOT passager.conducteur").
+    group(:id).
     order(:numero).
-    order("equipiers.nom")
+    order("max(conducteur.nom)")
   end
 
   def self.avec_numero_ou_conducteur
