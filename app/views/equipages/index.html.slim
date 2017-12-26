@@ -1,13 +1,13 @@
 - content_for :nav do
   li = link_to 'Accueil', home_path
   li = link_to 'Nouveau véhicule', new_equipage_path
-  li = link_to 'Tous les véhicules', equipages_path if current_user.inscription_manager?
+  li = link_to 'Tous les véhicules', equipages_path if inscription_manager_logged_in?
   li = link_to 'Voir le récap', recap_equipages_path if (can? :export, Equipage)
 
 - content_for :page_title do
   ' Liste des équipages/véhicules
 
-= filtrer('', 'Filtrer par nom&nbsp;:', :filtre, "Saisissez qq car. du véhicule ou de l'équipier") if current_user.inscription_manager?
+= filtrer('', 'Filtrer par nom&nbsp;:', :filtre, "Saisissez qq car. du véhicule ou de l'équipier") if inscription_manager_logged_in?
 = will_paginate @equipages
 
 table.list
