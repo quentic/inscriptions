@@ -15,9 +15,7 @@ services:
   app:
     container_name: norev_app
     # pour construire l'image
-    build:
-      context: .
-      dockerfile: Dockerfile-alpine
+    build: .
     volumes:
       - .:/myapp
     # pour utiliser l'image
