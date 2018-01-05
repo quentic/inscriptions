@@ -1,0 +1,37 @@
+FROM giraf_base_alpine:3.7
+
+LABEL maintainer Christian Quentin <christian.quentin@architecte-du-web.com> \
+      version="1.1" \
+      description="Saisie des équipages NOREV"
+
+ENV http_proxy "http://proxy.xtsfrance.com:8000"
+ENV https_proxy "http://proxy.xtsfrance.com:8000"
+#ENV http_proxy "http://10.14.1.48:3128"
+#ENV https_proxy "http://10.14.1.48:3128"
+RUN export http_proxy=$http_proxy
+RUN export https_proxy=$https_proxy
+
+COPY Gemfile /myapp/
+COPY Gemfile.lock /myapp/
+
+RUN apk update && apk --update add --virtual build-dependencies build-base \  
+    mariadb-dev linux-headers && \
+    gem install --no-document bundler && \
+    cd /myapp ; bundle install --jobs 4 --without development test assets && \
+    apk del build-dependencies
+
+# copier le fichier de config de sSMTP
+COPY config/pour_ssmtp/ssmtp.conf /etc/ssmtp/
+
+COPY . /myapp
+
+ENV RAILS_ENV production 
+ENV RACK_ENV production
+
+WORKDIR /myapp
+
+# A priori, il faut effectuer cette opération dans le conteneur app pour que les assets précompilés restent sous public/assets
+#RUN rake assets:precompile
+
+# Start puma
+CMD bundle exec puma -C config/puma.rb
