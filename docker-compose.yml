@@ -1,9 +1,9 @@
-version: '3'
+version: '2'
 services:
   # Le serveur MySQL avec les données NOREV
   db:
     container_name: norev_db
-    image: mysql
+    image: rothgar/rpi-mysql:5.5
     ports:
       - "13306:3306"
     env_file: db.env
@@ -38,21 +38,21 @@ services:
     links:
       - app
     ports:
-      - "80:80"
+      - "8080:80"
     networks:
       - frontend
       - backend
 
-  adminer:
-    container_name: norev_adminer
-    image: adminer
-    ports:
-      - "8080:8080"
-    links:
-      - db
-    networks:
-      - frontend
-      - backend
+  #adminer:
+  #  container_name: norev_adminer
+  #  image: adminer
+  #  ports:
+  #    - "8080:8080"
+  #  links:
+  #    - db
+  #  networks:
+  #    - frontend
+  #    - backend
 
 volumes:
   db_data:
