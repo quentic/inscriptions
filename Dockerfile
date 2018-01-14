@@ -35,6 +35,7 @@ RUN gem install bundler && bundle install --jobs 4 --without development test
 COPY . .
 
 # A priori, il faut effectuer cette opération dans le conteneur app pour que les assets précompilés restent sous public/assets
+# Sinon, la pré-compilation a bien lieu mais le résultat est stocké dans un conteneur provisoire qui est détruit ensuite
 #RUN rake assets:precompile
 
 # Start puma
