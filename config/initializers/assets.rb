@@ -12,12 +12,12 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 Rails.application.config.assets.precompile += %w( 
-	comport.js
-	giraf.css giraf_impr.css
-	
-	home.css 
-	equipages.js 
-	equipiers.js 
-	users.js 
-	)
+  comport.js
+  giraf.css giraf_impr.css
 
+  devise/sessions.js
+  home.css 
+  equipages.js 
+  equipiers.js 
+  users.js 
+  )
