@@ -4,12 +4,12 @@
 		<title>Inscriptions Raid NOREV 2018</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <%= render "layouts/head" %>
+    <%= stylesheet_link_tag "home" %>
 	</head>
 
 	<body id="accueil">
     <%= render "layouts/corps" %>
 
     <%= javascript_include_tag "application" %>
-    <%= javascript_include_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.js") %>
 	</body>
 </html>
