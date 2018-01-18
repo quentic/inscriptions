@@ -13,9 +13,7 @@ jQuery ->
 
     ### make a GET call and replace the content ###
     if terme.length > 3
-      $.get("equipages/rechercher?terme=" + terme, (data) ->
+      $.get("equipages/rechercher?filtre=" + terme, (data) ->
         $("#liste_body").html(data)
       )
-    
-
-
+      
