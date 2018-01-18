@@ -7,7 +7,7 @@
 - content_for :page_title do
   ' Liste des équipages/véhicules
 
-= filtrer('', 'Filtrer par nom&nbsp;:', :filtre, "Saisissez qq car. du véhicule ou de l'équipier") if inscription_manager_logged_in?
+= filtrer('', 'Filtrer par nom, numéro, immat.&nbsp;:', :filtre, "Saisissez qq car. du véhicule ou de l'équipier") if inscription_manager_logged_in?
 = will_paginate @equipages
 
 table.list
@@ -24,23 +24,7 @@ table.list
       th.centre.action Modifier / Compléter le descriptif de votre véhicule
       th.centre.action Supprimer
 
-  tbody
-    - @equipages.each do |equipage|
-      - conducteur = equipage.equipiers.conducteur.take if equipage.equipiers.conducteur.exists?
-      - passager   = equipage.equipiers.passager.take   if equipage.equipiers.passager.exists?
-
-      tr
-        td = equipage.numero
-
-        td = image_tag(conducteur.photo.thumb_s.url) if conducteur && conducteur.photo? 
-        td = conducteur.prenom_nom if conducteur
-          
-        td = image_tag(passager.photo.thumb_s.url) if passager && passager.photo?
-        td = passager.prenom_nom if passager
-
-        td = link_to '', equipage_equipiers_path(equipage), class: :edit
-        td = link_to '', equipage_path(equipage), class: :loupe
-        td = link_to '', edit_equipage_path(equipage), class: :edit if (can? :edit, equipage)
-        td = link_to '', equipage, data: {:confirm => 'Etes-vous sûr(e) ?'}, :method => :delete, class: :bin if (can? :destroy, equipage)
+  tbody#liste_body
+    = render partial: "liste", collection: @equipages, as: :resource
 
 = link_to 'Exporter en Excel', equipages_path(format: :xlsx), class: :bouton if (can? :export, Equipage)

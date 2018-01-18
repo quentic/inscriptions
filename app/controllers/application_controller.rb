@@ -19,20 +19,20 @@ protected
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => 'c5e28f3b6733d33bf00c0e51f6f70ff8'
 
-	# Positionnement de la langue préférée de l'utilisateur via un cookie (bascule en cliquant sur le drapeau de langue)
-	def langue
-		cookies[:langue] = (cookies[:langue] == "french" ? "english" : "french")
-		redirect_to :back
-	end
+  # Positionnement de la langue préférée de l'utilisateur via un cookie (bascule en cliquant sur le drapeau de langue)
+  def langue
+    cookies[:langue] = (cookies[:langue] == "french" ? "english" : "french")
+    redirect_to :back
+  end
 
   # Pour les résultats paginés, récupère le numéro de la page courante (ou se positionne en page 1 par défaut)
   def set_page
-    @page = params[:page] || 1
+    @page = params[:page] || nil
   end
 
   # Pour les pages avec moteur de recherche, récupère le terme recherché
   def set_filtre
-    @filtre = params[:filtre]
+    @filtre = params[:filtre] ? params[:filtre].strip : nil
   end
 
 end
