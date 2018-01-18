@@ -21,15 +21,15 @@ class CrudController < InheritedResources::Base
   # Filtre les objets en fonction d'un terme recherché
   def rechercher
     set_collection_ivar(resource_class.filtre_par(@filtre).limit(100))
-    render partial: 'liste', collection: collection
+    render partial: 'liste', collection: collection, as: :resource
   end
 
   def update(options={})
     update!(options) do |succes, echec|
       succes.html do
         flash[:notice] = t(resource_class.to_s.downcase + '_maj')
-	if block_given?
-	  redirect_to yield
+        if block_given?
+          redirect_to yield
         else        
           redirect_to collection_url(page: @page)
         end
@@ -45,8 +45,8 @@ class CrudController < InheritedResources::Base
     destroy!(options) do |succes, echec|
       succes.html do
         flash[:notice] = t(resource_class.to_s.downcase + '_supprime')
-	if block_given?
-	  redirect_to yield
+        if block_given?
+          redirect_to yield
         else        
           redirect_to collection_url(page: @page)
         end

@@ -1,0 +1,17 @@
+- equipage = resource
+- conducteur = equipage.equipiers.conducteur.take if equipage.equipiers.conducteur.exists?
+- passager   = equipage.equipiers.passager.take   if equipage.equipiers.passager.exists?
+
+tr
+  td = equipage.numero
+
+  td = image_tag(conducteur.photo.thumb_s.url) if conducteur && conducteur.photo? 
+  td = conducteur.prenom_nom if conducteur
+    
+  td = image_tag(passager.photo.thumb_s.url) if passager && passager.photo?
+  td = passager.prenom_nom if passager
+
+  td = link_to '', equipage_equipiers_path(equipage), class: :edit
+  td = link_to '', equipage_path(equipage), class: :loupe
+  td = link_to '', edit_equipage_path(equipage), class: :edit if (can? :edit, equipage)
+  td = link_to '', equipage, data: {:confirm => 'Etes-vous sûr(e) ?'}, :method => :delete, class: :bin if (can? :destroy, equipage)
