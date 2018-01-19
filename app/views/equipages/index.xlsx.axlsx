@@ -17,138 +17,137 @@ wb.styles do |s|
       passager   = equipage.equipiers.passager.take
 
       if (nb_equipiers >= 2)
-        sheet.add_row [equipage.numero], :style => [titre], :height => 75, sz: 60
+        sheet.add_row [equipage.numero], style: [titre], height: 75, sz: 60
         render :partial => 'photo_sheet', :locals => { sheet: sheet, equipage: equipage, equipier: conducteur, colonne: 1 }
         render :partial => 'photo_sheet', :locals => { sheet: sheet, equipage: equipage, equipier: passager, colonne: 2 }
 
         sheet.add_row ["",        "Conducteur",          "Passager"], :sz => 16
-        sheet.add_row ["Nom",     conducteur.nom,        passager.nom], :widths=>[30, 27, 27]
-        sheet.add_row ["Prénom",  conducteur.prenom,     passager.prenom], :widths=>[30, 27, 27]
-        sheet.add_row ["Adresse", conducteur.rue,        passager.rue], :widths=>[30, 27, 27]
-        sheet.add_row ["Ville",   conducteur.ville,      passager.ville], :widths=>[30, 27, 27]
-        sheet.add_row ["CP",      conducteur.cp,    passager.cp], :widths=>[30, 27, 27]			
-        sheet.add_row ["Tel. fixe",       conducteur.telephone_fixe,     passager.telephone_fixe], :widths=>[30, 27, 27]
-        sheet.add_row ["Tel. portable",   conducteur.telephone_portable, passager.telephone_portable], :widths=>[30, 27, 27]
-        sheet.add_row ["e-mail",          conducteur.email,              passager.email], :widths=>[30, 27, 27]
-        sheet.add_row ["Profession",      conducteur.profession,         passager.profession], :widths=>[30, 27, 27]
-        sheet.add_row ["Date de naissance",   conducteur.date_naissance, passager.date_naissance], :widths=>[30, 27, 27]
-        sheet.add_row ["Lieu de naissance",   conducteur.lieu_naissance, passager.lieu_naissance], :widths=>[30, 27, 27]
-        sheet.add_row ["Nationalité",         conducteur.nationalite,    passager.nationalite], :widths=>[30, 27, 27]
-        sheet.add_row ["Numéro de permis de conduire",   conducteur.permis_conduire_num, passager.permis_conduire_num], :widths=>[30, 27, 27]
-        sheet.add_row ["Numéro de passeport ou CNI",  conducteur.passeport_num,  passager.passeport_num], :widths=>[30, 27, 27]
-        sheet.add_row ["Date de délivrance",   conducteur.passeport_date_delivrance, passager.passeport_date_delivrance], :widths=>[30, 27, 27]
-        sheet.add_row ["Lieu de délivrance",   conducteur.passeport_lieu_delivrance, passager.passeport_lieu_delivrance], :widths=>[30, 27, 27]
-        sheet.add_row ["Date de validité",     conducteur.passeport_date_validite,   passager.passeport_date_validite], :widths=>[30, 27, 27]
-        sheet.add_row ["Groupe sanguin",       conducteur.groupe_sanguin,            passager.groupe_sanguin], :widths=>[30, 27, 27]
+        sheet.add_row ["Nom",     conducteur.nom,        passager.nom], widths: [30, 27, 27]
+        sheet.add_row ["Prénom",  conducteur.prenom,     passager.prenom], widths: [30, 27, 27]
+        sheet.add_row ["Adresse", conducteur.rue,        passager.rue], widths: [30, 27, 27]
+        sheet.add_row ["Ville",   conducteur.ville,      passager.ville], widths: [30, 27, 27]
+        sheet.add_row ["CP",      conducteur.cp,    passager.cp], widths: [30, 27, 27]			
+        sheet.add_row ["Tel. fixe",       conducteur.telephone_fixe,     passager.telephone_fixe], widths: [30, 27, 27]
+        sheet.add_row ["Tel. portable",   conducteur.telephone_portable, passager.telephone_portable], widths: [30, 27, 27]
+        sheet.add_row ["e-mail",          conducteur.email,              passager.email], widths: [30, 27, 27]
+        sheet.add_row ["Profession",      conducteur.profession,         passager.profession], widths: [30, 27, 27]
+        sheet.add_row ["Date de naissance",   conducteur.date_naissance, passager.date_naissance], widths: [30, 27, 27]
+        sheet.add_row ["Lieu de naissance",   conducteur.lieu_naissance, passager.lieu_naissance], widths: [30, 27, 27]
+        sheet.add_row ["Nationalité",         conducteur.nationalite,    passager.nationalite], widths: [30, 27, 27]
+        sheet.add_row ["Numéro de permis de conduire",   conducteur.permis_conduire_num, passager.permis_conduire_num], widths: [30, 27, 27]
+        sheet.add_row ["Numéro de passeport ou CNI",  conducteur.passeport_num,  passager.passeport_num], widths: [30, 27, 27]
+        sheet.add_row ["Date de délivrance",   conducteur.passeport_date_delivrance, passager.passeport_date_delivrance], widths: [30, 27, 27]
+        sheet.add_row ["Lieu de délivrance",   conducteur.passeport_lieu_delivrance, passager.passeport_lieu_delivrance], widths: [30, 27, 27]
+        sheet.add_row ["Date de validité",     conducteur.passeport_date_validite,   passager.passeport_date_validite], widths: [30, 27, 27]
+        sheet.add_row ["Groupe sanguin",       conducteur.groupe_sanguin,            passager.groupe_sanguin], widths: [30, 27, 27]
         
-        sheet.add_row ["Taille T-shirt",       conducteur.taille_t_shirt,        passager.taille_t_shirt], :widths=>[30, 27, 27]
+        sheet.add_row ["Taille T-shirt",       conducteur.taille_t_shirt,        passager.taille_t_shirt], widths: [30, 27, 27]
 
-        sheet.add_row ["Personnes à prévenir", "", ""], :widths=>[30, 27, 27], :style => [titre, titre, titre], :widths=>[30, 27, 27], height: 40 
-        sheet.add_row ["Nom Prénom",           conducteur.nom_prenom_a_prevenir, passager.nom_prenom_a_prevenir], :widths=>[30, 27, 27]
-        sheet.add_row ["Tel",                  conducteur.tel_a_prevenir,        passager.tel_a_prevenir], :widths=>[30, 27, 27]
+        sheet.add_row ["Personnes à prévenir", "", ""], style: [titre, titre, titre], widths: [30, 27, 27], height: 40 
+        sheet.add_row ["Nom Prénom",           conducteur.nom_prenom_a_prevenir, passager.nom_prenom_a_prevenir], widths: [30, 27, 27]
+        sheet.add_row ["Tel",                  conducteur.tel_a_prevenir,        passager.tel_a_prevenir], widths: [30, 27, 27]
 
-        sheet.add_row ["Véhicule", "", ""], :widths=>[30, 27, 27], :style => [titre, titre, titre], :widths=>[30, 27, 27], height: 40
-        sheet.add_row ["Type/Puissance",         equipage.type_puissance], :widths=>[30, 27, 27]
-        sheet.add_row ["Titulaire carte grise",  equipage.carte_grise_titulaire], :widths=>[30, 27, 27]
-        sheet.add_row ["Carte grise émise le",   equipage.carte_grise_date_emission], :widths=>[30, 27, 27]
-        sheet.add_row ["1ère mise en circ",      equipage.premiere_mise_en_circ], :widths=>[30, 27, 27]
-        sheet.add_row ["Immatriculation",        equipage.immatriculation], :widths=>[30, 27, 27]
-        sheet.add_row ["Cie assurance",          equipage.cie_assurance], :widths=>[30, 27, 27]
+        sheet.add_row ["Véhicule", "", ""], style: [titre, titre, titre], widths: [30, 27, 27], height: 40
+        sheet.add_row ["Type/Puissance",         equipage.type_puissance], widths: [30, 27, 27]
+        sheet.add_row ["Titulaire carte grise",  equipage.carte_grise_titulaire], widths: [30, 27, 27]
+        sheet.add_row ["Carte grise émise le",   equipage.carte_grise_date_emission], widths: [30, 27, 27]
+        sheet.add_row ["1ère mise en circ",      equipage.premiere_mise_en_circ], widths: [30, 27, 27]
+        sheet.add_row ["Immatriculation",        equipage.immatriculation], widths: [30, 27, 27]
+        sheet.add_row ["Cie assurance",          equipage.cie_assurance], widths: [30, 27, 27]
       
         sheet["A1:A31"].each { |c| c.b = true }
         
       # Le conducteur n'est pas renseigné
       elsif (nb_equipiers == 1 && passager)
-        sheet.add_row [equipage.numero], :style => [titre], :height => 75, sz: 60
+        sheet.add_row [equipage.numero], style: [titre], height: 75, sz: 60
         render :partial => 'photo_sheet', :locals => { sheet: sheet, equipage: equipage, equipier: passager, colonne: 2 }
 
         sheet.add_row ["", "Conducteur", "Passager"], :sz => 16
-        sheet.add_row ["Nom",     "", passager.nom], :widths=>[30, 27, 27]
-        sheet.add_row ["Prénom",              "", passager.prenom], :widths=>[30, 27, 27]
-        sheet.add_row ["Adresse",             "", passager.rue], :widths=>[30, 27, 27]
-        sheet.add_row ["CP",                  "", passager.cp], :widths=>[30, 27, 27]
-        sheet.add_row ["Ville",               "", passager.ville], :widths=>[30, 27, 27]
-        sheet.add_row ["Tel. fixe",           "", passager.telephone_fixe], :widths=>[30, 27, 27]
-        sheet.add_row ["Tel. portable",       "", passager.telephone_portable], :widths=>[30, 27, 27]
-        sheet.add_row ["e-mail",              "", passager.email], :widths=>[30, 27, 27]
-        sheet.add_row ["Profession",          "", passager.profession], :widths=>[30, 27, 27]
-        sheet.add_row ["Date de naissance",   "", passager.date_naissance], :widths=>[30, 27, 27]
-        sheet.add_row ["Lieu de naissance",   "", passager.lieu_naissance], :widths=>[30, 27, 27]
-        sheet.add_row ["Nationalité",         "", passager.nationalite], :widths=>[30, 27, 27]
-        sheet.add_row ["Numéro de permis de conduire",   "", passager.permis_conduire_num], :widths=>[30, 27, 27]
-        sheet.add_row ["Numéro de passeport ou CNI",  "",    passager.passeport_num], :widths=>[30, 27, 27]
-        sheet.add_row ["Date de délivrance",   "", passager.passeport_date_delivrance], :widths=>[30, 27, 27]
-        sheet.add_row ["Lieu de délivrance",   "", passager.passeport_lieu_delivrance], :widths=>[30, 27, 27]
-        sheet.add_row ["Date de validité",     "", passager.passeport_date_validite], :widths=>[30, 27, 27]
-        sheet.add_row ["Groupe sanguin",       "", passager.groupe_sanguin], :widths=>[30, 27, 27]
+        sheet.add_row ["Nom",     "", passager.nom], widths: [30, 27, 27]
+        sheet.add_row ["Prénom",              "", passager.prenom], widths: [30, 27, 27]
+        sheet.add_row ["Adresse",             "", passager.rue], widths: [30, 27, 27]
+        sheet.add_row ["CP",                  "", passager.cp], widths: [30, 27, 27]
+        sheet.add_row ["Ville",               "", passager.ville], widths: [30, 27, 27]
+        sheet.add_row ["Tel. fixe",           "", passager.telephone_fixe], widths: [30, 27, 27]
+        sheet.add_row ["Tel. portable",       "", passager.telephone_portable], widths: [30, 27, 27]
+        sheet.add_row ["e-mail",              "", passager.email], widths: [30, 27, 27]
+        sheet.add_row ["Profession",          "", passager.profession], widths: [30, 27, 27]
+        sheet.add_row ["Date de naissance",   "", passager.date_naissance], widths: [30, 27, 27]
+        sheet.add_row ["Lieu de naissance",   "", passager.lieu_naissance], widths: [30, 27, 27]
+        sheet.add_row ["Nationalité",         "", passager.nationalite], widths: [30, 27, 27]
+        sheet.add_row ["Numéro de permis de conduire",   "", passager.permis_conduire_num], widths: [30, 27, 27]
+        sheet.add_row ["Numéro de passeport ou CNI",  "",    passager.passeport_num], widths: [30, 27, 27]
+        sheet.add_row ["Date de délivrance",   "", passager.passeport_date_delivrance], widths: [30, 27, 27]
+        sheet.add_row ["Lieu de délivrance",   "", passager.passeport_lieu_delivrance], widths: [30, 27, 27]
+        sheet.add_row ["Date de validité",     "", passager.passeport_date_validite], widths: [30, 27, 27]
+        sheet.add_row ["Groupe sanguin",       "", passager.groupe_sanguin], widths: [30, 27, 27]
 
-        sheet.add_row ["Taille T-shirt",       "", passager.taille_t_shirt], :widths=>[30, 27, 27]
+        sheet.add_row ["Taille T-shirt",       "", passager.taille_t_shirt], widths: [30, 27, 27]
         
-        sheet.add_row ["Personnes à prévenir", "", ""], :widths=>[30, 27, 27], :style => [titre, titre, titre], :widths=>[30, 27, 27], height: 40 
-        sheet.add_row ["Nom Prénom",           "", passager.nom_prenom_a_prevenir], :widths=>[30, 27, 27]
-        sheet.add_row ["Tel",                  "", passager.tel_a_prevenir], :widths=>[30, 27, 27]
+        sheet.add_row ["Personnes à prévenir", "", ""], style: [titre, titre, titre], widths: [30, 27, 27], height: 40 
+        sheet.add_row ["Nom Prénom",           "", passager.nom_prenom_a_prevenir], widths: [30, 27, 27]
+        sheet.add_row ["Tel",                  "", passager.tel_a_prevenir], widths: [30, 27, 27]
 
-        sheet.add_row ["Véhicule", "", ""], :widths=>[30, 27, 27], :style => [titre, titre, titre], :widths=>[30, 27, 27], height: 40
-        sheet.add_row ["Type/Puissance",         equipage.type_puissance], :widths=>[30, 27, 27]
-        sheet.add_row ["Titulaire carte grise",  equipage.carte_grise_titulaire], :widths=>[30, 27, 27]
-        sheet.add_row ["Carte grise émise le",   equipage.carte_grise_date_emission], :widths=>[30, 27, 27]
-        sheet.add_row ["1ère mise en circ",      equipage.premiere_mise_en_circ], :widths=>[30, 27, 27]
-        sheet.add_row ["Immatriculation",        equipage.immatriculation], :widths=>[30, 27, 27]
-        sheet.add_row ["Cie assurance",          equipage.cie_assurance], :widths=>[30, 27, 27]
+        sheet.add_row ["Véhicule", "", ""], style: [titre, titre, titre], widths: [30, 27, 27], height: 40
+        sheet.add_row ["Type/Puissance",         equipage.type_puissance], widths: [30, 27, 27]
+        sheet.add_row ["Titulaire carte grise",  equipage.carte_grise_titulaire], widths: [30, 27, 27]
+        sheet.add_row ["Carte grise émise le",   equipage.carte_grise_date_emission], widths: [30, 27, 27]
+        sheet.add_row ["1ère mise en circ",      equipage.premiere_mise_en_circ], widths: [30, 27, 27]
+        sheet.add_row ["Immatriculation",        equipage.immatriculation], widths: [30, 27, 27]
+        sheet.add_row ["Cie assurance",          equipage.cie_assurance], widths: [30, 27, 27]
 
       # Le passager n'est pas renseigné
       elsif (nb_equipiers == 1 && conducteur)
-        sheet.add_row [equipage.numero], :style => [titre], :height => 75, sz: 60
-        render :partial => 'photo_sheet', :locals => { sheet: sheet, equipage: equipage, equipier: conducteur, colonne: 1 }
+        sheet.add_row [equipage.numero], style: [titre], height: 75, sz: 60
+        render :partial => 'photo_sheet', locals: { sheet: sheet, equipage: equipage, equipier: conducteur, colonne: 1 }
 
-        sheet.add_row ["", "Conducteur", "Passager"], :sz => 16
-        sheet.add_row ["Nom",     conducteur.nom], :widths=>[30, 27, 27]
-        sheet.add_row ["Prénom",   conducteur.prenom], :widths=>[30, 27, 27]
-        sheet.add_row ["Adresse",             conducteur.rue], :widths=>[30, 27, 27]
-        sheet.add_row ["CP",                  conducteur.cp], :widths=>[30, 27, 27]
-        sheet.add_row ["Ville",               conducteur.ville], :widths=>[30, 27, 27]
-        sheet.add_row ["Tel. fixe",           conducteur.telephone_fixe], :widths=>[30, 27, 27]
-        sheet.add_row ["Tel. portable",       conducteur.telephone_portable], :widths=>[30, 27, 27]
-        sheet.add_row ["e-mail",              conducteur.email], :widths=>[30, 27, 27]
-        sheet.add_row ["Profession",          conducteur.profession], :widths=>[30, 27, 27]
-        sheet.add_row ["Date de naissance",   conducteur.date_naissance], :widths=>[30, 27, 27]
-        sheet.add_row ["Lieu de naissance",   conducteur.lieu_naissance], :widths=>[30, 27, 27]
-        sheet.add_row ["Nationalité",         conducteur.nationalite], :widths=>[30, 27, 27]
-        sheet.add_row ["Numéro de permis de conduire",   conducteur.permis_conduire_num], :widths=>[30, 27, 27]
-        sheet.add_row ["Numéro de passeport ou CNI",  conducteur.passeport_num], :widths=>[30, 27, 27]
-        sheet.add_row ["Date de délivrance",   conducteur.passeport_date_delivrance], :widths=>[30, 27, 27]
-        sheet.add_row ["Lieu de délivrance",   conducteur.passeport_lieu_delivrance], :widths=>[30, 27, 27]
-        sheet.add_row ["Date de validité",     conducteur.passeport_date_validite], :widths=>[30, 27, 27]
-        sheet.add_row ["Groupe sanguin",       conducteur.groupe_sanguin], :widths=>[30, 27, 27]
+        sheet.add_row ["", "Conducteur", "Passager"], sz: 16
+        sheet.add_row ["Nom",     conducteur.nom], widths: [30, 27, 27]
+        sheet.add_row ["Prénom",   conducteur.prenom], widths: [30, 27, 27]
+        sheet.add_row ["Adresse",             conducteur.rue], widths: [30, 27, 27]
+        sheet.add_row ["CP",                  conducteur.cp], widths: [30, 27, 27]
+        sheet.add_row ["Ville",               conducteur.ville], widths: [30, 27, 27]
+        sheet.add_row ["Tel. fixe",           conducteur.telephone_fixe], widths: [30, 27, 27]
+        sheet.add_row ["Tel. portable",       conducteur.telephone_portable], widths: [30, 27, 27]
+        sheet.add_row ["e-mail",              conducteur.email], widths: [30, 27, 27]
+        sheet.add_row ["Profession",          conducteur.profession], widths: [30, 27, 27]
+        sheet.add_row ["Date de naissance",   conducteur.date_naissance], widths: [30, 27, 27]
+        sheet.add_row ["Lieu de naissance",   conducteur.lieu_naissance], widths: [30, 27, 27]
+        sheet.add_row ["Nationalité",         conducteur.nationalite], widths: [30, 27, 27]
+        sheet.add_row ["Numéro de permis de conduire",   conducteur.permis_conduire_num], widths: [30, 27, 27]
+        sheet.add_row ["Numéro de passeport ou CNI",  conducteur.passeport_num], widths: [30, 27, 27]
+        sheet.add_row ["Date de délivrance",   conducteur.passeport_date_delivrance], widths: [30, 27, 27]
+        sheet.add_row ["Lieu de délivrance",   conducteur.passeport_lieu_delivrance], widths: [30, 27, 27]
+        sheet.add_row ["Date de validité",     conducteur.passeport_date_validite], widths: [30, 27, 27]
+        sheet.add_row ["Groupe sanguin",       conducteur.groupe_sanguin], widths: [30, 27, 27]
         
-        sheet.add_row ["Taille T-shirt",       conducteur.taille_t_shirt], :widths=>[30, 27, 27]
+        sheet.add_row ["Taille T-shirt",       conducteur.taille_t_shirt], widths: [30, 27, 27]
 
-        sheet.add_row ["Personnes à prévenir", "", ""], :widths=>[30, 27, 27], :style => [titre, titre, titre], :widths=>[30, 27, 27], height: 40 
-        sheet.add_row ["Nom Prénom",           conducteur.nom_prenom_a_prevenir], :widths=>[30, 27, 27]
-        sheet.add_row ["Tel",                  conducteur.tel_a_prevenir], :widths=>[30, 27, 27]
+        sheet.add_row ["Personnes à prévenir", "", ""], style: [titre, titre, titre], widths: [30, 27, 27], height: 40 
+        sheet.add_row ["Nom Prénom",           conducteur.nom_prenom_a_prevenir], widths: [30, 27, 27]
+        sheet.add_row ["Tel",                  conducteur.tel_a_prevenir], widths: [30, 27, 27]
 
-        sheet.add_row ["Véhicule", "", ""], :style => [titre, titre, titre], :widths=>[30, 27, 27], height: 40
-        sheet.add_row ["Type/Puissance",         equipage.type_puissance], :widths=>[30, 27, 27]
-        sheet.add_row ["Titulaire carte grise",  equipage.carte_grise_titulaire], :widths=>[30, 27, 27]
-        sheet.add_row ["Carte grise émise le",   equipage.carte_grise_date_emission], :widths=>[30, 27, 27]
-        sheet.add_row ["1ère mise en circ",      equipage.premiere_mise_en_circ], :widths=>[30, 27, 27]
-        sheet.add_row ["Immatriculation",        equipage.immatriculation], :widths=>[30, 27, 27]
-        sheet.add_row ["Cie assurance",          equipage.cie_assurance], :widths=>[30, 27, 27]
+        sheet.add_row ["Véhicule", "", ""], style: [titre, titre, titre], widths: [30, 27, 27], height: 40
+        sheet.add_row ["Type/Puissance",         equipage.type_puissance], widths: [30, 27, 27]
+        sheet.add_row ["Titulaire carte grise",  equipage.carte_grise_titulaire], widths: [30, 27, 27]
+        sheet.add_row ["Carte grise émise le",   equipage.carte_grise_date_emission], widths: [30, 27, 27]
+        sheet.add_row ["1ère mise en circ",      equipage.premiere_mise_en_circ], widths: [30, 27, 27]
+        sheet.add_row ["Immatriculation",        equipage.immatriculation], widths: [30, 27, 27]
+        sheet.add_row ["Cie assurance",          equipage.cie_assurance], widths: [30, 27, 27]
  
       else 
-        sheet.add_row [equipage.numero], :style => [titre], :widths=>[30, 27, 27], :height => 75, sz: 60
+        sheet.add_row [equipage.numero], style: [titre], widths: [30, 27, 27], height: 75, sz: 60
 
-        sheet.add_row ["Véhicule", "", ""], :style => [titre, titre, titre], :widths=>[30, 27, 27], height: 40
-        sheet.add_row ["Type/Puissance",         equipage.type_puissance], :widths=>[30, 27, 27]
-        sheet.add_row ["Titulaire carte grise",  equipage.carte_grise_titulaire], :widths=>[30, 27, 27]
-        sheet.add_row ["Carte grise émise le",   equipage.carte_grise_date_emission], :widths=>[30, 27, 27]
-        sheet.add_row ["1ère mise en circ",      equipage.premiere_mise_en_circ], :widths=>[30, 27, 27]
-        sheet.add_row ["Immatriculation",        equipage.immatriculation], :widths=>[30, 27, 27]
-        sheet.add_row ["Cie assurance",          equipage.cie_assurance], :widths=>[30, 27, 27]
+        sheet.add_row ["Véhicule", "", ""], style: [titre, titre, titre], widths: [30, 27, 27], height: 40
+        sheet.add_row ["Type/Puissance",         equipage.type_puissance], widths: [30, 27, 27]
+        sheet.add_row ["Titulaire carte grise",  equipage.carte_grise_titulaire], widths: [30, 27, 27]
+        sheet.add_row ["Carte grise émise le",   equipage.carte_grise_date_emission], widths: [30, 27, 27]
+        sheet.add_row ["1ère mise en circ",      equipage.premiere_mise_en_circ], widths: [30, 27, 27]
+        sheet.add_row ["Immatriculation",        equipage.immatriculation], widths: [30, 27, 27]
+        sheet.add_row ["Cie assurance",          equipage.cie_assurance], widths: [30, 27, 27]
 
       end
     end
   end
 
 end
-
