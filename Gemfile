@@ -72,12 +72,8 @@ gem 'acts_as_xlsx'
 gem 'rmagick'
 
 group :development, :test do
-  # Ajoute l'environnement Pry complet pour déboguer et naviguer dans le code
-  gem 'pry-rails'
-  gem 'pry'
-  gem 'pry-nav'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  #gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   #gem 'capybara', '~> 2.13'
   #gem 'selenium-webdriver'
@@ -94,5 +90,5 @@ end
 
 group :test do
   # Pour remplacer les fixtures dans les tests
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
 end
