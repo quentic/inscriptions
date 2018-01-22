@@ -10,6 +10,11 @@ class Equipier < ApplicationRecord
   
   before_save :nom_en_majuscules, :prenom_avec_initiale_maj
 
+  validates_length_of :telephone_fixe, maximum: 15, allow_blank: true
+  validates_length_of :telephone_portable, maximum: 15, allow_blank: true
+  validates_length_of :groupe_sanguin, maximum: 50
+  validates_length_of :tel_a_prevenir, maximum: 15, allow_blank: true
+
   # Recherche les objets avec une référence ou une désignation contenant le mot-clé recherché
   def self.contenant(terme)
     terme = full_text(terme)

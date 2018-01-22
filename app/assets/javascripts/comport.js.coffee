@@ -20,7 +20,8 @@ jQuery ->
       $(this).fadeOut("slow")
  
   auto_fade_flash = ->
-    $("#flash_notice, #flash_alert, #flash_error, #error_explanation").delay(3000).fadeOut("slow")
+    $("#flash_notice, #flash_alert, #flash_error").delay(3000).fadeOut("slow")
+    $("#error_explanation").delay(5000).fadeOut("slow")
 
   auto_fade_flash()
   #fade_flash()
