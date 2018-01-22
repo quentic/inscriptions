@@ -6,6 +6,8 @@ class Equipage < ApplicationRecord
 
   acts_as_xlsx
 
+  validates :numero, uniqueness: {message: " : ce numéro d'équipage est déjà réservé ! <br \>Choisissez-en un autre ou contactez Aline"}
+
   # Recherche les objets avec une référence ou une désignation contenant le mot-clé recherché
   def self.contenant(terme)
     terme = full_text(terme)
