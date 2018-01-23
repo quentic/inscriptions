@@ -11,6 +11,7 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - backend
+    restart: always
 
   app:
     container_name: norev_app
@@ -29,6 +30,7 @@ services:
     networks:
       - frontend
       - backend
+    restart: always
 
   adminer:
     container_name: norev_adminer
@@ -40,6 +42,7 @@ services:
     networks:
       - frontend
       - backend
+    restart: always
 
 volumes:
   db_data:
