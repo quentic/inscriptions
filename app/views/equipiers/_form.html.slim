@@ -3,7 +3,7 @@
   
   fieldset
     legend = "Equipier pour l'équipage numéro #{@equipier.equipage.numero}"
-    = image_tag(@equipier.photo.small.url, class: :photo_equipier) if @equipier.photo?
+    = link_to(image_tag(@equipier.photo.small.url), @equipier.photo.url) if @equipier.photo?
     div
       = label_tag ""
       = f.collection_radio_buttons :conducteur, [[true, 'Conducteur'] ,[false, 'Passager']], :first, :last
