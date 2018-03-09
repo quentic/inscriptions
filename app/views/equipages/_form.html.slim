@@ -3,9 +3,11 @@
   
   = f.input :numero, input_html: {title: "Uniquement pour les participants au DERNIER raid 2016 : si vous souhaitez conserver votre numéro de véhicule, indiquez-le. Autres cas : laissez ce champ vide"}
   = f.input :type_puissance
+  = link_to(image_tag("icone_pdf.png"), @equipage.carte_grise.url) if @equipage.carte_grise? &&  (can? :edit, @equipage)
+  = f.input :carte_grise, as: :file
   = f.input :carte_grise_titulaire
-  = f.input :carte_grise_date_emission, start_year: Date.today.year - 80, end_year: Date.today.year
-  = f.input :premiere_mise_en_circ, start_year: Date.today.year - 80, end_year: Date.today.year
+  = f.input :carte_grise_date_emission, start_year: Date.today.year - 80, end_year: Date.today.year, include_blank: true
+  = f.input :premiere_mise_en_circ, start_year: Date.today.year - 80, end_year: Date.today.year, include_blank: true
   = f.input :immatriculation
   = f.input :cie_assurance    
 

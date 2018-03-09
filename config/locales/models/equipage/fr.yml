@@ -4,6 +4,7 @@ fr:
       equipage:
         numero: numéro d'équipage
         type_puissance: type/puissance
+        carte_grise: carte grise
         carte_grise_titulaire: titulaire de la carte grise
         carte_grise_date_emission: date d'émission de la carte grise
         premiere_mise_en_circ: date de première mise en circulation

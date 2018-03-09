@@ -4,6 +4,8 @@ class Equipage < ApplicationRecord
   has_many :equipiers, dependent: :destroy
   belongs_to :user
 
+  mount_uploader :carte_grise, CarteGriseUploader
+
   acts_as_xlsx
 
   validates :numero, uniqueness: {message: " : ce numéro d'équipage est déjà réservé ! <br \>Choisissez-en un autre ou contactez Aline"}
@@ -53,7 +55,5 @@ class Equipage < ApplicationRecord
     joins("LEFT JOIN equipiers ON equipiers.equipage_id = equipages.id").
     order(numero: :asc)
   end
-
-
 
 end
