@@ -10,6 +10,7 @@ fr:
 
   numero: numéro
   type_puissance: Type/Puissance
+  carte_grise: carte grise
   carte_grise_date_emission: Date d'émission de la carte grise
   carte_grise_titulaire: titulaire de la carte grise
   premiere_mise_en_circ: date de première mise en circulation

@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170526211717) do
+ActiveRecord::Schema.define(version: 20180309220600) do
 
   create_table "equipages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.integer "numero", limit: 1
+    t.integer "numero", limit: 2
     t.string "type_puissance", limit: 20
     t.string "carte_grise_titulaire"
     t.date "carte_grise_date_emission"
@@ -23,11 +23,13 @@ ActiveRecord::Schema.define(version: 20170526211717) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "carte_grise"
     t.index ["numero"], name: "index_equipages_on_numero", unique: true
     t.index ["user_id"], name: "index_equipages_on_user_id"
   end
 
   create_table "equipiers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.boolean "conducteur", default: false, null: false
     t.string "nom"
     t.string "prenom"
     t.string "photo"
@@ -42,13 +44,13 @@ ActiveRecord::Schema.define(version: 20170526211717) do
     t.string "lieu_naissance"
     t.string "nationalite"
     t.string "permis_conduire_num"
-    t.string "permis_conduire_doc"
+    t.string "permis_conduire"
     t.string "passeport_num"
-    t.string "passeport_doc"
+    t.string "passeport"
     t.date "passeport_date_delivrance"
     t.string "passeport_lieu_delivrance"
     t.date "passeport_date_validite"
-    t.string "groupe_sanguin", limit: 3
+    t.string "groupe_sanguin", limit: 50
     t.string "nom_prenom_a_prevenir"
     t.string "tel_a_prevenir", limit: 15
     t.string "taille_t_shirt", limit: 4
@@ -57,7 +59,6 @@ ActiveRecord::Schema.define(version: 20170526211717) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["equipage_id"], name: "index_equipiers_on_equipage_id"
-    t.index ["passeport_num"], name: "index_equipiers_on_passeport_num", unique: true
     t.index ["user_id"], name: "index_equipiers_on_user_id"
   end
 
@@ -86,5 +87,4 @@ ActiveRecord::Schema.define(version: 20170526211717) do
     t.boolean "inscription_user", default: true, null: false
   end
 
-  add_foreign_key "equipiers", "equipages"
 end

@@ -4,7 +4,7 @@ class EquipagesController < CrudController
   #custom_actions :resource => [:cloner]
 
   def attrs_for_form
-[:numero, :type_puissance, :carte_grise_titulaire, :carte_grise_date_emission, :premiere_mise_en_circ, :immatriculation, :cie_assurance]
+[:numero, :type_puissance, :carte_grise, :carte_grise_titulaire, :carte_grise_date_emission, :premiere_mise_en_circ, :immatriculation, :cie_assurance]
   end
 
   before_action :set_equipage, only: [:index]
@@ -94,7 +94,7 @@ private
   # Only allow a trusted parameter "white list" through.
   def equipage_params
     params.require(:equipage).permit(:numero, :type_puissance, 
-      :carte_grise_titulaire, :carte_grise_date_emission, :premiere_mise_en_circ, :immatriculation, 
+      :carte_grise, :carte_grise_titulaire, :carte_grise_date_emission, :premiere_mise_en_circ, :immatriculation, 
       :cie_assurance,
       :user_id)
   end
