@@ -30,7 +30,7 @@ RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 
 COPY Gemfile Gemfile.lock ./ 
-RUN gem install bundler && bundle install --jobs 4
+RUN gem install bundler && bundle install --jobs 2
 
 COPY . .
 
