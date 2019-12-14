@@ -3,7 +3,7 @@ services:
   # Le serveur MySQL avec les données NOREV
   db:
     container_name: norev_db
-    image: mariadb
+    image: hypriot/rpi-mysql
     environment:
       MYSQL_ROOT_PASSWORD: zzz
       MYSQL_USER: root
