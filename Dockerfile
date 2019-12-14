@@ -4,8 +4,6 @@ LABEL maintainer Christian Quentin <christian.quentin@architecte-du-web.com> \
       version="1.1" \
       description="Saisie des équipages NOREV"
 
-#ENV http_proxy "http://proxy.xtsfrance.com:8000"
-#ENV https_proxy "http://proxy.xtsfrance.com:8000"
 #ENV http_proxy "http://10.14.1.48:3128"
 #ENV https_proxy "http://10.14.1.48:3128"
 #RUN export http_proxy=$http_proxy
@@ -34,9 +32,9 @@ RUN gem install bundler && bundle install --jobs 2
 
 COPY . .
 
-# A priori, il faut effectuer cette opération dans le conteneur app pour que les assets précompilés restent sous public/assets
-# Sinon, la pré-compilation a bien lieu mais le résultat est stocké dans un conteneur provisoire qui est détruit ensuite
-#RUN rake assets:precompile
+# Pour que les assets précompilés restent sous public/assets et soient copiés dans le conteneur de Nginx, 
+# lancer la commande suivante dans un terminal (voir dans la branche production) :
+# sudo make
 
 # Start puma
 CMD bundle exec puma -C config/puma.rb
