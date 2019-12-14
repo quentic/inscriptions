@@ -32,7 +32,8 @@ RUN gem install bundler && bundle install --jobs 4 --without development test as
 
 COPY . .
 
-# Pour que les assets précompilés restent sous public/assets et soient copiés dans le conteneur de Nginx, lancer la commande suivante dans un terminal :
+# Pour que les assets précompilés restent sous public/assets et soient copiés dans le conteneur de Nginx, 
+# lancer la commande suivante dans un terminal (voir dans la branche production) :
 # sudo make
 
 # Start puma
