@@ -11,7 +11,7 @@ protected
 
    def authenticate
      authenticate_or_request_with_http_basic("Veuillez saisir les codes d'acces fournis par Aline lors de la reunion. Si vous ne les avez plus, contactez Aline au : 06 30 60 48 28") do |username, password|
-       username == "raid2018" && password == "raid2018"
+       username == "raid2020" && password == "raid2020"
      end
    end
 
