@@ -2,10 +2,10 @@
   li = link_to 'Gestion des utilisateurs', users_path if (can? :manage, User)
 
 - content_for :page_title do
-  ' inscriptions au Raid NOREV 2018
+  ' inscriptions au Raid NOREV 2020
 
 section.contenu
-  p Vous êtes sur le portail de Gestion des inscriptions au raid NOREV 2018.
+  p Vous êtes sur le portail de Gestion des inscriptions au raid NOREV 2020.
   ul.action
     - if user_signed_in?
       li.action--equipage  = link_to 'Déclarer un véhicule', new_equipage_path 
