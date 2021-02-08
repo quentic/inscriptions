@@ -60,7 +60,7 @@ gem 'cancancan', '~> 1.10'
 gem 'pdf-toolkit', '~> 1.1.0'
 
 # Gère le téléversement de fichiers
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.3'
 
 # Pour la génération de rapports au format Office Open XML (xlsx, LibreOffice)
 gem 'rubyzip', '~> 1.1.0'
