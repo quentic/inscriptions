@@ -47,7 +47,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 # utiliser Puma comme serveur d'application
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 4.3'
 
 # Pour utiliser la pagination des listes à rallonge
 gem 'will_paginate'
